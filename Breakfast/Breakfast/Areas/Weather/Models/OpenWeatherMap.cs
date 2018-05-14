@@ -9,11 +9,11 @@ namespace Breakfast.Areas.Weather.Models
     {
         public string apiResponse { get; set; }
 
-        static public string getResponse(string zipcode)
+        static public string getResponse(int zipcode)
         {
             string apiKey = "6e0c425a741c67ae35eda9b8812c60b8";
-            HttpWebRequest apiRequest = WebRequest.Create("http://api.openweathermap.org/data/2.5/weather?zip=" + zipcode + "&appid=" + apiKey + "&units=imperial") as HttpWebRequest;
-
+            HttpWebRequest apiRequest = WebRequest.Create("http://api.openweathermap.org/data/2.5/weather?zip=" + zipcode.ToString() + "&appid=" + apiKey + "&units=imperial") as HttpWebRequest;
+           
             string apiResponse = "";
             using (HttpWebResponse response = apiRequest.GetResponse() as HttpWebResponse)
             {
