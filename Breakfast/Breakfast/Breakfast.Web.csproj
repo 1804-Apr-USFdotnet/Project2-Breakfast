@@ -146,6 +146,7 @@
     <Compile Include="Areas\Traffic\TrafficAreaRegistration.cs" />
     <Compile Include="Areas\Weather\JsonResponseHelpers\CurrentWeather.cs" />
     <Compile Include="Areas\Weather\JsonResponseHelpers\ForecastWeather.cs" />
+    <Compile Include="Areas\Weather\Models\OpenWeatherMap.cs" />
     <Compile Include="Areas\Weather\WeatherAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -203,7 +204,6 @@
     <Folder Include="Areas\Traffic\Models\" />
     <Folder Include="Areas\Traffic\Views\Shared\" />
     <Folder Include="Areas\Weather\Controllers\" />
-    <Folder Include="Areas\Weather\Models\" />
     <Folder Include="Areas\Weather\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
