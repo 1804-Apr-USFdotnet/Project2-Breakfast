@@ -144,6 +144,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Gmail\GmailAreaRegistration.cs" />
     <Compile Include="Areas\Traffic\TrafficAreaRegistration.cs" />
+    <Compile Include="Areas\Weather\JsonResponseHelpers\CurrentWeather.cs" />
+    <Compile Include="Areas\Weather\JsonResponseHelpers\ForecastWeather.cs" />
     <Compile Include="Areas\Weather\WeatherAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -232,7 +234,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>63679</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
