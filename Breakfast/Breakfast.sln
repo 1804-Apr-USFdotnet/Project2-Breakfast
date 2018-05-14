@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Breakfast.Web.Tests", "Brea
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Breakfast.Data", "Breakfast.Data\Breakfast.Data.csproj", "{AFD174B3-A374-44B8-A2AE-7A5E3038C246}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories", "Repositories\Repositories.csproj", "{98A79B7C-DF01-4B80-AEE5-0AE953DA452F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryInterfaces", "RepositoryInterfaces\RepositoryInterfaces.csproj", "{B9084486-8828-428B-8630-E06330BF36DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{AFD174B3-A374-44B8-A2AE-7A5E3038C246}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFD174B3-A374-44B8-A2AE-7A5E3038C246}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFD174B3-A374-44B8-A2AE-7A5E3038C246}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98A79B7C-DF01-4B80-AEE5-0AE953DA452F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98A79B7C-DF01-4B80-AEE5-0AE953DA452F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98A79B7C-DF01-4B80-AEE5-0AE953DA452F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98A79B7C-DF01-4B80-AEE5-0AE953DA452F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9084486-8828-428B-8630-E06330BF36DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9084486-8828-428B-8630-E06330BF36DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9084486-8828-428B-8630-E06330BF36DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9084486-8828-428B-8630-E06330BF36DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
