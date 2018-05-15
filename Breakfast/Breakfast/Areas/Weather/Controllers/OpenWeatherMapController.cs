@@ -22,5 +22,10 @@ namespace Breakfast.Areas.Weather.Controllers
             owm.apiResponse = OpenWeatherMap.getResponse(zipcode);
             return View(owm);
         }
+
+        public ActionResult Settings()
+        {
+            return View();
+        }
     }
 }
