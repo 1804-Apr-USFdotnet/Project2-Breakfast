@@ -33,7 +33,7 @@ namespace Breakfast.Areas.Weather.JsonResponseHelpers
         public class Wind
         {
             public double speed { get; set; }
-            public int deg { get; set; }
+            public string deg { get; set; }
             public double gust { get; set; }
         }
 
