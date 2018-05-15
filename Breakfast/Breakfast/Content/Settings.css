@@ -1,0 +1,119 @@
+﻿* {
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    text-decoration: none;
+}
+
+.wrapper {
+    background: #cac8ce;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.window {
+    border-radius: 8px;
+    overflow: hidden;
+    width: 400px;
+}
+
+    .window .nav-bar {
+        z-index: 5;
+        background: #62168c;
+        height: 56px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .window .nav-bar .title {
+            color: white;
+            font-weight: 500;
+            font-size: 20px;
+        }
+
+    .window .settings {
+        background: #71539b;
+        /*height: 100%;*/
+        padding: 8px 0;
+    }
+
+        .window .settings .item {
+            padding: 0 16px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+            .window .settings .item .label {
+                color: #fff;
+                font-size: 16px;
+            }
+
+        .window .settings .subscribe {
+            padding-top: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+            .window .settings .subscribe:before {
+                content: '';
+                display: block;
+                width: 100%;
+                height: 1px;
+                background: #fff;
+            }
+
+            .window .settings .subscribe .title {
+                color: #fff;
+                font-size: 16px;
+            }
+
+.switch {
+    width: 60px;
+    height: 30px;
+    display: inline-block;
+}
+
+    .switch input {
+        display: none;
+    }
+
+    .switch .slider {
+        position: absolute;
+        background-color: #F38181;
+        width: inherit;
+        height: inherit;
+        border-radius: 34px;
+        cursor: pointer;
+        transition: background-color 1s linear;
+    }
+
+        .switch .slider:before {
+            position: absolute;
+            content: "";
+            height: 30px;
+            width: 30px;
+            border-radius: 50px;
+            background-color: #fff;
+            transition: .4s, background-color 1s linear;
+        }
+
+    .switch input:checked + .slider {
+        background-color: #7ee6da;
+    }
+
+        .switch input:checked + .slider:before {
+            -webkit-transform: translateX(30px);
+            transform: translateX(30px);
+        }
+
+@media all and (max-width: 410px) {
+    .window {
+        width: 100%;
+        min-width: 270px;
+    }
+}
