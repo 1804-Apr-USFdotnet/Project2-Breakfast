@@ -76,16 +76,27 @@ namespace Breakfast.Areas.Weather.Models
                 forecastDays[i] = new ForecastDay();
 
                 int year, month, day;
-                Int32.TryParse(rootObject.list[i * 8].dt_txt.Substring(0, 4), out year);
-                Int32.TryParse(rootObject.list[i * 8].dt_txt.Substring(5, 2), out month);
-                Int32.TryParse(rootObject.list[i * 8].dt_txt.Substring(8, 2), out day);
+                // Get date parts out of json date format (yyyy-mm-dd)
+                Int32.TryParse(rootObject.list[i*8].dt_txt.Substring(0, 4), out year);
+                Int32.TryParse(rootObject.list[i*8].dt_txt.Substring(5, 2), out month);
+                Int32.TryParse(rootObject.list[i*8].dt_txt.Substring(8, 2), out day);
 
                 DateTime dateValue = new DateTime(year, month, day);
 
+                // Access nth day in json array, [0] = day 1, [8] = day 2, [16] = day 3, etc.
                 forecastDays[i].day = dateValue.ToString("ddd");
-                forecastDays[i].condition = rootObject.list[i * 8].weather[0].icon;
-                forecastDays[i].tempMax = rootObject.list[i * 8].main.temp_max;
-                forecastDays[i].tempMin = rootObject.list[i * 8].main.temp_min;
+                forecastDays[i].condition = rootObject.list[i*8].weather[0].icon;
+                forecastDays[i].tempMax = rootObject.list[i*8].main.temp_max;
+                forecastDays[i].tempMin = rootObject.list[i*8].main.temp_min;
+
+                // Go through entire day to get max and min temperature of the day
+                for (int j = 0; j < 8; j++)
+                {
+                    if (forecastDays[i].tempMax < rootObject.list[i * 8 + j].main.temp_max)
+                        forecastDays[i].tempMax = rootObject.list[i * 8 + j].main.temp_max;
+                    if (forecastDays[i].tempMin > rootObject.list[i * 8 + j].main.temp_min)
+                        forecastDays[i].tempMin = rootObject.list[i * 8 + j].main.temp_min;
+                }
             }
         }
     }
