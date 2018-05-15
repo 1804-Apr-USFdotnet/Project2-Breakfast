@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -72,8 +73,17 @@ namespace Breakfast.Areas.Weather.Models
 
             for (int i = 0; i < 5; i++)
             {
+                forecastDays[i] = new ForecastDay();
+
+                int year, month, day;
+                Int32.TryParse(rootObject.list[i * 8].dt_txt.Substring(0, 4), out year);
+                Int32.TryParse(rootObject.list[i * 8].dt_txt.Substring(5, 2), out month);
+                Int32.TryParse(rootObject.list[i * 8].dt_txt.Substring(8, 2), out day);
+
+                DateTime dateValue = new DateTime(year, month, day);
+
+                forecastDays[i].day = dateValue.ToString("ddd");
                 forecastDays[i].condition = rootObject.list[i * 8].weather[0].icon;
-                forecastDays[i].day = rootObject.list[i * 8].dt.ToString();
                 forecastDays[i].tempMax = rootObject.list[i * 8].main.temp_max;
                 forecastDays[i].tempMin = rootObject.list[i * 8].main.temp_min;
             }
