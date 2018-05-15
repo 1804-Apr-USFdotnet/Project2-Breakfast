@@ -18,8 +18,7 @@ namespace Breakfast.Areas.Weather.Controllers
         [HttpPost]
         public ActionResult Index(string zipcode)
         {
-            OpenWeatherMap owm = new OpenWeatherMap();
-            owm.GetResponse(zipcode);
+            OpenWeatherMap owm = new OpenWeatherMap(zipcode);
             return View(owm);
         }
 
