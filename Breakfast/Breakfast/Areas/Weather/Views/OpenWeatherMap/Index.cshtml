@@ -1,7 +1,6 @@
 ﻿@model Breakfast.Areas.Weather.Models.OpenWeatherMap
 
-@using (Html.BeginForm())
-{<button id="reset" name="reset">Reset »</button>}
+@*@using (Html.BeginForm())*@
 <div id="apiDiv">
     <h4>Select the City for Weather Report</h4>
     @using (Html.BeginForm("Index", "OpenWeatherMap", FormMethod.Post))

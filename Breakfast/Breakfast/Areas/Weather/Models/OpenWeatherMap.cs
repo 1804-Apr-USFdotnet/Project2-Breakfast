@@ -7,7 +7,13 @@ namespace Breakfast.Areas.Weather.Models
 {
     public class OpenWeatherMap
     {
-        public string apiResponse { get; set; }
+        public string city { get; set; }
+        public string description { get; set; }
+        public double windSpeed { get; set; }
+        public double temperature { get; set; }
+        public int humidity { get; set; }
+        public int cloudiness { get; set; }
+        public int visibility { get; set; }
 
         static public string getResponse(string zipcode)
         {

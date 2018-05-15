@@ -15,6 +15,5 @@ namespace Breakfast.Areas.Weather.Models
         public bool cloudiness { get; set; } = false; //rootObject.clouds.all
         public bool visiblity { get; set; } = false;  //rootObject.main.visbility
         public string location { get; set; }
-
     }
 }
