@@ -148,6 +148,7 @@
     <Compile Include="Areas\Weather\JsonResponseHelpers\CurrentWeather.cs" />
     <Compile Include="Areas\Weather\JsonResponseHelpers\ForecastWeather.cs" />
     <Compile Include="Areas\Weather\Models\OpenWeatherMap.cs" />
+    <Compile Include="Areas\Weather\Models\WeatherSettings.cs" />
     <Compile Include="Areas\Weather\WeatherAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">

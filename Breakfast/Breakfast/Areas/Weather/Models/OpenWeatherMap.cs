@@ -9,7 +9,7 @@ namespace Breakfast.Areas.Weather.Models
     {
         public string apiResponse { get; set; }
 
-        static public string getResponse(int zipcode)
+        static public string getResponse(string zipcode)
         {
             string apiKey = "6e0c425a741c67ae35eda9b8812c60b8";
             HttpWebRequest apiRequest = WebRequest.Create("http://api.openweathermap.org/data/2.5/weather?zip=" + zipcode.ToString() + "&appid=" + apiKey + "&units=imperial") as HttpWebRequest;
@@ -26,7 +26,6 @@ namespace Breakfast.Areas.Weather.Models
             StringBuilder sb = new StringBuilder();
             sb.Append("<table><tr><th>Weather Description</th></tr>");
             sb.Append("<tr><td>City:</td><td>" + rootObject.name + "</td></tr>");
-            sb.Append("<tr><td>Country:</td><td>" + rootObject.sys.country + "</td></tr>");
             sb.Append("<tr><td>Wind:</td><td>" + rootObject.wind.speed + " mph</td></tr>");
             sb.Append("<tr><td>Current Temperature:</td><td>" + rootObject.main.temp + " °F</td></tr>");
             sb.Append("<tr><td>Humidity:</td><td>" + rootObject.main.humidity + "%</td></tr>");
