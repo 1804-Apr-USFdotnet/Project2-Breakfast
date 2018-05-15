@@ -10,6 +10,6 @@ namespace Breakfast.Areas.Weather.Models
         public double tempMin { get; set; }
         public double tempMax { get; set; }
         public string day { get; set; }
-        public string icon { get; set; }
+        public string condition { get; set; }
     }
 }

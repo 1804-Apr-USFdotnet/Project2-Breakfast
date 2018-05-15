@@ -12,10 +12,10 @@ namespace Breakfast.Areas.Weather.Models
         public string description { get; set; }
         public double windSpeed { get; set; }
         public double temperature { get; set; }
-        public char temperatureType { get; set; }
+        public char temperatureType { get; set; } = 'F';
         public int humidity { get; set; }
         public int cloudiness { get; set; }
-        public string icon { get; set; }
+        public string condition { get; set; } = "09d";
 
         public void GetResponse(string zipcode)
         {
@@ -38,6 +38,7 @@ namespace Breakfast.Areas.Weather.Models
             temperature = rootObject.main.temp;
             humidity = rootObject.main.humidity;
             cloudiness = rootObject.clouds.all;
+            condition = rootObject.weather[0].icon;
         }
     }
 }
