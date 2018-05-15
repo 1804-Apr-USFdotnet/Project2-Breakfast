@@ -8,5 +8,27 @@
         <input type="text" name="zipcode" />
         <button name="submit">Submit</button>
     }
-    <div id="message">@(new HtmlString(Model.apiResponse))</div>
+        <table>
+            <tr>
+                <th>City</th>
+                <th>Country</th>
+                <th>Description</th>
+                <th>Wind Speed</th>
+                <th>Temperature</th>
+                <th>Humidity</th>
+                <th>Cloudiness</th>
+                <th>Icon</th>
+            </tr>
+            <tr>
+                <td>@Model.city</td>
+                <td>@Model.country</td>
+                <td>@Model.description</td>
+                <td>@Model.windSpeed</td>
+                <td>@Model.temperature</td>
+                <td>@Model.humidity</td>
+                <td>@Model.cloudiness</td>
+                <td>@Model.icon</td>
+            </tr>
+        </table>
+
 </div>

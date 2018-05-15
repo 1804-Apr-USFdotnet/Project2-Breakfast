@@ -7,8 +7,9 @@ namespace Breakfast.Areas.Weather.Models
 {
     public class ForecastDay
     {
-        string day { get; set; }
-        double tempMin { get; set; }
-        double tempMax { get; set; }
+        public double tempMin { get; set; }
+        public double tempMax { get; set; }
+        public string day { get; set; }
+        public string icon { get; set; }
     }
 }

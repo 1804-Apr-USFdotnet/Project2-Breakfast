@@ -19,7 +19,7 @@ namespace Breakfast.Areas.Weather.Controllers
         public ActionResult Index(string zipcode)
         {
             OpenWeatherMap owm = new OpenWeatherMap();
-            owm.apiResponse = OpenWeatherMap.getResponse(zipcode);
+            owm.GetResponse(zipcode);
             return View(owm);
         }
 

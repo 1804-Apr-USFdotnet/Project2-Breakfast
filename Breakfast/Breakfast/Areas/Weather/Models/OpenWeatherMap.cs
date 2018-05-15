@@ -8,14 +8,16 @@ namespace Breakfast.Areas.Weather.Models
     public class OpenWeatherMap
     {
         public string city { get; set; }
+        public string country { get; set; }
         public string description { get; set; }
         public double windSpeed { get; set; }
         public double temperature { get; set; }
+        public char temperatureType { get; set; }
         public int humidity { get; set; }
         public int cloudiness { get; set; }
-        public int visibility { get; set; }
+        public string icon { get; set; }
 
-        static public string getResponse(string zipcode)
+        public void GetResponse(string zipcode)
         {
             string apiKey = "6e0c425a741c67ae35eda9b8812c60b8";
             HttpWebRequest apiRequest = WebRequest.Create("http://api.openweathermap.org/data/2.5/weather?zip=" + zipcode.ToString() + "&appid=" + apiKey + "&units=imperial") as HttpWebRequest;
@@ -29,15 +31,13 @@ namespace Breakfast.Areas.Weather.Models
 
             JsonResponseHelpers.CurrentWeather.ResponseWeather rootObject = JsonConvert.DeserializeObject<JsonResponseHelpers.CurrentWeather.ResponseWeather>(apiResponse);
 
-            StringBuilder sb = new StringBuilder();
-            sb.Append("<table><tr><th>Weather Description</th></tr>");
-            sb.Append("<tr><td>City:</td><td>" + rootObject.name + "</td></tr>");
-            sb.Append("<tr><td>Wind:</td><td>" + rootObject.wind.speed + " mph</td></tr>");
-            sb.Append("<tr><td>Current Temperature:</td><td>" + rootObject.main.temp + " °F</td></tr>");
-            sb.Append("<tr><td>Humidity:</td><td>" + rootObject.main.humidity + "%</td></tr>");
-            sb.Append("<tr><td>Weather:</td><td>" + rootObject.weather[0].description + "</td></tr>");
-            sb.Append("</table>");
-            return sb.ToString();
+            city = rootObject.name;
+            country = rootObject.sys.country;
+            description = rootObject.weather[0].description;
+            windSpeed = rootObject.wind.speed;
+            temperature = rootObject.main.temp;
+            humidity = rootObject.main.humidity;
+            cloudiness = rootObject.clouds.all;
         }
     }
 }
