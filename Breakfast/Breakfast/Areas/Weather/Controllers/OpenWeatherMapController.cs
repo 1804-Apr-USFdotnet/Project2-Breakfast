@@ -16,10 +16,9 @@ namespace Breakfast.Areas.Weather.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(int zipcode)
+        public ActionResult Index(string zipcode)
         {
-            OpenWeatherMap owm = new OpenWeatherMap();
-            owm.apiResponse = OpenWeatherMap.getResponse(zipcode);
+            OpenWeatherMap owm = new OpenWeatherMap(zipcode);
             return View(owm);
         }
 

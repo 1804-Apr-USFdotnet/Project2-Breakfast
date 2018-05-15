@@ -147,7 +147,9 @@
     <Compile Include="Areas\Weather\Controllers\OpenWeatherMapController.cs" />
     <Compile Include="Areas\Weather\JsonResponseHelpers\CurrentWeather.cs" />
     <Compile Include="Areas\Weather\JsonResponseHelpers\ForecastWeather.cs" />
+    <Compile Include="Areas\Weather\Models\ForecastDay.cs" />
     <Compile Include="Areas\Weather\Models\OpenWeatherMap.cs" />
+    <Compile Include="Areas\Weather\Models\WeatherSettings.cs" />
     <Compile Include="Areas\Weather\WeatherAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -159,6 +161,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Settings.css" />
+    <Content Include="Content\WeatherModule.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
