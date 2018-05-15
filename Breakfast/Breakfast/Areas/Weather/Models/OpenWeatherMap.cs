@@ -12,7 +12,7 @@ namespace Breakfast.Areas.Weather.Models
         public string country { get; set; }
         public string description { get; set; }
         public double windSpeed { get; set; }
-        public double temperature { get; set; }
+        public int temperature { get; set; }
         public char temperatureType { get; set; } = 'F';
         public int humidity { get; set; }
         public int cloudiness { get; set; }
@@ -49,7 +49,7 @@ namespace Breakfast.Areas.Weather.Models
             country = rootObject.sys.country;
             description = rootObject.weather[0].description;
             windSpeed = rootObject.wind.speed;
-            temperature = rootObject.main.temp;
+            temperature = (int)rootObject.main.temp;
             humidity = rootObject.main.humidity;
             cloudiness = rootObject.clouds.all;
             condition = rootObject.weather[0].icon;
@@ -86,16 +86,16 @@ namespace Breakfast.Areas.Weather.Models
                 // Access nth day in json array, [0] = day 1, [8] = day 2, [16] = day 3, etc.
                 forecastDays[i].day = dateValue.ToString("ddd");
                 forecastDays[i].condition = rootObject.list[i*8].weather[0].icon;
-                forecastDays[i].tempMax = rootObject.list[i*8].main.temp_max;
-                forecastDays[i].tempMin = rootObject.list[i*8].main.temp_min;
+                forecastDays[i].tempMax = (int)rootObject.list[i*8].main.temp_max;
+                forecastDays[i].tempMin = (int)rootObject.list[i*8].main.temp_min;
 
                 // Go through entire day to get max and min temperature of the day
                 for (int j = 0; j < 8; j++)
                 {
                     if (forecastDays[i].tempMax < rootObject.list[i * 8 + j].main.temp_max)
-                        forecastDays[i].tempMax = rootObject.list[i * 8 + j].main.temp_max;
+                        forecastDays[i].tempMax = (int)rootObject.list[i * 8 + j].main.temp_max;
                     if (forecastDays[i].tempMin > rootObject.list[i * 8 + j].main.temp_min)
-                        forecastDays[i].tempMin = rootObject.list[i * 8 + j].main.temp_min;
+                        forecastDays[i].tempMin = (int)rootObject.list[i * 8 + j].main.temp_min;
                 }
             }
         }
