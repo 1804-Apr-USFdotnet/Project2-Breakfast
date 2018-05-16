@@ -6,12 +6,14 @@ using System.Web.Mvc;
 
 namespace Breakfast.Controllers
 {
-    [AllowAnonymous]
+    //[AllowAnonymous]
     public class AuthController : Controller
     {
         public ActionResult LogIn()
         {
             return View();
         }
+
+
     }
 }
