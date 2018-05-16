@@ -12,7 +12,7 @@ namespace Breakfast.Models
     public class AppDbContext : IdentityDbContext<AppUser>
     {
         public AppDbContext()
-            : base("DefaultConnection")
+            : base("Default")
         {
         }
     }
