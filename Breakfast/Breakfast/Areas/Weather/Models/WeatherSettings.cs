@@ -12,7 +12,6 @@ namespace Breakfast.Areas.Weather.Models
         public bool windSpeed { get; set; } = false;  //rootObject.wind.speed
         public bool humidity { get; set; } = true;    //rootObject.main.humidity
         public bool cloudiness { get; set; } = false; //rootObject.clouds.all
-        public bool visiblity { get; set; } = false;  //rootObject.main.visbility
         public string location { get; set; }
     }
 }
