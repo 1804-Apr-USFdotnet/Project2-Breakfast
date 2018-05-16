@@ -41,6 +41,45 @@ namespace Breakfast.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(Register model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            var user = new AppUser
+            {
+                UserName = model.Email,
+                zipcode = model.Zipcode,
+                address = model.Address,
+                workAddress = model.WorkAddress
+            };
+
+            var result = userManager.Create(user, model.Password);
+
+            if (result.Succeeded)
+            {
+                var identity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                GetAuthenticationManager().SignIn(identity);
+                return RedirectToAction("index", "home");
+            }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
+
+            return View();
+        }
+
         public AuthController()
             : this(Startup.UserManagerFactory.Invoke())
         {
