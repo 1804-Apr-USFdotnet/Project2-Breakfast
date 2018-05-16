@@ -1,6 +1,7 @@
 ﻿@model Breakfast.Areas.Weather.Models.OpenWeatherMap
 
 <link rel="stylesheet" href="~/Content/WeatherModule.css">
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
 <div class='wrapper'>
 
@@ -39,7 +40,7 @@
                             <h3 class='secondary'>@item.day</h3>
                             <h2 class='high'>@item.tempMax</h2>
                             <h4 class='secondary'>@item.tempMin</h4>
-                            <i id='condition' value=@item.condition></i>
+                            @*<i id='condition' value=@item.condition></i>*@
                         </div>
                     }
                 }
@@ -50,44 +51,44 @@
 
 <script>
     $(document).ready(function () {
-        $icon = $temp.find('#condition');
-        var condition = @Model.condition;
+        var icon = $('#condition');
+        var condition = "@(Model.condition.Length > 1 ? Model.condition : "00d")";
         switch (condition) {
             case '01d':
-                $icon.addClass('wi wi-day-sunny');
+                icon.addClass('wi wi-day-sunny');
                 break;
             case '02d':
-                $icon.addClass('wi wi-day-sunny-overcast');
+                icon.addClass('wi wi-day-sunny-overcast');
                 break;
             case '01n':
-                $icon.addClass('wi wi-night-clear');
+                icon.addClass('wi wi-night-clear');
                 break;
             case '02n':
-                $icon.addClass('wi wi-night-partly-cloudy');
+                icon.addClass('wi wi-night-partly-cloudy');
                 break;
         }
 
         switch (condition.substr(0, 2)) {
             case '03':
-                $icon.addClass('wi wi-cloud');
+                icon.addClass('wi wi-cloud');
                 break;
             case '04':
-                $icon.addClass('wi wi-cloudy');
+                icon.addClass('wi wi-cloudy');
                 break;
             case '09':
-                $icon.addClass('wi wi-showers');
+                icon.addClass('wi wi-showers');
                 break;
             case '10':
-                $icon.addClass('wi wi-rain');
+                icon.addClass('wi wi-rain');
                 break;
             case '11':
-                $icon.addClass('wi wi-thunderstorm');
+                icon.addClass('wi wi-thunderstorm');
                 break;
             case '13':
-                $icon.addClass('wi wi-snow');
+                icon.addClass('wi wi-snow');
                 break;
             case '50':
-                $icon.addClass('wi wi-fog');
+                icon.addClass('wi wi-fog');
                 break;
         }
     });
