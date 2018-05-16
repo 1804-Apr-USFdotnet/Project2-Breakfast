@@ -28,7 +28,7 @@ a {
 .wrapper {
     width: 480px;
     /*margin: 0 auto;*/
-    padding: 10px 60px;
+    padding: 10px 60px 40px;
     background-color: steelblue;
 }
 
