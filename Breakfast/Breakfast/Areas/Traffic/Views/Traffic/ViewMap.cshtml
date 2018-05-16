@@ -87,7 +87,7 @@
         this.map = map;
         this.originPlaceId = null;
         this.destinationPlaceId = null;
-        this.travelMode = 'WALKING';
+        this.travelMode = 'DRIVING';
         var originInput = document.getElementById('origin-input');
         var destinationInput = document.getElementById('destination-input');
         var modeSelector = document.getElementById('mode-selector');
@@ -162,6 +162,7 @@
       };
 
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=@ViewBag.APIKey&libraries=places&callback=initMap"
-            async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=@ViewBag.APIKey&libraries=places&callback=initMap"
+        async defer></script>
+<h1>@ViewBag.TimeToWork</h1>
 </body>
