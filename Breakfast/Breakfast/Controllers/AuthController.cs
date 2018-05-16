@@ -32,7 +32,7 @@ namespace Breakfast.Controllers
 
             if (user != null)
             {
-                var identity =  userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                var identity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                 GetAuthenticationManager().SignIn(identity);
                 return Redirect(model.ReturnUrl);
             }

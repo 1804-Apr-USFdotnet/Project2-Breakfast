@@ -5,6 +5,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using System;
+using System.Diagnostics;
 
 namespace Breakfast
 {
@@ -21,9 +22,9 @@ namespace Breakfast
             });
 
             // configure the user manager
-            UserManagerFactory = () =>
-            {
-                var usermanager = new UserManager<AppUser>(
+
+            UserManagerFactory = () => {
+            var usermanager = new UserManager<AppUser>(
                     new UserStore<AppUser>(new AppDbContext()));
 
                 // allow alphanumeric characters in username
@@ -32,8 +33,9 @@ namespace Breakfast
                     AllowOnlyAlphanumericUserNames = false
                 };
 
-                return usermanager;
-            };
+            return usermanager;
+        };
+
         }
     }
 }
