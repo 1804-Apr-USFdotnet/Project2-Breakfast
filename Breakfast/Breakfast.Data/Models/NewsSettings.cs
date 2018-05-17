@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Breakfast.Data.Models
 {
     class NewsSettings
     {
+        [ForeignKey("SettingsTable")]
+        public int Fk_NewsId { get; set; }
+        public bool Enabled { get; set; }
+        // TODO: add news specific settings
+
+        public SettingsTable SettingsTable { get; set; }
     }
 }

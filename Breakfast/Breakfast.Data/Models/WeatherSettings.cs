@@ -6,7 +6,6 @@ namespace Breakfast.Data.Models
     {
         [ForeignKey("SettingsTable")]
         public int Fk_WeatherId { get; set; }
-
         public bool Enabled { get; set; }
         public bool Farenheit { get; set; }
         public bool WindSpeed { get; set; }

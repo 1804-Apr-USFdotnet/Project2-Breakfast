@@ -14,7 +14,10 @@ namespace Breakfast.Data
         {
         }
 
-        public DbSet<Models.SettingsTable> Settings { get; set; }
+        public DbSet<Models.SettingsTable> SettingsTable { get; set; }
+        public DbSet<Models.NewsSettings> NewsSettings { get; set; }
+        public DbSet<Models.TrafficSettings> TrafficSettings { get; set; }
+        public DbSet<Models.WeatherSettings> WeatherSettings { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

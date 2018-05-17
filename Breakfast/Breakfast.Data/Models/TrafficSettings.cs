@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Breakfast.Data.Models
 {
     class TrafficSettings
     {
+        [ForeignKey("SettingsTable")]
+        public int Fk_TrafficId { get; set; }
+        public bool Enabled { get; set; }
+        // TODO: add traffic specific settings
+
+        public SettingsTable SettingsTable { get; set; }
     }
 }
