@@ -52,6 +52,7 @@
     <Compile Include="Models\TrafficSettings.cs" />
     <Compile Include="Models\WeatherSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingsContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
