@@ -35,6 +35,10 @@ section,
 summary {
   display: block;
 }
+#map {
+    height: 64rem;
+    overflow: auto;
+}
 
 audio,
 canvas,

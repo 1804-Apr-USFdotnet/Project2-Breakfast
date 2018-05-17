@@ -176,6 +176,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Gmail\GmailAreaRegistration.cs" />
+    <Compile Include="Areas\Traffic\Controllers\TrafficController.cs" />
     <Compile Include="Areas\Traffic\TrafficAreaRegistration.cs" />
     <Compile Include="Areas\Weather\Controllers\OpenWeatherMapController.cs" />
     <Compile Include="Areas\Weather\JsonResponseHelpers\CurrentWeather.cs" />
@@ -215,6 +216,7 @@
     <Content Include="Areas\Traffic\Views\web.config" />
     <Content Include="Areas\Weather\Views\OpenWeatherMap\Index.cshtml" />
     <Content Include="Areas\Weather\Views\OpenWeatherMap\Settings.cshtml" />
+    <Content Include="Areas\Traffic\Views\Traffic\ViewMap.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -249,9 +251,7 @@
     <Folder Include="Areas\Gmail\Controllers\" />
     <Folder Include="Areas\Gmail\Models\" />
     <Folder Include="Areas\Gmail\Views\Shared\" />
-    <Folder Include="Areas\Traffic\Controllers\" />
     <Folder Include="Areas\Traffic\Models\" />
-    <Folder Include="Areas\Traffic\Views\Shared\" />
     <Folder Include="Areas\Weather\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
