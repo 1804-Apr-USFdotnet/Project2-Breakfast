@@ -34,11 +34,23 @@ namespace Breakfast.Controllers
             {
                 var identity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                 GetAuthenticationManager().SignIn(identity);
-                return Redirect(model.ReturnUrl);
+
+                Session["username"] = user.Email;
+                Session["zipcode"] = user.zipcode;
+                Session["address"] = user.address;
+                Session["workaddress"] = user.workAddress;
+
+                return RedirectToAction("index", "home");
             }
 
             // if login fails
             return View();
+        }
+
+        public ActionResult LogOut()
+        {
+            GetAuthenticationManager().SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            return RedirectToAction("index", "home");
         }
 
         [HttpGet]

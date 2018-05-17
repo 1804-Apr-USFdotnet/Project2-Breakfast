@@ -16,8 +16,5 @@ namespace Breakfast.ViewModels
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-
-        [HiddenInput]
-        public string ReturnUrl { get; set; }
     }
 }
