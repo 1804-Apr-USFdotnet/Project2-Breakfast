@@ -47,12 +47,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBUtils.cs" />
+    <Compile Include="IContext.cs" />
+    <Compile Include="IDButils.cs" />
     <Compile Include="Models\NewsSettings.cs" />
     <Compile Include="Models\SettingsTable.cs" />
     <Compile Include="Models\TrafficSettings.cs" />
     <Compile Include="Models\WeatherSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingsContext.cs" />
+    <Compile Include="Storage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
