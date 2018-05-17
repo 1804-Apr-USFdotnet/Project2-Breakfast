@@ -3,7 +3,28 @@
 <div class="home-container">
     <section>
         <div class="image" data-type="background" data-speed="2"></div>
-        <div class="stuff" data-type="content"><h1>Welcome</h1></div>
+        <div class="stuff" data-type="content">
+            @using Microsoft.AspNet.Identity
+            @if (Request.IsAuthenticated)
+            {
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <h1>
+                        Welcome @User.Identity.Name! You can either <a style="text-decoration:underline;" href="@Url.Action("logout", "auth")">log out</a>
+                        or continue scrolling to see your daily feed!
+                    </h1>
+                }
+            }
+            else
+            {
+                    <h1>
+                        Welcome! Please @Html.ActionLink("register", "Register", "auth", routeValues: null, htmlAttributes: new { id = "registerLink", style = "text-decoration:underline;" })
+                        or @Html.ActionLink("log in", "LogIn", "auth", routeValues: null, htmlAttributes: new { id = "loginLink", style = "text-decoration:underline;" }) to view your daily feed!
+                    </h1>
+            }
+        </div>
     </section>
 
     <section>
