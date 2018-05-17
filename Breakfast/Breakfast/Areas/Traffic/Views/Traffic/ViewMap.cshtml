@@ -75,14 +75,15 @@
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           mapTypeControl: false,
-          center: {lat: -33.8688, lng: 151.2195},
+            center: { lat: 28.064264, lng: -82.401471 },
           zoom: 13
         });
-
+        var trafficLayer = new google.maps.TrafficLayer();
+        trafficLayer.setMap(map);
         new AutocompleteDirectionsHandler(map);
       }
 
-       
+
       function AutocompleteDirectionsHandler(map) {
         this.map = map;
         this.originPlaceId = null;
@@ -98,7 +99,7 @@
         var originAutocomplete = new google.maps.places.Autocomplete(
             originInput, {placeIdOnly: false});
         var destinationAutocomplete = new google.maps.places.Autocomplete(
-            destinationInput, {placeIdOnly: true});
+            destinationInput, {placeIdOnly: false});
 
         this.setupClickListener('changemode-walking', 'WALKING');
         this.setupClickListener('changemode-transit', 'TRANSIT');
@@ -109,8 +110,10 @@
 
         this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
         this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
-        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
+          this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
+
       }
+
 
       // Sets a listener on a radio button to change the filter type on Places
       // Autocomplete.
@@ -147,22 +150,104 @@
           return;
         }
         var me = this;
-
+          console.log(this.originPlaceId);
+          var originPlace = this.originPlaceId;
+          console.log(this.destinationPlaceId);
+          var destinationPlace = this.destinationPlaceId;
+          var geoCoder = new google.maps.Geocoder;
+          var location = geocodePlaceId(geoCoder, originPlace, destinationPlace, function() {
+              
+          });
+          console.log(location);
         this.directionsService.route({
-          origin: {'placeId': this.originPlaceId},
+            origin: { 'placeId': this.originPlaceId },
           destination: {'placeId': this.destinationPlaceId},
           travelMode: this.travelMode
         }, function(response, status) {
-          if (status === 'OK') {
+            if (status === 'OK') {
+                
+                var service = new google.maps.DistanceMatrixService;
+                console.log(originPlace);
+                console.log(destinationPlace);
+                service.getDistanceMatrix({
+                    origins: [address],
+                    destinations: [destAddress],
+                    travelMode: 'DRIVING',
+                     drivingOptions: {
+    departureTime: new Date(Date.now()),  
+    trafficModel: 'optimistic'
+  },
+                        unitSystem: google.maps.UnitSystem.METRIC,
+                        avoidHighways: false,
+                        avoidTolls: false
+                    },
+                    function (response2, status2) {
+                        console.log("callback");
+                        if (status2 == 'OK') {
+                            var origins = response2.originAddresses;
+                            var destinations = response2.destinationAddresses;
+
+                            for (var i = 0; i < origins.length; i++) {
+                                var results = response2.rows[i].elements;
+                                for (var j = 0; j < results.length; j++) {
+                                    var element = results[j];
+//                                    var distance = element.distance.text;
+                                    var duration = element.duration.text;
+                                    console.log(duration);
+                                    var from = origins[i];
+                                    var to = destinations[j];
+                                }
+                            }
+                        }
+                    });
             me.directionsDisplay.setDirections(response);
           } else {
             window.alert('Directions request failed due to ' + status);
           }
         });
-      };
+        };
+      var address = null;
+      var destAddress = null;
+      function geocodePlaceId(geocoder, placeId, destId, _callback) {
+          geocoder.geocode({'placeId': placeId}, function(results, status) {
+              if (status === 'OK') {
+                  if (results[0]) {
+                      var latLng = results[0].geometry.location;
+                      console.log("geocode latlang" + latLng);
+                      address =  results[0].formatted_address;
+                      //console.log("geocode address" + address);
+                      
+
+                  } else {
+                      window.alert('No results found');
+                  }
+              } else {
+                  window.alert('Geocoder failed due to: ' + status);
+              }
+          });
+          geocoder.geocode({ 'placeId': destId }, function (results, status) {
+              if (status === 'OK') {
+                  if (results[0]) {
+                      var destLatLng = results[0].geometry.location;
+                      console.log("geocode latlang" + destLatLng);
+                      destAddress = results[0].formatted_address;
+                      console.log("geocode address" + destAddress);
+                      
+
+                  } else {
+                      window.alert('No results found');
+                  }
+              } else {
+                  window.alert('Geocoder failed due to: ' + status);
+              }
+          });
+          _callback();
+      }
+
 
     </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=@ViewBag.APIKey&libraries=places&callback=initMap"
         async defer></script>
 <h1>@ViewBag.TimeToWork</h1>
+<h1></h1>
 </body>

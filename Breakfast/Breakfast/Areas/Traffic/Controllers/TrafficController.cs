@@ -41,7 +41,8 @@ namespace Breakfast.Areas.Traffic.Controllers
 
             int minuteIndex = insert.IndexOf("mins");
             ViewBag.Insert = insert;
-            
+            ViewBag.Address = "Bellarmine Newman Hall";
+            ViewBag.WorkAddress = "Tampa, FL";
             ViewBag.APIKey = apiKey;
             return View();
         }
