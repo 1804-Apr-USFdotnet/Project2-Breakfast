@@ -552,6 +552,9 @@ typings/
 # dotenv environment variables file
 .env
 
+#apikeys
+mapskey.txt
+
 
 # End of https://www.gitignore.io/api/node,angular
 
