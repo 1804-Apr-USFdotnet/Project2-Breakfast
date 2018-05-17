@@ -3,9 +3,9 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Breakfast.Data
 {
-    class SettingsContext : DbContext, IContext
+    class DefaultContext : DbContext
     {
-        public SettingsContext() : base("Default")
+        public DefaultContext() : base("Default")
         {
         }
 

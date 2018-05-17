@@ -4,6 +4,9 @@ namespace Breakfast.Data
 {
     interface IDButils
     {
+        // Initialize settings for new account
+        void InitializeSettings(SettingsTable st);
+
         // Get settings
         SettingsTable GetSettings(string userId);
 
