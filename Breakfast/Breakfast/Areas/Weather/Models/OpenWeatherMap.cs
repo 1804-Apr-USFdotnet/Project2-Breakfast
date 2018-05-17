@@ -8,26 +8,27 @@ namespace Breakfast.Areas.Weather.Models
 {
     public class OpenWeatherMap
     {
-        public string city { get; set; }
-        public string country { get; set; }
-        public string description { get; set; }
-        public double windSpeed { get; set; }
-        public int temperature { get; set; }
-        public char temperatureType { get; set; } = 'F';
-        public int humidity { get; set; }
-        public int cloudiness { get; set; }
+        public string city { get; private set; }
+        public string country { get; private set; }
+        public string description { get; private set; }
+        public double windSpeed { get; private set; }
+        public int temperature { get; private set; }
+        public char temperatureType { get; private set; } = 'F';
+        public int humidity { get; private set; }
+        public int cloudiness { get; private set; }
         public string condition { get; set; } = "09d";
 
         // 5-day forecast
-        public ForecastDay[] forecastDays = new ForecastDay[5];
+        public ForecastDay[] forecastDays { get; private set; }
 
         public OpenWeatherMap()
         {
-            
+            forecastDays = new ForecastDay[5];
         }
 
         public OpenWeatherMap(string zipcode)
         {
+            forecastDays = new ForecastDay[5];
             GetResponse(zipcode);
         }
 
