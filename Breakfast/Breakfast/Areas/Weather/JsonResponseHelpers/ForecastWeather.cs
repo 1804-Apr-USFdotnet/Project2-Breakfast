@@ -73,7 +73,7 @@ namespace Breakfast.Areas.Weather.JsonResponseHelpers
             public string country { get; set; }
         }
 
-        public class RootObject
+        public class ResponseWeather
         {
             public string cod { get; set; }
             public double message { get; set; }

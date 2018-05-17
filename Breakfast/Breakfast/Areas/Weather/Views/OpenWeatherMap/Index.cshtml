@@ -1,37 +1,96 @@
 ﻿@model Breakfast.Areas.Weather.Models.OpenWeatherMap
-<style>
-    #apiDiv {
-        padding-left: 20px;
-    }
 
-        #apiDiv select, #apiDiv button {
-            font-size: 25px;
+<link rel="stylesheet" href="~/Content/WeatherModule.css">
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<div class='wrapper'>
+
+    <search>
+        @using (Html.BeginForm("Index", "OpenWeatherMap", FormMethod.Post))
+        {
+            <input class='searchbar transparent' id='search' name="zipcode" type='text' placeholder='enter city, country' />
+            <input class='button transparent' id='button' type="submit" value='GO' />
         }
+    </search>
+    <div class='panel'>
+        <h2 class='city' id='city'>@Model.city, @Model.country</h2>
+        <div class='weather' id='weather'>
+            <div class='group secondary'>
+                <h3 id='dt' value="//dt"></h3>
+                <h3 id='description'>@Model.description</h3>
+            </div>
+            <div class='group secondary'>
+                <h3 id='wind'>Wind: @Model.windSpeed mph</h3>
+                <h3 id='humidity'>Humidity: @Model.humidity% </h3>
+                <h3 id='humidity'>Cloudiness: @Model.cloudiness% </h3>
+            </div>
+            <div class='temperature' id='temperature'>
+                <h1 class='temp' id='temp'>
+                    <i id='condition' value=@Model.condition></i>
+                    <span id='num'>@Model.temperature</span>
+                    <span class='fahrenheit active' id='fahrenheit'>&deg;@Model.temperatureType</span>
+                </h1>
+            </div>
+            <div class='forecast' id='forecast'>
 
-        #apiDiv h4 {
-            margin: 10px 0;
-        }
-
-        #apiDiv #message table {
-            width: 100%;
-            border: double 1px #00ffff;
-            background: #ff6a00;
-        }
-
-            #apiDiv #message table th {
-                text-align: left;
-                background: #4CAF50;
-            }
-</style>
-<h1>Implement OpenWeatherMap API in ASP.NET MVC</h1>
-@using (Html.BeginForm())
-{<button id="reset" name="reset">Reset »</button>}
-<div id="apiDiv">
-    <h4>Select the City for Weather Report</h4>
-    @using (Html.BeginForm("Index", "OpenWeatherMap", FormMethod.Post))
-    {
-        <input type="text" name="zipcode" />
-        <button name="submit">Submit</button>
-    }
-    <div id="message">@(new HtmlString(Model.apiResponse))</div>
+                @foreach (var item in Model.forecastDays)
+                {
+                    if (item != null)
+                    {
+                        <div class='block'>
+                            <h3 class='secondary'>@item.day</h3>
+                            <h2 class='high'>@item.tempMax</h2>
+                            <h4 class='secondary'>@item.tempMin</h4>
+                            @*<i id='condition' value=@item.condition></i>*@
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        var icon = $('#condition');
+        var condition = "@(Model.condition.Length > 1 ? Model.condition : "00d")";
+        switch (condition) {
+            case '01d':
+                icon.addClass('wi wi-day-sunny');
+                break;
+            case '02d':
+                icon.addClass('wi wi-day-sunny-overcast');
+                break;
+            case '01n':
+                icon.addClass('wi wi-night-clear');
+                break;
+            case '02n':
+                icon.addClass('wi wi-night-partly-cloudy');
+                break;
+        }
+
+        switch (condition.substr(0, 2)) {
+            case '03':
+                icon.addClass('wi wi-cloud');
+                break;
+            case '04':
+                icon.addClass('wi wi-cloudy');
+                break;
+            case '09':
+                icon.addClass('wi wi-showers');
+                break;
+            case '10':
+                icon.addClass('wi wi-rain');
+                break;
+            case '11':
+                icon.addClass('wi wi-thunderstorm');
+                break;
+            case '13':
+                icon.addClass('wi wi-snow');
+                break;
+            case '50':
+                icon.addClass('wi wi-fog');
+                break;
+        }
+    });
+</script>
