@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
+
+
 
 namespace Breakfast.Areas.News.Models
 {
@@ -37,5 +40,16 @@ namespace Breakfast.Areas.News.Models
         #endregion
 
 
+        public void GetArticles()
+        {
+            //todo: Parse these results into separate Articles
+            var url = "https://newsapi.org/v2/top-headlines?" +  
+                "country=us&" +
+                "apiKey=7d149bd8ce044572abb107044e4abe4a"; // hard coded API Key
+
+            var json = new WebClient().DownloadString(url);
+
+            Console.WriteLine(json);
+        }
     }
 }
