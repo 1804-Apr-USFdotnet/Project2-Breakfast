@@ -2,7 +2,7 @@
 
 namespace Breakfast.Data.Models
 {
-    class TrafficSettings
+    public class TrafficSettings
     {
         [ForeignKey("SettingsTable")]
         public int Fk_TrafficId { get; set; }

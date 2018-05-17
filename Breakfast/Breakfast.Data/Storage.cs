@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace Breakfast.Data
 {
-    class Storage
+    public class Storage
     {
+        private IDButils utility;
+        public Storage(IDButils utility)
+        {
+            this.utility = utility;
+        }
+
+
     }
 }

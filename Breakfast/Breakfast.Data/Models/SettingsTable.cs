@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Breakfast.Data.Models
 {
-    class SettingsTable
+    public class SettingsTable
     {
         [Required]
         public string Fk_Email { get; set; }

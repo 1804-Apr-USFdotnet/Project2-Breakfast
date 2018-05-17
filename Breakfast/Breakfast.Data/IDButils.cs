@@ -2,7 +2,7 @@
 
 namespace Breakfast.Data
 {
-    interface IDButils
+    public interface IDButils
     {
         // Initialize settings for new account
         void InitializeSettings(SettingsTable st);

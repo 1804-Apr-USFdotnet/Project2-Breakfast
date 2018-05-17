@@ -2,7 +2,7 @@
 
 namespace Breakfast.Data.Models
 {
-    class NewsSettings
+    public class NewsSettings
     {
         [ForeignKey("SettingsTable")]
         public int Fk_NewsId { get; set; }
