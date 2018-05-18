@@ -42,8 +42,16 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Weather\Models\JsonCurrentWeather.cs" />
+    <Compile Include="Weather\Models\JsonForecastWeather.cs" />
     <Compile Include="Weather\Models\WeatherSettings.cs" />
     <Compile Include="Weather\OpenWeatherMapApi.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Breakfast.Data\Breakfast.Data.csproj">
+      <Project>{afd174b3-a374-44b8-a2ae-7a5e3038c246}</Project>
+      <Name>Breakfast.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
