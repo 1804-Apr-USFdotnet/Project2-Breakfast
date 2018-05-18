@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Breakfast.Business.Weather.Models
 {
-    class ForecastWeather
+    public class ForecastWeather
     {
         public int tempMin { get; set; }
         public int tempMax { get; set; }

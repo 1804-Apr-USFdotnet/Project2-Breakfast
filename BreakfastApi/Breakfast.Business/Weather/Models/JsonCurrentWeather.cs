@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Breakfast.Business.Weather.Models
 {
-    class JsonCurrentWeather
+    public class JsonCurrentWeather
     {
         public class Coord
         {

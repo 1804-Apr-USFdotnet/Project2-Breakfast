@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Breakfast.Business.Weather.Models
 {
-    class JsonForecastWeather
+    public class JsonForecastWeather
     {
         public class Main
         {

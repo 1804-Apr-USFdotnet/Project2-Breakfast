@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 namespace Breakfast.Business.Weather.Models
 {
-    class CurrentWeather
+    public class CurrentWeather
     {
-        public string city { get; private set; }
-        public string country { get; private set; }
-        public string description { get; private set; }
-        public double windSpeed { get; private set; }
-        public int temperature { get; private set; }
-        public char temperatureType { get; private set; } = 'F';
-        public int humidity { get; private set; }
-        public int cloudiness { get; private set; }
+        public string city { get; set; }
+        public string country { get; set; }
+        public string description { get; set; }
+        public double windSpeed { get; set; }
+        public int temperature { get; set; }
+        public char temperatureType { get; set; } = 'F';
+        public int humidity { get; set; }
+        public int cloudiness { get; set; }
         public string condition { get; set; } = "09d";
+        public ForecastWeather[] forecastDays { get; set; }
     }
 }
