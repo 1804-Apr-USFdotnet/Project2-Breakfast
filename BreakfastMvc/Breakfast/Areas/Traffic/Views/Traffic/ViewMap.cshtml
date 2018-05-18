@@ -1,0 +1,349 @@
+﻿    <style>
+         /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+         .controls {
+             margin-top: 10px;
+             border: 1px solid transparent;
+             border-radius: 2px 0 0 2px;
+             box-sizing: border-box;
+             -moz-box-sizing: border-box;
+             height: 32px;
+             outline: none;
+             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+         }
+         #origin-input,
+         #destination-input {
+             background-color: #fff;
+             font-family: Roboto;
+             font-size: 15px;
+             font-weight: 300;
+             margin-left: 12px;
+             padding: 0 11px 0 13px;
+             text-overflow: ellipsis;
+             width: 200px;
+         }
+             #origin-input:focus,
+             #destination-input:focus {
+                 border-color: #4d90fe;
+             }
+         #mode-selector {
+             color: #fff;
+             background-color: #4d90fe;
+             margin-left: 12px;
+             padding: 5px 11px 0px 11px;
+         }
+             #mode-selector label {
+                 font-family: Roboto;
+                 font-size: 13px;
+                 font-weight: 300;
+             }
+    </style>
+
+<body>
+    <input id="origin-input" class="controls" type="text"
+           placeholder="Enter an origin location" value="Bellarmine Newman Hall">
+
+    <input id="destination-input" class="controls" type="text"
+           placeholder="Enter a destination location">
+
+    <div id="mode-selector" class="controls">
+        <input type="radio" name="type" id="changemode-walking" >
+        <label for="changemode-walking">Walking</label>
+
+        <input type="radio" name="type" id="changemode-transit">
+        <label for="changemode-transit">Transit</label>
+
+        <input type="radio" name="type" id="changemode-driving"  checked="checked">
+        <label for="changemode-driving">Driving</label>
+    </div>
+
+    <div id="map"></div>
+
+    <script>
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          mapTypeControl: false,
+            center: { lat: 28.064264, lng: -82.401471 },
+            zoom: 12,
+            styles: [
+                {
+                    "featureType": "water",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#193341"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "landscape",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#4682b4"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#29768a"
+                        },
+                        {
+                            "lightness": -37
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#406d80"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "transit",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#406d80"
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.text.stroke",
+                    "stylers": [
+                        {
+                            "visibility": "on"
+                        },
+                        {
+                            "color": "#3e606f"
+                        },
+                        {
+                            "weight": 2
+                        },
+                        {
+                            "gamma": 0.84
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#ffffff"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "administrative",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "weight": 0.6
+                        },
+                        {
+                            "color": "#1a3541"
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.icon",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.park",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#2c5a71"
+                        }
+                    ]
+                }
+            ]
+        });
+        var trafficLayer = new google.maps.TrafficLayer();
+        trafficLayer.setMap(map);
+        new AutocompleteDirectionsHandler(map);
+      }
+
+
+      function AutocompleteDirectionsHandler(map) {
+        this.map = map;
+        this.originPlaceId = null;
+        this.destinationPlaceId = null;
+        this.travelMode = 'DRIVING';
+        var originInput = document.getElementById('origin-input');
+        var destinationInput = document.getElementById('destination-input');
+        var modeSelector = document.getElementById('mode-selector');
+        this.directionsService = new google.maps.DirectionsService;
+        this.directionsDisplay = new google.maps.DirectionsRenderer;
+        this.directionsDisplay.setMap(map);
+
+        var originAutocomplete = new google.maps.places.Autocomplete(
+            originInput, {placeIdOnly: false});
+        var destinationAutocomplete = new google.maps.places.Autocomplete(
+            destinationInput, {placeIdOnly: false});
+
+        this.setupClickListener('changemode-walking', 'WALKING');
+        this.setupClickListener('changemode-transit', 'TRANSIT');
+        this.setupClickListener('changemode-driving', 'DRIVING');
+
+        this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
+        this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
+
+        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
+        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
+          this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
+
+      }
+
+
+      // Sets a listener on a radio button to change the filter type on Places
+      // Autocomplete.
+      AutocompleteDirectionsHandler.prototype.setupClickListener = function(id, mode) {
+        var radioButton = document.getElementById(id);
+        var me = this;
+        radioButton.addEventListener('click', function() {
+          me.travelMode = mode;
+          me.route();
+        });
+      };
+
+      AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(autocomplete, mode) {
+        var me = this;
+        autocomplete.bindTo('bounds', this.map);
+        autocomplete.addListener('place_changed', function() {
+          var place = autocomplete.getPlace();
+          if (!place.place_id) {
+            window.alert("Please select an option from the dropdown list.");
+            return;
+          }
+          if (mode === 'ORIG') {
+            me.originPlaceId = place.place_id;
+          } else {
+            me.destinationPlaceId = place.place_id;
+          }
+          me.route();
+        });
+
+      };
+
+      AutocompleteDirectionsHandler.prototype.route = function() {
+        if (!this.originPlaceId || !this.destinationPlaceId) {
+          return;
+        }
+        var me = this;
+          console.log(this.originPlaceId);
+          var originPlace = this.originPlaceId;
+          console.log(this.destinationPlaceId);
+          var destinationPlace = this.destinationPlaceId;
+          var geoCoder = new google.maps.Geocoder;
+          var location = geocodePlaceId(geoCoder, originPlace, destinationPlace, function() {
+              
+          });
+          console.log(location);
+        this.directionsService.route({
+            origin: { 'placeId': this.originPlaceId },
+          destination: {'placeId': this.destinationPlaceId},
+          travelMode: this.travelMode
+        }, function(response, status) {
+            if (status === 'OK') {
+                
+                var service = new google.maps.DistanceMatrixService;
+                console.log(originPlace);
+                console.log(destinationPlace);
+                service.getDistanceMatrix({
+                    origins: [address],
+                    destinations: [destAddress],
+                    travelMode: 'DRIVING',
+                     drivingOptions: {
+    departureTime: new Date(Date.now()),  
+    trafficModel: 'optimistic'
+  },
+                        unitSystem: google.maps.UnitSystem.METRIC,
+                        avoidHighways: false,
+                        avoidTolls: false
+                    },
+                    function (response2, status2) {
+                        console.log("callback");
+                        if (status2 == 'OK') {
+                            var origins = response2.originAddresses;
+                            var destinations = response2.destinationAddresses;
+
+                            for (var i = 0; i < origins.length; i++) {
+                                var results = response2.rows[i].elements;
+                                for (var j = 0; j < results.length; j++) {
+                                    var element = results[j];
+//                                    var distance = element.distance.text;
+                                    var duration = element.duration.text;
+                                    console.log(duration);
+                                    var from = origins[i];
+                                    var to = destinations[j];
+                                }
+                            }
+                        }
+                    });
+            me.directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+        };
+      var address = null;
+      var destAddress = null;
+      function geocodePlaceId(geocoder, placeId, destId, _callback) {
+          geocoder.geocode({'placeId': placeId}, function(results, status) {
+              if (status === 'OK') {
+                  if (results[0]) {
+                      var latLng = results[0].geometry.location;
+                      console.log("geocode latlang" + latLng);
+                      address =  results[0].formatted_address;
+                      //console.log("geocode address" + address);
+                      
+
+                  } else {
+                      window.alert('No results found');
+                  }
+              } else {
+                  window.alert('Geocoder failed due to: ' + status);
+              }
+          });
+          geocoder.geocode({ 'placeId': destId }, function (results, status) {
+              if (status === 'OK') {
+                  if (results[0]) {
+                      var destLatLng = results[0].geometry.location;
+                      console.log("geocode latlang" + destLatLng);
+                      destAddress = results[0].formatted_address;
+                      console.log("geocode address" + destAddress);
+                      
+
+                  } else {
+                      window.alert('No results found');
+                  }
+              } else {
+                  window.alert('Geocoder failed due to: ' + status);
+              }
+          });
+          _callback();
+      }
+
+
+    </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=@ViewBag.APIKey&libraries=places&callback=initMap"
+        async defer></script>
+<h1>@ViewBag.TimeToWork</h1>
+<h1></h1>
+</body>
