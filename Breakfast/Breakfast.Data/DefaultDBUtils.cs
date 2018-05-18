@@ -5,7 +5,7 @@ using Breakfast.Data.Models;
 
 namespace Breakfast.Data
 {
-    class DefaultDBUtils : IDButils
+    public class DefaultDBUtils : IDButils
     {
         public void InitializeSettings(SettingsTable st)
         {

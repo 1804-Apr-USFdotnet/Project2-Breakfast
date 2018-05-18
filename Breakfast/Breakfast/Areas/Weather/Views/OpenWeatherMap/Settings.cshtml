@@ -1,4 +1,6 @@
-﻿<link rel="stylesheet" href="~/Content/Settings.css">
+﻿@model Breakfast.Areas.Weather.Models.WeatherSettings
+
+<link rel="stylesheet" href="~/Content/Settings.css">
 
 <div class="wrapper">
     <div class="window">
@@ -8,6 +10,8 @@
             </div>
         </div>
         <div class="settings">
+            @using (Html.BeginForm("Index", "OpenWeatherMap", FormMethod.Post))
+            {
             <div class="item">
                 <div class="label">
                     5-day forecast
@@ -47,6 +51,7 @@
             <div class="item subscribe">
                 <a class="title" href="#" target="_blank">Save</a>
             </div>
+            }
         </div>
     </div>
 </div>

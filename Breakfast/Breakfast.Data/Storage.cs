@@ -16,14 +16,14 @@ namespace Breakfast.Data
         }
 
         // Initialize default settings on account create
-        void InitializeSettings(SettingsTable st) { utility.InitializeSettings(st); }
+        public void InitializeSettings(SettingsTable st) { utility.InitializeSettings(st); }
 
         // Get settings on login
-        SettingsTable GetSettings(string userId) { return utility.GetSettings(userId); }
+        public SettingsTable GetSettings(string userId) { return utility.GetSettings(userId); }
 
         // Save settings
-        void SaveNewsSettings(NewsSettings ns) { utility.SaveNewsSettings(ns); }
-        void SaveTrafficSettings(TrafficSettings ts) { utility.SaveTrafficSettings(ts); }
-        void SaveWeatherSettings(WeatherSettings ws) { utility.SaveWeatherSettings(ws); }
+        public void SaveNewsSettings(NewsSettings ns) { utility.SaveNewsSettings(ns); }
+        public void SaveTrafficSettings(TrafficSettings ts) { utility.SaveTrafficSettings(ts); }
+        public void SaveWeatherSettings(WeatherSettings ws) { utility.SaveWeatherSettings(ws); }
     }
 }
