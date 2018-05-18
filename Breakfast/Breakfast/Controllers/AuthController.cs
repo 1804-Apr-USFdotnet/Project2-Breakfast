@@ -33,7 +33,7 @@ namespace Breakfast.Controllers
             if (user != null)
             {
                 var identity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-                GetAuthenticationManager().SignIn(identity);
+                GetAuthenticationManager().SignIn(new AuthenticationProperties { IsPersistent = true }, identity);
 
                 Session["username"] = user.Email;
                 Session["zipcode"] = user.zipcode;
