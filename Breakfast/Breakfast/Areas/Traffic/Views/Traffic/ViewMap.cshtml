@@ -1,10 +1,6 @@
-﻿
-    <style>
+﻿    <style>
          /* Always set the map height explicitly to define the size of the div
         * element that contains the map. */
-       
-       
-
          .controls {
              margin-top: 10px;
              border: 1px solid transparent;
@@ -15,7 +11,6 @@
              outline: none;
              box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
          }
-
          #origin-input,
          #destination-input {
              background-color: #fff;
@@ -27,19 +22,16 @@
              text-overflow: ellipsis;
              width: 200px;
          }
-
              #origin-input:focus,
              #destination-input:focus {
                  border-color: #4d90fe;
              }
-
          #mode-selector {
              color: #fff;
              background-color: #4d90fe;
              margin-left: 12px;
              padding: 5px 11px 0px 11px;
          }
-
              #mode-selector label {
                  font-family: Roboto;
                  font-size: 13px;
@@ -76,7 +68,111 @@
         var map = new google.maps.Map(document.getElementById('map'), {
           mapTypeControl: false,
             center: { lat: 28.064264, lng: -82.401471 },
-          zoom: 13
+            zoom: 12,
+            styles: [
+                {
+                    "featureType": "water",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#193341"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "landscape",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#4682b4"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#29768a"
+                        },
+                        {
+                            "lightness": -37
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#406d80"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "transit",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#406d80"
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.text.stroke",
+                    "stylers": [
+                        {
+                            "visibility": "on"
+                        },
+                        {
+                            "color": "#3e606f"
+                        },
+                        {
+                            "weight": 2
+                        },
+                        {
+                            "gamma": 0.84
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "color": "#ffffff"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "administrative",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "weight": 0.6
+                        },
+                        {
+                            "color": "#1a3541"
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.icon",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.park",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#2c5a71"
+                        }
+                    ]
+                }
+            ]
         });
         var trafficLayer = new google.maps.TrafficLayer();
         trafficLayer.setMap(map);

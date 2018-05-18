@@ -1,4 +1,6 @@
-﻿<link rel="stylesheet" href="~/Content/Settings.css">
+﻿@model Breakfast.Areas.Weather.Models.WeatherSettings
+
+<link rel="stylesheet" href="~/Content/Settings.css">
 
 <div class="wrapper">
     <div class="window">
@@ -8,45 +10,59 @@
             </div>
         </div>
         <div class="settings">
-            <div class="item">
-                <div class="label">
-                    5-day forecast
-                </div>
-                <label class="switch">
-                    <input checked="checked" type="checkbox" />
-                    <div class="slider"></div>
-                </label>
+            @using (Html.BeginForm("SaveSettings", "OpenWeatherMap", FormMethod.Post))
+    {
+        <div class="item">
+            <div class="label">
+                Enabled
             </div>
-            <div class="item">
-                <div class="label">
-                    Farenheit
-                </div>
-                <label class="switch">
-                    <input type="checkbox" />
-                    <div class="slider"></div>
-                </label>
+            <label class="switch">
+                @Html.CheckBoxFor(m => m.enabled, new { @checked = "checked" })
+                <div class="slider"></div>
+            </label>
+        </div>
+        <div class="item">
+            <div class="label">
+                Show as farenheit
             </div>
-            <div class="item">
-                <div class="label">
-                    Show wind speed
-                </div>
-                <label class="switch">
-                    <input type="checkbox" />
-                    <div class="slider"></div>
-                </label>
+            <label class="switch">
+                @Html.CheckBoxFor(m => m.farenheit, new { @checked = "checked" })
+                <div class="slider"></div>
+            </label>
+        </div>
+        <div class="item">
+            <div class="label">
+                Show wind speed
             </div>
-            <div class="item">
-                <div class="label">
-                    Show humidity
-                </div>
-                <label class="switch">
-                    <input type="checkbox" />
-                    <div class="slider"></div>
-                </label>
+            <label class="switch">
+                @Html.CheckBoxFor(m => m.windSpeed, new { @checked = "checked" })
+                <div class="slider"></div>
+            </label>
+        </div>
+        <div class="item">
+            <div class="label">
+                Show humidity
             </div>
-            <div class="item subscribe">
-                <a class="title" href="#" target="_blank">Save</a>
+            <label class="switch">
+                @Html.CheckBoxFor(m => m.humidity, new { @checked = "checked" })
+                <div class="slider"></div>
+            </label>
+        </div>
+        <div class="item">
+            <div class="label">
+                Show cloudiness
             </div>
+            <label class="switch">
+                @Html.CheckBoxFor(m => m.cloudiness, new { @checked = "checked" })
+                <div class="slider"></div>
+            </label>
+        </div>
+        <div class="item subscribe">
+
+            <input class="title" type="submit" value="Save" style="background-color: Transparent;">
+
+        </div>
+}
         </div>
     </div>
 </div>

@@ -1,24 +1,50 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿<link rel="stylesheet" href="~/Content/Home.css">
 
-@if (User.Identity.IsAuthenticated)
-{
-<h1>Current user details</h1>
-<p>Email: @User.Identity.Name</p>
-<p>Zipcode: @Session["zipcode"]</p>
-<p>Address: @Session["address"]</p>
-<p>Work address: @Session["workaddress"]</p>
+<div class="home-container">
+    <section>
+        <div class="image" data-type="background" data-speed="2"></div>
+        <div class="stuff" data-type="content">
+            @using Microsoft.AspNet.Identity
+            @if (Request.IsAuthenticated)
+            {
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                {
+                    @Html.AntiForgeryToken()
 
-<p>
-    <a href="@Url.Action("logout", "auth")">Log Out</a>
-</p>
-}
+                    <h1>
+                        Welcome @User.Identity.Name! You can either <a style="text-decoration:underline;" href="@Url.Action("logout", "auth")">log out</a>
+                        or continue scrolling to see your daily feed!
+                    </h1>
+                }
+            }
+            else
+            {
+                    <h1>
+                        Welcome! Please @Html.ActionLink("register", "Register", "auth", routeValues: null, htmlAttributes: new { id = "registerLink", style = "text-decoration:underline;" })
+                        or @Html.ActionLink("log in", "LogIn", "auth", routeValues: null, htmlAttributes: new { id = "loginLink", style = "text-decoration:underline;" }) to view your daily feed!
+                    </h1>
+            }
+        </div>
+    </section>
 
-else
-{
-<h1><a href="@Url.Action("login", "auth")">Please log in</a></h1>
-    <h2>Test account:</h2>
-    <h4>Username: test@mail.com</h4>
-    <h4>Password: password</h4>
-}
+    <section>
+        <div class="image" data-type="background" data-speed="7"></div>
+        <div class="stuff" data-type="content">Weather</div>
+    </section>
+
+    <section>
+        <div class="image" data-type="background" data-speed="6"></div>
+        <div class="stuff" data-type="content">Traffic</div>
+    </section>
+
+    <section>
+        <div class="image" data-type="background" data-speed="5"></div>
+        <div class="stuff" data-type="content">News</div>
+    </section>
+
+    <section>
+        <div class="image" data-type="background" data-speed="3"></div>
+        <div class="stuff" data-type="content">Have a great day!</div>
+    </section>
+
+</div>
