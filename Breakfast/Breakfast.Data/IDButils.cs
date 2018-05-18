@@ -4,10 +4,10 @@ namespace Breakfast.Data
 {
     public interface IDButils
     {
-        // Initialize settings for new account
+        // Initialize settings for new accounts
         void InitializeSettings(SettingsTable st);
 
-        // Get settings
+        // Get settings on login
         SettingsTable GetSettings(string userId);
 
         // Save settings

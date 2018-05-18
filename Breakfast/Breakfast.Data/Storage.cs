@@ -15,9 +15,10 @@ namespace Breakfast.Data
             this.utility = utility;
         }
 
+        // Initialize default settings on account create
         void InitializeSettings(SettingsTable st) { utility.InitializeSettings(st); }
 
-        // Get settings
+        // Get settings on login
         SettingsTable GetSettings(string userId) { return utility.GetSettings(userId); }
 
         // Save settings
