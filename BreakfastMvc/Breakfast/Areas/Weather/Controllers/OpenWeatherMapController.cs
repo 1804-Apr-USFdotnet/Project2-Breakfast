@@ -1,5 +1,5 @@
 ﻿using Breakfast.Areas.Weather.Models;
-using Breakfast.Data;
+//using Breakfast.Data;
 using System.Web.Mvc;
 
 namespace Breakfast.Areas.Weather.Controllers
@@ -27,8 +27,8 @@ namespace Breakfast.Areas.Weather.Controllers
         [HttpPost]
         public ActionResult SaveSettings(WeatherSettings ws)
         {
-            Storage storage = new Storage(new DefaultDBUtils());
-            storage.SaveWeatherSettings((Data.Models.WeatherSettings)ws);
+            //Storage storage = new Storage(new DefaultDBUtils());
+            //storage.SaveWeatherSettings((Data.Models.WeatherSettings)ws);
             return RedirectToAction("Index", "Home", new { area = "" });
         }
     }

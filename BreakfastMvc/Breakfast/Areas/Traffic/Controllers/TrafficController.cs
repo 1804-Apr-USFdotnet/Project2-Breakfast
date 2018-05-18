@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using Breakfast.Areas.Traffic.Models;
-using Breakfast.Data;
+//using Breakfast.Data;
 
 namespace Breakfast.Areas.Traffic.Controllers
 {
@@ -60,8 +60,9 @@ namespace Breakfast.Areas.Traffic.Controllers
         [HttpPost]
         public ActionResult SaveSettings(TrafficSettingsViewModel ts)
         {
-            Storage storage = new Storage(new DefaultDBUtils());
-            storage.SaveTrafficSettings((Data.Models.TrafficSettings)ts);
+            //TODO: Fix data access
+            //Storage storage = new Storage(new DefaultDBUtils());
+            //storage.SaveTrafficSettings((Data.Models.TrafficSettings)ts);
             return RedirectToAction("Index", "Home", new { area = "" });
         }
     }
