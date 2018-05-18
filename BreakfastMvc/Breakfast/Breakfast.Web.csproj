@@ -175,17 +175,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Areas\Gmail\GmailAreaRegistration.cs" />
-<<<<<<< HEAD
     <Compile Include="Areas\News\Models\NewsArticle.cs" />
     <Compile Include="Areas\News\NewsAreaRegistration.cs" />
-=======
     <Compile Include="Areas\Traffic\Controllers\TrafficController.cs" />
-<<<<<<< HEAD
->>>>>>> dev
-=======
     <Compile Include="Areas\Traffic\Models\TrafficSettingsViewModel.cs" />
->>>>>>> dev
     <Compile Include="Areas\Traffic\TrafficAreaRegistration.cs" />
     <Compile Include="Areas\Weather\Controllers\OpenWeatherMapController.cs" />
     <Compile Include="Areas\Weather\JsonResponseHelpers\CurrentWeather.cs" />
@@ -220,20 +213,13 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Areas\Gmail\Views\web.config" />
     <Content Include="Areas\Weather\Views\web.config" />
     <Content Include="Areas\Traffic\Views\web.config" />
     <Content Include="Areas\Weather\Views\OpenWeatherMap\Index.cshtml" />
     <Content Include="Areas\Weather\Views\OpenWeatherMap\Settings.cshtml" />
-<<<<<<< HEAD
     <Content Include="Areas\News\Views\web.config" />
-=======
     <Content Include="Areas\Traffic\Views\Traffic\ViewMap.cshtml" />
-<<<<<<< HEAD
->>>>>>> dev
-=======
     <Content Include="Areas\Traffic\Views\Traffic\Settings.cshtml" />
->>>>>>> dev
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -265,19 +251,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Gmail\Controllers\" />
-    <Folder Include="Areas\Gmail\Models\" />
-    <Folder Include="Areas\Gmail\Views\Shared\" />
-<<<<<<< HEAD
-<<<<<<< HEAD
     <Folder Include="Areas\News\Controllers\" />
     <Folder Include="Areas\News\Views\Shared\" />
     <Folder Include="Areas\Traffic\Controllers\" />
-=======
->>>>>>> dev
     <Folder Include="Areas\Traffic\Models\" />
-=======
->>>>>>> dev
     <Folder Include="Areas\Weather\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
