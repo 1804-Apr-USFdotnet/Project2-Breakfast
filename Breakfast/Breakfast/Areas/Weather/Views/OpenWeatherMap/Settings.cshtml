@@ -26,7 +26,7 @@
                 Show as farenheit
             </div>
             <label class="switch">
-                <input type="checkbox" />
+                @Html.CheckBoxFor(m => m.farenheit, new { @checked = "checked" })
                 <div class="slider"></div>
             </label>
         </div>
@@ -35,7 +35,7 @@
                 Show wind speed
             </div>
             <label class="switch">
-                <input type="checkbox" />
+                @Html.CheckBoxFor(m => m.windSpeed, new { @checked = "checked" })
                 <div class="slider"></div>
             </label>
         </div>
@@ -44,7 +44,7 @@
                 Show humidity
             </div>
             <label class="switch">
-                <input type="checkbox" />
+                @Html.CheckBoxFor(m => m.humidity, new { @checked = "checked" })
                 <div class="slider"></div>
             </label>
         </div>
@@ -53,12 +53,12 @@
                 Show cloudiness
             </div>
             <label class="switch">
-                <input type="checkbox" />
+                @Html.CheckBoxFor(m => m.cloudiness, new { @checked = "checked" })
                 <div class="slider"></div>
             </label>
         </div>
         <div class="item subscribe">
-            <a class="title" href="#" target="_blank">Save</a>
+            <a class="title" value="submit">Save</a>
         </div>
 }
         </div>
