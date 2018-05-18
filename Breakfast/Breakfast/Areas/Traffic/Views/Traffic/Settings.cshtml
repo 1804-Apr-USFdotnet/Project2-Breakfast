@@ -1,20 +1,20 @@
 ﻿@model Breakfast.Areas.Traffic.Models.TrafficSettingsViewModel
 
 <link rel="stylesheet" href="~/Content/Settings.css">
+<link rel="stylesheet" href="~/Content/bootstrap.css">
 
 <div class="wrapper">
     <div class="window">
         <div class="nav-bar">
             <div class="title">
-                Weather Settings
+                Traffic Settings
             </div>
         </div>
         <div class="settings">
             @using (Html.BeginForm("SaveSettings", "Traffic", FormMethod.Post))
             {
                 <div class="item">
-                    <div class="label">
-                        Enabled
+                    <div class="label">Enabled
                     </div>
                     <label class="switch">
                         @Html.CheckBoxFor(m => m.Enabled, new { @checked = "checked" })
@@ -22,13 +22,11 @@
                     </label>
                 </div>
                 <div class="item">
-                    <div class="label">
-                        Enter your home Address
-                    </div>
-                    <label class="text">
-                        @Html.EditorFor(m => m.Address, new { htmlattributes = new { placeholder = "Enter Address", required = "required" } })
-                        
-                    </label>
+                    
+                    <p class="card-text d-flex m-auto" >
+                        @Html.EditorFor(m => m.Address, new {htmlattributes = new {placeholder = "Enters Address", required = "required"}})
+
+                    </p>
                 </div>
 @*                 <div class="item"> *@
 @*                     <div class="label"> *@
