@@ -102,11 +102,11 @@
             transition: .4s, background-color 1s linear;
         }
 
-    .switch input:checked + .slider {
+    .switch input:checked ~ .slider {
         background-color: #7ee6da;
     }
 
-        .switch input:checked + .slider:before {
+        .switch input:checked ~ .slider:before {
             -webkit-transform: translateX(30px);
             transform: translateX(30px);
         }
