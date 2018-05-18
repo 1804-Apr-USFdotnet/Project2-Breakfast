@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="settings">
-            @using (Html.BeginForm("Index", "OpenWeatherMap", FormMethod.Post))
+            @using (Html.BeginForm("SaveSettings", "OpenWeatherMap", FormMethod.Post))
     {
         <div class="item">
             <div class="label">
@@ -58,7 +58,9 @@
             </label>
         </div>
         <div class="item subscribe">
-            <a class="title" value="submit">Save</a>
+
+            <input class="title" type="submit" value="Save" style="background-color: Transparent;">
+
         </div>
 }
         </div>
