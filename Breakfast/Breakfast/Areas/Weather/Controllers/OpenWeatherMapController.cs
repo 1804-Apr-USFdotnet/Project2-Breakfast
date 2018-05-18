@@ -29,7 +29,7 @@ namespace Breakfast.Areas.Weather.Controllers
         {
             Storage storage = new Storage(new DefaultDBUtils());
             storage.SaveWeatherSettings((Data.Models.WeatherSettings)ws);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home", new { area = "" });
         }
     }
 }
