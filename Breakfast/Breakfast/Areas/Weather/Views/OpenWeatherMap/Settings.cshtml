@@ -26,7 +26,7 @@
                 Show as farenheit
             </div>
             <label class="switch">
-                <input type="checkbox" />
+                @Html.CheckBoxFor(m => m.farenheit, new { @checked = "checked" })
                 <div class="slider"></div>
             </label>
         </div>
@@ -35,7 +35,7 @@
                 Show wind speed
             </div>
             <label class="switch">
-                <input type="checkbox" />
+                @Html.CheckBoxFor(m => m.windSpeed, new { @checked = "checked" })
                 <div class="slider"></div>
             </label>
         </div>
@@ -44,7 +44,7 @@
                 Show humidity
             </div>
             <label class="switch">
-                <input type="checkbox" />
+                @Html.CheckBoxFor(m => m.humidity, new { @checked = "checked" })
                 <div class="slider"></div>
             </label>
         </div>
@@ -53,16 +53,20 @@
                 Show cloudiness
             </div>
             <label class="switch">
-                <input type="checkbox" />
+                @Html.CheckBoxFor(m => m.cloudiness, new { @checked = "checked" })
                 <div class="slider"></div>
             </label>
         </div>
         <div class="item subscribe">
+<<<<<<< HEAD
 <<<<<<< Updated upstream
             <a class="title" href="#" target="_blank">Save</a>
 =======
             <input class="title" type="submit" value="Save" style="background-color: Transparent;">
 >>>>>>> Stashed changes
+=======
+            <a class="title" value="submit">Save</a>
+>>>>>>> master
         </div>
 }
         </div>
