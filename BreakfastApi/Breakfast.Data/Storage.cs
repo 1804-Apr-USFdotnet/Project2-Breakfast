@@ -21,6 +21,11 @@ namespace Breakfast.Data
         // Get settings on login
         public SettingsTable GetSettings(string userId) { return utility.GetSettings(userId); }
 
+        // Get individual settings id
+        int GetNewsId(string userId) { return utility.GetNewsId(userId); }
+        int GetTrafficId(string userId) { return utility.GetTrafficId(userId); }
+        int GetWeatherId(string userId) { return utility.GetWeatherId(userId); }
+
         // Save settings
         public void SaveNewsSettings(NewsSettings ns) { utility.SaveNewsSettings(ns); }
         public void SaveTrafficSettings(TrafficSettings ts) { utility.SaveTrafficSettings(ts); }

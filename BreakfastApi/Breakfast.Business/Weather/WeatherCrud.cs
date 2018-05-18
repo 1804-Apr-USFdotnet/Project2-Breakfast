@@ -13,10 +13,7 @@ namespace Breakfast.Business.Weather
         public void SaveSettings(string userId, CurrentWeather cw)
         {
             Storage storage = new Storage(new DefaultDBUtils());
-            CurrentWeather currentWeather = new CurrentWeather()
-            {
-                
-            };
+            //int weatherSettingsId = storage.
         }
     }
 }

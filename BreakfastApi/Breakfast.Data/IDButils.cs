@@ -10,6 +10,11 @@ namespace Breakfast.Data
         // Get settings on login
         SettingsTable GetSettings(string userId);
 
+        // Get individual settings id
+        int GetNewsId(string userId);
+        int GetTrafficId(string userId);
+        int GetWeatherId(string userId);
+
         // Save settings
         void SaveNewsSettings(NewsSettings ns);
         void SaveTrafficSettings(TrafficSettings ts);
