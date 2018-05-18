@@ -28,7 +28,7 @@ namespace Breakfast.Areas.Weather.Controllers
         public ActionResult SaveSettings(WeatherSettings ws)
         {
             Storage storage = new Storage(new DefaultDBUtils());
-            storage.SaveWeatherSettings(ws);
+            storage.SaveWeatherSettings((Data.Models.WeatherSettings)ws);
             return RedirectToAction("Index", "Home");
         }
     }
