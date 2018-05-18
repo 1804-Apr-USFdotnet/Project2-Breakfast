@@ -46,5 +46,13 @@ namespace Breakfast.Areas.Traffic.Controllers
             ViewBag.APIKey = apiKey;
             return View();
         }
+
+        public ActionResult Settings()
+        {
+            ViewBag.Address = "Bellarmine Newman Hall";
+            ViewBag.WorkAddress = "Tampa, FL";
+            ViewBag.ZoomLevel = 12;
+            return View();
+        }
     }
 }
