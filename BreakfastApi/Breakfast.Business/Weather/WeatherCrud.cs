@@ -10,10 +10,11 @@ namespace Breakfast.Business.Weather
 {
     public class WeatherCrud
     {
-        public void SaveSettings(string userId, CurrentWeather cw)
+        public void SaveSettings(string userId, WeatherSettings cw)
         {
             Storage storage = new Storage(new DefaultDBUtils());
-            //int weatherSettingsId = storage.
+            cw.id = storage.GetWeatherId(userId);
+            storage.SaveWeatherSettings((Data.Models.WeatherSettings)cw);
         }
     }
 }
