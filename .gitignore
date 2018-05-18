@@ -554,7 +554,8 @@ typings/
 
 #apikeys
 mapskey.txt
-
+#nppBackup
+nppBackup
 
 # End of https://www.gitignore.io/api/node,angular
 
