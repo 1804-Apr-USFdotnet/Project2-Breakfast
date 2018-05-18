@@ -39,7 +39,13 @@ namespace Breakfast.Data
             {
                 TrafficSettings currentTrafficSettings = db.TrafficSettings.SingleOrDefault(x => x.Fk_TrafficId == ts.Fk_TrafficId);
                 currentTrafficSettings.Enabled = ts.Enabled;
-                // TODO: add other settings
+                currentTrafficSettings.Address = ts.Address;
+                currentTrafficSettings.WorkAddress = ts.WorkAddress;
+                currentTrafficSettings.TravelMode = ts.TravelMode;
+                currentTrafficSettings.AddressPlaceId = ts.AddressPlaceId;
+                currentTrafficSettings.WorkAddressPlaceId = ts.WorkAddressPlaceId;
+                currentTrafficSettings.LatLng = ts.LatLng;
+                
 
                 db.TrafficSettings.Attach(currentTrafficSettings);
                 db.Entry(currentTrafficSettings).State = EntityState.Modified;

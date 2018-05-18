@@ -177,6 +177,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Gmail\GmailAreaRegistration.cs" />
     <Compile Include="Areas\Traffic\Controllers\TrafficController.cs" />
+    <Compile Include="Areas\Traffic\Models\TrafficSettingsViewModel.cs" />
     <Compile Include="Areas\Traffic\TrafficAreaRegistration.cs" />
     <Compile Include="Areas\Weather\Controllers\OpenWeatherMapController.cs" />
     <Compile Include="Areas\Weather\JsonResponseHelpers\CurrentWeather.cs" />
@@ -252,7 +253,6 @@
     <Folder Include="Areas\Gmail\Controllers\" />
     <Folder Include="Areas\Gmail\Models\" />
     <Folder Include="Areas\Gmail\Views\Shared\" />
-    <Folder Include="Areas\Traffic\Models\" />
     <Folder Include="Areas\Weather\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>

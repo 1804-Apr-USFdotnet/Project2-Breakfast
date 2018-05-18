@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using Breakfast.Areas.Traffic.Models;
+using Breakfast.Data;
 
 namespace Breakfast.Areas.Traffic.Controllers
 {
@@ -53,6 +55,14 @@ namespace Breakfast.Areas.Traffic.Controllers
             ViewBag.WorkAddress = "Tampa, FL";
             ViewBag.ZoomLevel = 12;
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult SaveSettings(TrafficSettingsViewModel ts)
+        {
+            Storage storage = new Storage(new DefaultDBUtils());
+            storage.SaveTrafficSettings((Data.Models.TrafficSettings)ts);
+            return RedirectToAction("Index", "Home", new { area = "" });
         }
     }
 }

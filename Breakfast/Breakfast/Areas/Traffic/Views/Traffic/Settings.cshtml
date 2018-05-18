@@ -1,1 +1,68 @@
-﻿
+﻿@model Breakfast.Areas.Traffic.Models.TrafficSettingsViewModel
+
+<link rel="stylesheet" href="~/Content/Settings.css">
+
+<div class="wrapper">
+    <div class="window">
+        <div class="nav-bar">
+            <div class="title">
+                Weather Settings
+            </div>
+        </div>
+        <div class="settings">
+            @using (Html.BeginForm("SaveSettings", "Traffic", FormMethod.Post))
+            {
+                <div class="item">
+                    <div class="label">
+                        Enabled
+                    </div>
+                    <label class="switch">
+                        @Html.CheckBoxFor(m => m.Enabled, new { @checked = "checked" })
+                        <div class="slider"></div>
+                    </label>
+                </div>
+                <div class="item">
+                    <div class="label">
+                        Enter your home Address
+                    </div>
+                    <label class="text">
+                        @Html.EditorFor(m => m.Address, new { htmlattributes = new { placeholder = "Enter Address", required = "required" } })
+                        
+                    </label>
+                </div>
+@*                 <div class="item"> *@
+@*                     <div class="label"> *@
+@*                         Show wind speed *@
+@*                     </div> *@
+@*                     <label class="switch"> *@
+@*                         @Html.CheckBoxFor(m => m.windSpeed, new { @checked = "checked" }) *@
+@*                         <div class="slider"></div> *@
+@*                     </label> *@
+@*                 </div> *@
+@*                 <div class="item"> *@
+@*                     <div class="label"> *@
+@*                         Show humidity *@
+@*                     </div> *@
+@*                     <label class="switch"> *@
+@*                         @Html.CheckBoxFor(m => m.humidity, new { @checked = "checked" }) *@
+@*                         <div class="slider"></div> *@
+@*                     </label> *@
+@*                 </div> *@
+@*                 <div class="item"> *@
+@*                     <div class="label"> *@
+@*                         Show cloudiness *@
+@*                     </div> *@
+@*                     <label class="switch"> *@
+@*                         @Html.CheckBoxFor(m => m.cloudiness, new { @checked = "checked" }) *@
+@*                         <div class="slider"></div> *@
+@*                     </label> *@
+@*                 </div> *@
+                <div class="item subscribe">
+                   
+                    <input class="title" type="submit" value="Save" style="background-color: Transparent;">
+                   
+                </div>
+            }
+        </div>
+    </div>
+</div>
