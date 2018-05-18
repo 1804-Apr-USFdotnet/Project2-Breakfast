@@ -7,6 +7,13 @@ namespace Breakfast.Data
 {
     public class DefaultDBUtils : IDButils
     {
+
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * 
+         *          Create/get all settings section
+         *            
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
         public void InitializeSettings(SettingsTable st)
         {
             using (var db = new DefaultContext())
@@ -18,6 +25,36 @@ namespace Breakfast.Data
             using (var db = new DefaultContext())
                 return db.SettingsTable.SingleOrDefault(x => x.Fk_Email == userId);
         }
+
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * 
+         *          Get individual settings id section
+         *            
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+        public int GetNewsId(string userId)
+        {
+            using (var db = new DefaultContext())
+                return db.SettingsTable.SingleOrDefault(x => x.Fk_Email == userId).Pk_NewsId;
+        }
+
+        public int GetTrafficId(string userId)
+        {
+            using (var db = new DefaultContext())
+                return db.SettingsTable.SingleOrDefault(x => x.Fk_Email == userId).Pk_TrafficId;
+        }
+
+        public int GetWeatherId(string userId)
+        {
+            using (var db = new DefaultContext())
+                return db.SettingsTable.SingleOrDefault(x => x.Fk_Email == userId).Pk_WeatherId;
+        }
+
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * 
+         *          Save individual settings section
+         *            
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
         public void SaveNewsSettings(NewsSettings ns)
         {

@@ -51,6 +51,7 @@
     <Compile Include="Weather\Models\JsonForecastWeather.cs" />
     <Compile Include="Weather\Models\WeatherSettings.cs" />
     <Compile Include="Weather\OpenWeatherMapApi.cs" />
+    <Compile Include="Weather\WeatherCrud.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Breakfast.Data\Breakfast.Data.csproj">
