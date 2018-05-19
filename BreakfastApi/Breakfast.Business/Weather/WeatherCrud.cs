@@ -3,9 +3,9 @@ using Breakfast.Business.Weather.Models;
 
 namespace Breakfast.Business.Weather
 {
-    public class WeatherCrud
+    static public class WeatherCrud
     {
-        public void SaveSettings(string userId, WeatherSettings cw)
+        static public void SaveSettings(string userId, WeatherSettings cw)
         {
             Storage storage = new Storage(new DefaultDBUtils());
             cw.id = storage.GetWeatherId(userId);
