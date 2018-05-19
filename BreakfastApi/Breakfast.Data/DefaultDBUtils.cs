@@ -30,7 +30,7 @@ namespace Breakfast.Data
         public SettingsTable GetSettings(string userId)
         {
             using (var db = new DefaultContext())
-                return db.SettingsTable.SingleOrDefault(x => x.Fk_Email == userId);
+                return db.SettingsTable.SingleOrDefault(x => x.Pk_Email == userId);
         }
 
         /* * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -42,19 +42,19 @@ namespace Breakfast.Data
         public int GetNewsId(string userId)
         {
             using (var db = new DefaultContext())
-                return db.SettingsTable.SingleOrDefault(x => x.Fk_Email == userId).Pk_NewsId;
+                return db.SettingsTable.SingleOrDefault(x => x.Pk_Email == userId).Fk_NewsId;
         }
 
         public int GetTrafficId(string userId)
         {
             using (var db = new DefaultContext())
-                return db.SettingsTable.SingleOrDefault(x => x.Fk_Email == userId).Pk_TrafficId;
+                return db.SettingsTable.SingleOrDefault(x => x.Pk_Email == userId).Fk_TrafficId;
         }
 
         public int GetWeatherId(string userId)
         {
             using (var db = new DefaultContext())
-                return db.SettingsTable.SingleOrDefault(x => x.Fk_Email == userId).Pk_WeatherId;
+                return db.SettingsTable.SingleOrDefault(x => x.Pk_Email == userId).Fk_WeatherId;
         }
 
         /* * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -67,7 +67,7 @@ namespace Breakfast.Data
         {
             using (var db = new DefaultContext())
             {
-                NewsSettings currentNewsSettings = db.NewsSettings.SingleOrDefault(x => x.Fk_NewsId == ns.Fk_NewsId);
+                NewsSettings currentNewsSettings = db.NewsSettings.SingleOrDefault(x => x.Pk_NewsId == ns.Pk_NewsId);
                 currentNewsSettings.Enabled = ns.Enabled;
                 // TODO: add other settings
 
@@ -81,7 +81,7 @@ namespace Breakfast.Data
         {
             using (var db = new DefaultContext())
             {
-                TrafficSettings currentTrafficSettings = db.TrafficSettings.SingleOrDefault(x => x.Fk_TrafficId == ts.Fk_TrafficId);
+                TrafficSettings currentTrafficSettings = db.TrafficSettings.SingleOrDefault(x => x.Pk_TrafficId == ts.Pk_TrafficId);
                 currentTrafficSettings.Enabled = ts.Enabled;
                 currentTrafficSettings.Address = ts.Address;
                 currentTrafficSettings.WorkAddress = ts.WorkAddress;
@@ -101,7 +101,7 @@ namespace Breakfast.Data
         {
             using (var db = new DefaultContext())
             {
-                WeatherSettings currentWeatherSettings = db.WeatherSettings.SingleOrDefault(x => x.Fk_WeatherId == ws.Fk_WeatherId);
+                WeatherSettings currentWeatherSettings = db.WeatherSettings.SingleOrDefault(x => x.Pk_WeatherId == ws.Pk_WeatherId);
                 currentWeatherSettings.Enabled = ws.Enabled;
                 currentWeatherSettings.Farenheit = ws.Farenheit;
                 currentWeatherSettings.Cloudiness = ws.Cloudiness;

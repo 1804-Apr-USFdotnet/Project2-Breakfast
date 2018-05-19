@@ -15,7 +15,7 @@ namespace Breakfast.Business
             Storage storage = new Storage(new DefaultDBUtils());
             storage.InitializeSettings(new Data.Models.SettingsTable()
             {
-                Fk_Email = userId,
+                Pk_Email = userId,
 
                 //
                 //   Default news settings on account creation

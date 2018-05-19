@@ -15,7 +15,7 @@
         {
             WeatherSettings ws = new WeatherSettings()
             {
-                id = wsData.Fk_WeatherId,
+                id = wsData.Pk_WeatherId,
                 enabled = wsData.Enabled,
                 farenheit = wsData.Farenheit,
                 windSpeed = wsData.WindSpeed,
@@ -32,7 +32,7 @@
         {
             Data.Models.WeatherSettings wsData = new Data.Models.WeatherSettings()
             {
-                Fk_WeatherId = ws.id,
+                Pk_WeatherId = ws.id,
                 Enabled = ws.enabled,
                 Farenheit = ws.farenheit,
                 WindSpeed = ws.windSpeed,

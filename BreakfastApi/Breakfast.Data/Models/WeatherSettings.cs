@@ -1,11 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Breakfast.Data.Models
 {
     public class WeatherSettings
     {
-        [ForeignKey("SettingsTable")]
-        public int Fk_WeatherId { get; set; }
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int Pk_WeatherId { get; set; }
         public bool Enabled { get; set; }
         public bool Farenheit { get; set; }
         public bool WindSpeed { get; set; }
