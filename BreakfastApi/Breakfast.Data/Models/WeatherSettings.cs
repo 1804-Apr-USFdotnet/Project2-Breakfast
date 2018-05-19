@@ -14,7 +14,5 @@ namespace Breakfast.Data.Models
         public bool Humidity { get; set; }
         public bool Cloudiness { get; set; }
         public string Location { get; set; }
-
-        public SettingsTable SettingsTable { get; set; }
     }
 }

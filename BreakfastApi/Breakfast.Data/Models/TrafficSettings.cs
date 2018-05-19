@@ -15,7 +15,5 @@ namespace Breakfast.Data.Models
         public string AddressPlaceId { get; set; }
         public string WorkAddressPlaceId { get; set; }
         public double[] LatLng { get; set; }
-
-        public SettingsTable SettingsTable { get; set; }
     }
 }

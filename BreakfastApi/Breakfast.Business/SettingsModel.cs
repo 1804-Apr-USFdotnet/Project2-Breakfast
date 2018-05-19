@@ -15,10 +15,10 @@ namespace Breakfast.Business
             SettingsModel settingsModel = new SettingsModel()
             {
                 UserEmail = settingsTable.Pk_Email,
-                Weather = (WeatherSettings)settingsTable.Weather
+                Weather = (WeatherSettings)settingsTable.WeatherSettings
                 //TODO: convert traffic/news entity models to domain model like above line
-                //Example 1: News = (NewsSettings)settingsTable.News
-                //Example 2: Traffic = (TrafficSettings)settingsTable.Traffic
+                //Example 1: News = (NewsSettings)settingsTable.NewsSettings
+                //Example 2: Traffic = (TrafficSettings)settingsTable.TrafficSettingsp
                 //See /Weather/Models/WeatherSettings.cs for conversion example to allow casting
             };
 

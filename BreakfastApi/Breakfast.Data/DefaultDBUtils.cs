@@ -19,7 +19,10 @@ namespace Breakfast.Data
             try
             {
                 using (var db = new DefaultContext())
+                {
                     db.SettingsTable.Add(st);
+                    db.SaveChanges();
+                }
             }
             catch (Exception e)
             {
@@ -30,7 +33,14 @@ namespace Breakfast.Data
         public SettingsTable GetSettings(string userId)
         {
             using (var db = new DefaultContext())
-                return db.SettingsTable.SingleOrDefault(x => x.Pk_Email == userId);
+            {
+                SettingsTable st = db.SettingsTable
+                                     .Include(x => x.WeatherSettings)
+                                     .Include(x => x.NewsSettings)
+                                     .Include(x => x.TrafficSettings)
+                                     .SingleOrDefault(x => x.Pk_Email == userId);
+                return st;
+            }
         }
 
         /* * * * * * * * * * * * * * * * * * * * * * * * * * *

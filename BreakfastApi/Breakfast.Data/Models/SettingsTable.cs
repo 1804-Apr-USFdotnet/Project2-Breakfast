@@ -8,18 +8,18 @@ namespace Breakfast.Data.Models
         [Key]
         public string Pk_Email { get; set; }
 
-        [ForeignKey("News")]
+        [ForeignKey("NewsSettings")]
         public int Fk_NewsId { get; set; }
 
-        [ForeignKey("Traffic")]
+        [ForeignKey("TrafficSettings")]
         public int Fk_TrafficId { get; set; }
 
-        [ForeignKey("Weather")]
+        [ForeignKey("WeatherSettings")]
         public int Fk_WeatherId { get; set; }
 
         // Eager load settings to store in cache
-        public NewsSettings News { get; set; }
-        public WeatherSettings Weather { get; set; }
-        public TrafficSettings Traffic { get; set; }
+        public NewsSettings NewsSettings { get; set; }
+        public WeatherSettings WeatherSettings { get; set; }
+        public TrafficSettings TrafficSettings { get; set; }
     }
 }

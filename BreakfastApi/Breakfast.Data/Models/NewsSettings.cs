@@ -10,7 +10,5 @@ namespace Breakfast.Data.Models
         public int Pk_NewsId { get; set; }
         public bool Enabled { get; set; }
         // TODO: add news specific settings
-
-        public SettingsTable SettingsTable { get; set; }
     }
 }
