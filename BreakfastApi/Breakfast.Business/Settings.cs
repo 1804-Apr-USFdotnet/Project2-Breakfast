@@ -10,10 +10,10 @@ namespace Breakfast.Business
 {
     static public class Settings
     {
-        static public string getSettings(string userId)
+        static public SettingsModel getSettings(string userId)
         {
             Storage storage = new Storage(new DefaultDBUtils());
-            return JsonConvert.SerializeObject(storage.GetSettings(userId));
+            return (SettingsModel)storage.GetSettings(userId);
         }
 
         static public void initializeSettings(string userId)
