@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using Breakfast.Data.Models;
 
@@ -15,8 +16,15 @@ namespace Breakfast.Data
 
         public void InitializeSettings(SettingsTable st)
         {
-            using (var db = new DefaultContext())
-                db.SettingsTable.Add(st);
+            try
+            {
+                using (var db = new DefaultContext())
+                    db.SettingsTable.Add(st);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public SettingsTable GetSettings(string userId)
