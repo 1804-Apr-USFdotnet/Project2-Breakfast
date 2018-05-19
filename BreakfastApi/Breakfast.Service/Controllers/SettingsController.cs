@@ -1,0 +1,21 @@
+﻿using Breakfast.Business;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+
+namespace Breakfast.Service.Controllers
+{
+    public class SettingsController : ApiController
+    {
+        [HttpGet]
+        public IHttpActionResult GetSettings(string userId)
+        {
+            SettingsModel settings = Settings.getSettings(userId);
+            try { return Ok(settings); }
+            catch { return InternalServerError(); }
+        }
+    }
+}
