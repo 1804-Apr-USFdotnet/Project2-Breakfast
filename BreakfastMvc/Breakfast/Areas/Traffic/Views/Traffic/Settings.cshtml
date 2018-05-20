@@ -12,55 +12,120 @@
         </div>
         <div class="settings">
             @using (Html.BeginForm("SaveSettings", "Traffic", FormMethod.Post))
-            {
-                <div class="item">
-                    <div class="label">Enabled
-                    </div>
-                    <label class="switch">
-                        @Html.CheckBoxFor(m => m.Enabled, new { @checked = "checked" })
-                        <div class="slider"></div>
-                    </label>
-                </div>
-                <div class="item">
-                    
-                    <p class="card-text d-flex m-auto" >
-                        @Html.EditorFor(m => m.Address, new {htmlattributes = new {placeholder = "Enters Address", required = "required"}})
+    {
+        <div class="item">
+            <div class="label">
+                Enabled
+            </div>
+            <label class="switch">
+                @Html.CheckBoxFor(m => m.Enabled, new { @checked = "checked" })
+                <div class="slider"></div>
+            </label>
+        </div>
+        <div class="item">
+            <p class="card-text d-flex m-auto" style="width: 100%">
+                @Html.EditorFor(m => m.Address, new { htmlattributes = new { id = "autocomplete", placeholder = "Enter your home address", onFocus = "geolocate('HomeAddress')", style = "width: 100%", required = "required" } })
+            </p>
+        </div>
+        <div class="item">
+            <p class="card-text d-flex m-auto" style="width: 100%">
+                @Html.EditorFor(m => m.WorkAddress, new { htmlattributes = new { id = "autocompleteWork", placeholder = "Enter your work address", onFocus = "geolocate('WorkAddress')", style = "width: 100%" } })
+            </p>
+        </div>
+                @Html.EditorFor(m => m.AddressPlaceId, new { htmlattribues = new { id = "origisnPlace", @value = ""} })
+        @Html.EditorFor(m => m.WorkAddressPlaceId, new { htmlattribues = new { id = "origisnPlace", @value = ""} })
+        <div>
+            <input class ="card-text" id ="originPlace"/>
+        </div>
+        <div class="item subscribe">
 
-                    </p>
-                </div>
-@*                 <div class="item"> *@
-@*                     <div class="label"> *@
-@*                         Show wind speed *@
-@*                     </div> *@
-@*                     <label class="switch"> *@
-@*                         @Html.CheckBoxFor(m => m.windSpeed, new { @checked = "checked" }) *@
-@*                         <div class="slider"></div> *@
-@*                     </label> *@
-@*                 </div> *@
-@*                 <div class="item"> *@
-@*                     <div class="label"> *@
-@*                         Show humidity *@
-@*                     </div> *@
-@*                     <label class="switch"> *@
-@*                         @Html.CheckBoxFor(m => m.humidity, new { @checked = "checked" }) *@
-@*                         <div class="slider"></div> *@
-@*                     </label> *@
-@*                 </div> *@
-@*                 <div class="item"> *@
-@*                     <div class="label"> *@
-@*                         Show cloudiness *@
-@*                     </div> *@
-@*                     <label class="switch"> *@
-@*                         @Html.CheckBoxFor(m => m.cloudiness, new { @checked = "checked" }) *@
-@*                         <div class="slider"></div> *@
-@*                     </label> *@
-@*                 </div> *@
-                <div class="item subscribe">
-                   
-                    <input class="title" type="submit" value="Save" style="background-color: Transparent;">
-                   
-                </div>
-            }
+            <input class="title" type="submit" value="Save" style="background-color: Transparent;">
+
+        </div>
+}
         </div>
     </div>
 </div>
+<script>
+      // This example displays an address form, using the autocomplete feature
+      // of the Google Places API to help users fill in the information.
+
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      var placeSearch, autocomplete, autocompleteWork, type;
+      var componentForm = {
+        street_number: 'short_name',
+        route: 'long_name',
+        locality: 'long_name',
+        administrative_area_level_1: 'short_name',
+        country: 'long_name',
+        postal_code: 'short_name'
+      };
+
+      function initAutocomplete() {
+        // Create the autocomplete object, restricting the search to geographical
+        // location types.
+        autocomplete = new google.maps.places.Autocomplete(
+            (document.getElementById('autocomplete'))
+          );
+        autocompleteWork = new google.maps.places.Autocomplete(
+              (document.getElementById('autocompleteWork'))
+          );
+
+        // When the user selects an address from the dropdown, populate the address
+        // fields in the form.
+          autocomplete.addListener('place_changed', fillInAddress);
+          autocompleteWork.addListener('place_changed', fillInAddress);
+      }
+
+      function fillInAddress() {
+        // Get the place details from the autocomplete object.
+          if (type === "HomeAddress") {
+              var place = autocomplete.getPlace();
+              $("#AddressPlaceId").val(place.place_id);
+          }
+          if (type === "WorkAddress") {
+              var placeWork = autocompleteWork.getPlace();
+              $("#WorkAddressPlaceId").val(placeWork.place_id);
+          }
+//          document.getElementById('originPlace').value = '';
+//        document.getElementById('origisnPlace').value = place.place_id;
+//        for (var component in componentForm) {
+//          document.getElementById(component).value = '';
+//          document.getElementById(component).disabled = false;
+//        }
+
+        // Get each component of the address from the place details
+        // and fill the corresponding field on the form.
+//        for (var i = 0; i < place.address_components.length; i++) {
+//          var addressType = place.address_components[i].types[0];
+//          if (componentForm[addressType]) {
+//            var val = place.address_components[i][componentForm[addressType]];
+//            document.getElementById(addressType).value = val;
+//          }
+//        }
+      }
+
+      // Bias the autocomplete object to the user's geographical location,
+      // as supplied by the browser's 'navigator.geolocation' object.
+    function geolocate(addressType) {
+        type = addressType;
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var geolocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            var circle = new google.maps.Circle({
+              center: geolocation,
+              radius: position.coords.accuracy
+            });
+            autocomplete.setBounds(circle.getBounds());
+          });
+        }
+      }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=@ViewBag.APIKey&libraries=places&callback=initAutocomplete"
+        async defer></script>

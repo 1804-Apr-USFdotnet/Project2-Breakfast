@@ -51,9 +51,21 @@ namespace Breakfast.Areas.Traffic.Controllers
 
         public ActionResult Settings()
         {
+            string apiKey = null;
+            try
+            {
+                apiKey = System.IO.File.ReadAllText(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory.ToString(), "mapskey.txt"));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Shit failed");
+            }
+
+            ViewBag.APIKey = apiKey;
             ViewBag.Address = "Bellarmine Newman Hall";
             ViewBag.WorkAddress = "Tampa, FL";
             ViewBag.ZoomLevel = 12;
+            
             return View();
         }
 
