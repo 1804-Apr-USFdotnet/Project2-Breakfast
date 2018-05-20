@@ -6,6 +6,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
+using Breakfast.Business.News.Models;
+
 namespace Breakfast.Business.News
 {
     public class NewsApiClient
@@ -202,7 +204,29 @@ namespace Breakfast.Business.News
         {
             return "apiKey=" + ApiKey;
         }
-
         #endregion
+
+        IEnumerable<string> GetSources()
+        {
+            List<string> sources = new List<string>();
+
+            string sourceEndpoint = "https://newsapi.org/v2/sources?" + GetSubstringApiKey();
+
+            var json = new WebClient().DownloadString(sourceEndpoint);
+
+            Regex grabSource = new Regex("(?<=\\[)\\{[^\\}]*\\}\\,?");
+
+//            do { }
+
+            return sources;
+        }
+
+        string ParseSourceId(string json)
+        {
+            Regex grabId = new Regex("(?<=\\{\\\"id\\\":\\\")[^\\\"]*");
+            return grabId.Match(json).ToString();
+        }
+
+
     }
 }

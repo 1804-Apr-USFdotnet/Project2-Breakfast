@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 
-namespace Breakfast.Business.News
+namespace Breakfast.Business.News.Models
 {
     public class NewsApiSettings
     {
@@ -157,5 +157,7 @@ namespace Breakfast.Business.News
         {
             return new NewsApiSettings(this);
         }
+
+
     }
 }

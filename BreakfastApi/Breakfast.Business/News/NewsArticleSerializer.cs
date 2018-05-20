@@ -6,6 +6,8 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 
+using Breakfast.Business.News.Models;
+
 namespace Breakfast.Business.News
 {
     public static class NewsArticleSerializer
