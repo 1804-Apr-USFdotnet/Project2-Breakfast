@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using Breakfast.Service.App_Start;
+using System.Web.Http;
 using System.Web.Routing;
 
 namespace Breakfast.Service
@@ -10,6 +11,9 @@ namespace Breakfast.Service
             RouteTable.Routes.RouteExistingFiles = true;
 
             GlobalConfiguration.Configure(WebApiConfig.Register);
+
+            //WebApiConfig.Register(GlobalConfiguration.Configuration); //register api routes
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }
 }

@@ -3,6 +3,7 @@ using Breakfast.Business.Weather;
 using Breakfast.Business.Weather.Models;
 using System.Net;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 
 namespace Breakfast.Service.Controllers
@@ -11,6 +12,8 @@ namespace Breakfast.Service.Controllers
     {
         [HttpGet]
         [ResponseType(typeof(void))]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
+        [Route("test/testresponse")]
         public IHttpActionResult TestResponse()
         {
             return Ok();
