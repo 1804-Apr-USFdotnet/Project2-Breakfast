@@ -23,9 +23,9 @@ namespace Breakfast.Business.News
             this.Settings = settings.Copy();
         }
 
-        public IEnumerable<NewsArticle> GetNewsArticles()
+        public IEnumerable<NewsArticle> GetNewsArticles(int pageNum = 1)
         {
-            string json = CallNewsApi();
+            string json = CallNewsApi(pageNum);
             return ParseApiRequest(json);
         }
 
@@ -71,8 +71,7 @@ namespace Breakfast.Business.News
 
         public string CallNewsApi(int pageNum = 1)
         {
-            //todo:Remove hard coded string and add modular string functions for calling options
-            var url = "https://newsapi.org/v2/top-headlines?" +
+            var url = "https://newsapi.org/v2/everything?" +
             GetSubstringDomains() +
             GetSubstringQueries() +
             GetSubstringSources() +
@@ -81,7 +80,6 @@ namespace Breakfast.Business.News
              GetSubstringNewestDate() +
             GetSubstringPageSize() +
             GetSubstringPage(pageNum) +
-            // GetSubstringSortBy() +
              GetSubstringApiKey();
 
             var json = new WebClient().DownloadString(url);
@@ -97,7 +95,7 @@ namespace Breakfast.Business.News
             }
             else
             {
-                return "country=" + Settings.Language + "&";
+                return "language=" + Settings.Language + "&";
             }
         }
 
@@ -114,13 +112,15 @@ namespace Breakfast.Business.News
                 {
                     substring = substring + queryString + ",";
                 }
-                return substring + "&";
+
+                substring = substring.Remove(substring.Length - 1, 1) + "&";
+                return substring;
             }
         }
 
         private string GetSubstringSources ()
         {
-            if (Settings.Sources[0] == "")
+            if (Settings.Sources[0] == "" || Settings.Sources[0] == null)
             {
                 return "";
             }
@@ -128,7 +128,7 @@ namespace Breakfast.Business.News
 
             for(int i = 0; i < Settings.Sources.Length; i++)
             {
-                if(Settings.Sources[i] != "")
+                if(Settings.Sources[i] != "" && Settings.Sources[i] != null)
                 {
                     substring = substring + Settings.Sources[i] + ",";
                 }
@@ -149,7 +149,7 @@ namespace Breakfast.Business.News
                 string substring = "domains=";
                 foreach(string domain in Settings.Domains)
                 {
-                    substring = substring + "," + domain;
+                    substring = substring + domain + ",";
                 }
                 substring = substring.Remove(substring.Length - 1, 1) + "&";
                 return substring;
@@ -164,28 +164,21 @@ namespace Breakfast.Business.News
             }
             else
             {
-
-                return null;
+                return "from=" + Settings.OldestDate + "&";
             }
         }
 
         private string GetSubstringNewestDate ()
         {
-            if (Settings.Domains.Count == 0)
+            if (Settings.NewestDate == "")
             {
                 return "";
             }
-            return null;
+            else
+            {
+                return "to=" + Settings.NewestDate + "&";
+            }
         }
-
-        /*private string GetSubstringSortBy ()
-        {
-            if (Settings.Domains.Count == 0)
-            {
-                return "";
-            }
-            return null;
-        }*/
 
         private string GetSubstringPageSize ()
         {

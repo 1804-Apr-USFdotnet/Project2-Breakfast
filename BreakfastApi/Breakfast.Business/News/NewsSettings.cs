@@ -34,7 +34,7 @@ namespace Breakfast.Business.News
                 }
                 else
                 {
-                    return _OldestDate.ToString();
+                    return _OldestDate.Value.Year + "-" + _OldestDate.Value.Month + "-" + _OldestDate.Value.Day;
                 }
             }
         }
@@ -48,7 +48,7 @@ namespace Breakfast.Business.News
                 }
                 else
                 {
-                    return _NewestDate.ToString();
+                    return _NewestDate.Value.Year + "-" + _NewestDate.Value.Month + "-" + _NewestDate.Value.Day;
                 }
             }
         }
@@ -66,38 +66,57 @@ namespace Breakfast.Business.News
             PageSize = null;
         }
 
-        public NewsApiSettings(List<string> queryStrings, string [] sources, List<string> domains,
-            DateTime oldestDate, DateTime newestDate, string language, int pageSize)
+        public NewsApiSettings(List<string> queryStrings = null, string [] sources = null,
+            List<string> domains = null, Nullable<DateTime> oldestDate = null,
+            Nullable<DateTime> newestDate = null, string language = null,
+            Nullable<int> pageSize = null)
         {
             Sources = new string[MaxSrcCount];
-            for(int i = 0; i < sources.Length; i++)
+            if (sources != null)
             {
-                if(sources[i] != "")
+                for (int i = 0; i < sources.Length && i < MaxSrcCount; i++)
                 {
-                    Sources[i] = String.Copy(sources[i]);
-                }
-                else
-                {
-                    Sources[i] = "";
+                    if (sources[i] != "" && sources[i] != null)
+                    {
+                        Sources[i] = String.Copy(sources[i]);
+                    }
+                    else
+                    {
+                        Sources[i] = "";
+                    }
                 }
             }
 
             QueryStrings = new List<string>();
-            foreach (var queryString in queryStrings)
-            {
-                QueryStrings.Add(String.Copy(queryString));
+            if(queryStrings != null)
+            { 
+                foreach (var queryString in queryStrings)
+                {
+                    QueryStrings.Add(String.Copy(queryString));
+                }
             }
 
             Domains = new List<string>();
-            foreach (var domain in domains)
+            if(domains != null)
             {
-                Domains.Add(String.Copy(domain));
+                foreach (var domain in domains)
+                {
+                    Domains.Add(String.Copy(domain));
+                }
             }
 
             _OldestDate = oldestDate;
             _NewestDate = newestDate;
 
-            Language = String.Copy(language);
+            if(language != null)
+            {
+                Language = String.Copy(language);
+            }
+            else
+            {
+                Language = language;
+            }
+
             PageSize = pageSize;
         }        
 
@@ -107,9 +126,9 @@ namespace Breakfast.Business.News
             QueryStrings = new List<string>();
             Domains = new List<string>();
 
-            for(int i = 0; i < Sources.Length; i++)
+            for(int i = 0; i < Sources.Length && i < MaxSrcCount; i++)
             {
-                if(toCopy.Sources[i] != "")
+                if(toCopy.Sources[i] != "" && toCopy.Sources[i] != null)
                 {
                     Sources[i] = String.Copy(toCopy.Sources[i]);
                 }
@@ -124,6 +143,13 @@ namespace Breakfast.Business.News
             {
                 Domains.Add(String.Copy(current));
             }
+
+            _OldestDate = toCopy._OldestDate;
+            _NewestDate = toCopy._NewestDate;
+
+            Language = String.Copy(toCopy.Language);
+
+            PageSize = toCopy.PageSize;
         }
         #endregion
 
