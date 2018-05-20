@@ -23,6 +23,12 @@ namespace Breakfast.Service
                 routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Routes.MapHttpRoute(
+                name: "Default",
+                routeTemplate: "",
+                defaults: new { controller = "Settings" }
+            );
         }
     }
 }

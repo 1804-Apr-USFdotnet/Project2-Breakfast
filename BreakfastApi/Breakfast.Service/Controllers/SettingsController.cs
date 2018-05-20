@@ -10,6 +10,13 @@ namespace Breakfast.Service.Controllers
     public class SettingsController : ApiController
     {
         [HttpGet]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult TestResponse()
+        {
+            return Ok();
+        }
+
+        [HttpGet]
         [ResponseType(typeof(SettingsModel))]
         public IHttpActionResult GetSettings(string userId)
         {

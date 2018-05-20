@@ -15,12 +15,12 @@ namespace Breakfast.Business
             Storage storage = new Storage(new DefaultDBUtils());
             storage.InitializeSettings(new Data.Models.SettingsTable()
             {
-                Fk_Email = userId,
+                Pk_Email = userId,
 
                 //
                 //   Default news settings on account creation
                 //
-                News = new Data.Models.NewsSettings()
+                NewsSettings = new Data.Models.NewsSettings()
                 {
                     Enabled = true,
                     //TODO: Add default news settings
@@ -29,7 +29,7 @@ namespace Breakfast.Business
                 //
                 //   Default traffic settings on account creation
                 //
-                Traffic = new Data.Models.TrafficSettings()
+                TrafficSettings = new Data.Models.TrafficSettings()
                 {
                     Enabled = true,
                     //TODO: Add default traffic settings
@@ -38,7 +38,7 @@ namespace Breakfast.Business
                 //
                 //   Default weather settings on account creation
                 //
-                Weather = new Data.Models.WeatherSettings()
+                WeatherSettings = new Data.Models.WeatherSettings()
                 {
                     Enabled = true,
                     Cloudiness = false,
