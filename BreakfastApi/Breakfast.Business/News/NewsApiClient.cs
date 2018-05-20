@@ -34,14 +34,15 @@ namespace Breakfast.Business.News
         private IEnumerable<NewsArticle> ParseApiRequest(string json)
         {
             List<NewsArticle> articleList = new List<NewsArticle>();
-            int bracketPos = json.IndexOfAny(new char[] { '[' }) + 1;
+            int bracketPos = json.IndexOfAny(new char[] { '[' });
+            Regex articleJsonGrab = new Regex("(?<=\\[)(\\,)?\\{[^\\{\\}]+(\\{[^\\}]+\\})[^\\{\\}]+\\}\\,?");
 
             string articlesJson;
             do
             {
-                Regex articleJsonGrab = new Regex("(?<=\\[)(\\,)?\\{[^\\{\\}]+(\\{[^\\}]+\\})[^\\{\\}]+\\}\\,?");
+                //Regex articleJsonGrab = new Regex("(?<=\\[)(\\,)?\\{[^\\{\\}]+(\\{[^\\}]+\\})[^\\{\\}]+\\}\\,?");
                 articlesJson = articleJsonGrab.Match(json).ToString();
-                json = json.Remove(bracketPos, articlesJson.Length);
+                json = json.Remove(bracketPos + 1, articlesJson.Length);
                 if (articlesJson != "")
                 {
                     articleList.Add(ParseNewsArticle(articlesJson));
@@ -200,28 +201,54 @@ namespace Breakfast.Business.News
             return "page=" + pageNum.ToString() + "&";
         }
 
-        private string GetSubstringApiKey()
+        private static string GetSubstringApiKey()
         {
             return "apiKey=" + ApiKey;
         }
         #endregion
 
-        IEnumerable<string> GetSources()
+        static IEnumerable<string> GetSources()
         {
             List<string> sources = new List<string>();
 
             string sourceEndpoint = "https://newsapi.org/v2/sources?" + GetSubstringApiKey();
 
             var json = new WebClient().DownloadString(sourceEndpoint);
+            int bracketPos = json.IndexOfAny(new char[] { '[' });
 
             Regex grabSource = new Regex("(?<=\\[)\\{[^\\}]*\\}\\,?");
-
-//            do { }
+            Regex grabId = new Regex("(?<=\\{\\\"id\\\":\\\")[^\\\"]*");
+            string sourceJson;
+            do
+            {
+                sourceJson = grabSource.Match(json).ToString();
+                json = json.Remove(bracketPos + 1, sourceJson.Length);
+                if (sourceJson != "")
+                {
+                    sources.Add(ParseSourceId(sourceJson));
+                }
+            } while (sourceJson != "");
 
             return sources;
         }
 
-        string ParseSourceId(string json)
+        static public bool IsValidSource (string sourceId)
+        {
+            bool isValid = false;
+
+            foreach (var curSource in GetSources())
+            {
+                if(sourceId == curSource)
+                {
+                    isValid = true;
+                    break;
+                }
+            }
+
+            return isValid;
+        }
+
+        static string ParseSourceId(string json)
         {
             Regex grabId = new Regex("(?<=\\{\\\"id\\\":\\\")[^\\\"]*");
             return grabId.Match(json).ToString();
