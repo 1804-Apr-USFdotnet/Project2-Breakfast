@@ -1,9 +1,4 @@
 ﻿using Breakfast.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Breakfast.Data
 {
@@ -20,6 +15,11 @@ namespace Breakfast.Data
 
         // Get settings on login
         public SettingsTable GetSettings(string userId) { return utility.GetSettings(userId); }
+
+        // Get individual settings id
+        public int GetNewsId(string userId) { return utility.GetNewsId(userId); }
+        public int GetTrafficId(string userId) { return utility.GetTrafficId(userId); }
+        public int GetWeatherId(string userId) { return utility.GetWeatherId(userId); }
 
         // Save settings
         public void SaveNewsSettings(NewsSettings ns) { utility.SaveNewsSettings(ns); }

@@ -7,23 +7,77 @@ namespace Breakfast.Data
 {
     public class DefaultDBUtils : IDButils
     {
+
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * 
+         *          Create/get all settings section
+         *            
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
         public void InitializeSettings(SettingsTable st)
         {
-            using (var db = new DefaultContext())
-                db.SettingsTable.Add(st);
+            try
+            {
+                using (var db = new DefaultContext())
+                {
+                    db.SettingsTable.Add(st);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public SettingsTable GetSettings(string userId)
         {
             using (var db = new DefaultContext())
-                return db.SettingsTable.SingleOrDefault(x => x.Fk_Email == userId);
+            {
+                SettingsTable st = db.SettingsTable
+                                     .Include(x => x.WeatherSettings)
+                                     .Include(x => x.NewsSettings)
+                                     .Include(x => x.TrafficSettings)
+                                     .SingleOrDefault(x => x.Pk_Email == userId);
+                return st;
+            }
         }
+
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * 
+         *          Get individual settings id section
+         *            
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+        public int GetNewsId(string userId)
+        {
+            using (var db = new DefaultContext())
+                return db.SettingsTable.SingleOrDefault(x => x.Pk_Email == userId).Fk_NewsId;
+        }
+
+        public int GetTrafficId(string userId)
+        {
+            using (var db = new DefaultContext())
+                return db.SettingsTable.SingleOrDefault(x => x.Pk_Email == userId).Fk_TrafficId;
+        }
+
+        public int GetWeatherId(string userId)
+        {
+            using (var db = new DefaultContext())
+                return db.SettingsTable.SingleOrDefault(x => x.Pk_Email == userId).Fk_WeatherId;
+        }
+
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+         * 
+         *          Save individual settings section
+         *            
+         * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
         public void SaveNewsSettings(NewsSettings ns)
         {
             using (var db = new DefaultContext())
             {
-                NewsSettings currentNewsSettings = db.NewsSettings.SingleOrDefault(x => x.Fk_NewsId == ns.Fk_NewsId);
+                NewsSettings currentNewsSettings = db.NewsSettings.SingleOrDefault(x => x.Pk_NewsId == ns.Pk_NewsId);
                 currentNewsSettings.Enabled = ns.Enabled;
                 // TODO: add other settings
 
@@ -37,7 +91,7 @@ namespace Breakfast.Data
         {
             using (var db = new DefaultContext())
             {
-                TrafficSettings currentTrafficSettings = db.TrafficSettings.SingleOrDefault(x => x.Fk_TrafficId == ts.Fk_TrafficId);
+                TrafficSettings currentTrafficSettings = db.TrafficSettings.SingleOrDefault(x => x.Pk_TrafficId == ts.Pk_TrafficId);
                 currentTrafficSettings.Enabled = ts.Enabled;
                 currentTrafficSettings.Address = ts.Address;
                 currentTrafficSettings.WorkAddress = ts.WorkAddress;
@@ -57,7 +111,7 @@ namespace Breakfast.Data
         {
             using (var db = new DefaultContext())
             {
-                WeatherSettings currentWeatherSettings = db.WeatherSettings.SingleOrDefault(x => x.Fk_WeatherId == ws.Fk_WeatherId);
+                WeatherSettings currentWeatherSettings = db.WeatherSettings.SingleOrDefault(x => x.Pk_WeatherId == ws.Pk_WeatherId);
                 currentWeatherSettings.Enabled = ws.Enabled;
                 currentWeatherSettings.Farenheit = ws.Farenheit;
                 currentWeatherSettings.Cloudiness = ws.Cloudiness;

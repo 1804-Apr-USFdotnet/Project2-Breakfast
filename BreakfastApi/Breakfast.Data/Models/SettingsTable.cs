@@ -5,24 +5,21 @@ namespace Breakfast.Data.Models
 {
     public class SettingsTable
     {
-        [Required]
-        public string Fk_Email { get; set; }
-
         [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int Pk_NewsId { get; set; }
+        public string Pk_Email { get; set; }
 
-        [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int Pk_TrafficId { get; set; }
+        [ForeignKey("NewsSettings")]
+        public int Fk_NewsId { get; set; }
 
-        [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int Pk_WeatherId { get; set; }
+        [ForeignKey("TrafficSettings")]
+        public int Fk_TrafficId { get; set; }
+
+        [ForeignKey("WeatherSettings")]
+        public int Fk_WeatherId { get; set; }
 
         // Eager load settings to store in cache
-        public NewsSettings News { get; set; }
-        public WeatherSettings Weather { get; set; }
-        public TrafficSettings Traffic { get; set; }
+        public NewsSettings NewsSettings { get; set; }
+        public WeatherSettings WeatherSettings { get; set; }
+        public TrafficSettings TrafficSettings { get; set; }
     }
 }
