@@ -69,34 +69,53 @@ namespace Breakfast.Business.News
             return new NewsArticle(title, author, source, url, desc, publDate);
         }
 
-        public string CallNewsApi()
+        public string CallNewsApi(int pageNum = 1)
         {
             //todo:Remove hard coded string and add modular string functions for calling options
             var url = "https://newsapi.org/v2/top-headlines?" +
             GetSubstringDomains() +
-            "country=us&" +
-            "from=2018-05-17&" +
-            "pagesize=24&" +
-            "page=1&" +
+            GetSubstringQueries() +
+            GetSubstringSources() +
+            GetSubstringLanguage() +
+            GetSubstringOldestDate() +
+             GetSubstringNewestDate() +
+            GetSubstringPageSize() +
+            GetSubstringPage(pageNum) +
+            // GetSubstringSortBy() +
              GetSubstringApiKey();
 
             var json = new WebClient().DownloadString(url);
             return json;
         }
 
+        #region Substring Methods
         public string GetSubstringLanguage()
         {
             if (Settings.Language == "" || Settings.Language == null)
+            {
                 return "";
+            }
             else
             {
                 return "country=" + Settings.Language + "&";
             }
         }
 
-        private string GetSubstringQuery ()
+        private string GetSubstringQueries ()
         {
-            return null;
+            if (Settings.QueryStrings.Count == 0)
+            {
+                return "";
+            }
+            else
+            {
+                string substring = "q=";
+                foreach (var queryString in Settings.QueryStrings)
+                {
+                    substring = substring + queryString + ",";
+                }
+                return substring + "&";
+            }
         }
 
         private string GetSubstringSources ()
@@ -170,26 +189,27 @@ namespace Breakfast.Business.News
 
         private string GetSubstringPageSize ()
         {
-            if (Settings.Domains.Count == 0)
+            if (Settings.PageSize == null)
             {
-                return "";
+                return "pagesize=20&";
             }
-            return null;
+            return "pagesize=" + Settings.PageSize.ToString() + "&";
         }
 
-        private string GetSubstringPage ()
+        private string GetSubstringPage (int pageNum = 1)
         {
-            if (Settings.Domains.Count == 0)
+            if (pageNum < 2)
             {
                 return "";
             }
-            return null;
-
+            return "page=" + pageNum.ToString() + "&";
         }
 
         private string GetSubstringApiKey()
         {
             return "apiKey=" + ApiKey;
         }
+
+        #endregion
     }
 }

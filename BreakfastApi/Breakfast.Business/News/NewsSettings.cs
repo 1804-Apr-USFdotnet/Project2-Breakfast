@@ -11,28 +11,95 @@ namespace Breakfast.Business.News
     {
         //private static readonly Dictionary<string, string> LanguageCodes;
         private static readonly int MaxSrcCount = 20;
-        public List<string> QueryStrings;
-        public string[] Sources;
-        public List<string> Domains;
-        private DateTime _OldestDate;
-        private DateTime _NewestDate;
-        public string Language;
 
+        public List<string> QueryStrings;
+        public string[] Sources; // questioning implementation here
+        public List<string> Domains;
+        private Nullable <DateTime> _OldestDate;
+        private Nullable <DateTime> _NewestDate;
+        public string Language;
+        public Nullable <int> PageSize;
 
         //sort criteria
 
-        public int maxNumResults;
 
-        public string OldestDate { get { return _OldestDate.ToString(); } }
-        public string NewestDate { get { return _NewestDate.ToString(); } }
+        #region PropertyFields
+        public string OldestDate
+        {
+            get
+            {
+                if (_OldestDate == null)
+                {
+                    return "";
+                }
+                else
+                {
+                    return _OldestDate.ToString();
+                }
+            }
+        }
+        public string NewestDate
+        {
+            get
+            {
+                if (_NewestDate == null)
+                {
+                    return "";
+                }
+                else
+                {
+                    return _NewestDate.ToString();
+                }
+            }
+        }
+        #endregion
 
+        #region Constructors
         public NewsApiSettings()
         {
             //Set Language codes
             Sources = new string[MaxSrcCount];
             QueryStrings = new List<string>();
             Domains = new List<string>();
+            _OldestDate = null;
+            _NewestDate = null;
+            PageSize = null;
         }
+
+        public NewsApiSettings(List<string> queryStrings, string [] sources, List<string> domains,
+            DateTime oldestDate, DateTime newestDate, string language, int pageSize)
+        {
+            Sources = new string[MaxSrcCount];
+            for(int i = 0; i < sources.Length; i++)
+            {
+                if(sources[i] != "")
+                {
+                    Sources[i] = String.Copy(sources[i]);
+                }
+                else
+                {
+                    Sources[i] = "";
+                }
+            }
+
+            QueryStrings = new List<string>();
+            foreach (var queryString in queryStrings)
+            {
+                QueryStrings.Add(String.Copy(queryString));
+            }
+
+            Domains = new List<string>();
+            foreach (var domain in domains)
+            {
+                Domains.Add(String.Copy(domain));
+            }
+
+            _OldestDate = oldestDate;
+            _NewestDate = newestDate;
+
+            Language = String.Copy(language);
+            PageSize = pageSize;
+        }        
 
         public NewsApiSettings(NewsApiSettings toCopy)
         {
@@ -58,6 +125,7 @@ namespace Breakfast.Business.News
                 Domains.Add(String.Copy(current));
             }
         }
+        #endregion
 
         public NewsApiSettings Copy()
         {
