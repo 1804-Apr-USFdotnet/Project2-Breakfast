@@ -104,14 +104,14 @@ namespace Breakfast.Business.News
 
         private string GetSubstringQueries ()
         {
-            if (Settings.QueryStrings.Count == 0)
+            if (Settings.Queries.Count == 0)
             {
                 return "";
             }
             else
             {
                 string substring = "q=";
-                foreach (var queryString in Settings.QueryStrings)
+                foreach (var queryString in Settings.Queries)
                 {
                     substring = substring + queryString + ",";
                 }
