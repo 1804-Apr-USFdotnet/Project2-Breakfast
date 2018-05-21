@@ -12,15 +12,15 @@ namespace Breakfast.Business.News
 {
     public class NewsApiClient
     {
-        NewsApiSettings Settings;
+        NewsSettings Settings;
         private static readonly string ApiKey = "7d149bd8ce044572abb107044e4abe4a";
 
         public NewsApiClient()
         {
-            Settings = new NewsApiSettings ();
+            Settings = new NewsSettings ();
         }
 
-        public NewsApiClient (NewsApiSettings settings)
+        public NewsApiClient (NewsSettings settings)
         {
             this.Settings = settings.Copy();
         }

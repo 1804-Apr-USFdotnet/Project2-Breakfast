@@ -7,7 +7,7 @@ using System.Net;
 
 namespace Breakfast.Business.News.Models
 {
-    public class NewsApiSettings
+    public class NewsSettings
     {
         //private static readonly Dictionary<string, string> LanguageCodes;
         private static readonly int MaxSrcCount = 20;
@@ -55,7 +55,7 @@ namespace Breakfast.Business.News.Models
         #endregion
 
         #region Constructors
-        public NewsApiSettings()
+        public NewsSettings()
         {
             //Set Language codes
             Sources = new string[MaxSrcCount];
@@ -66,7 +66,7 @@ namespace Breakfast.Business.News.Models
             PageSize = null;
         }
 
-        public NewsApiSettings(List<string> queryStrings = null, string [] sources = null,
+        public NewsSettings(List<string> queryStrings = null, string [] sources = null,
             List<string> domains = null, Nullable<DateTime> oldestDate = null,
             Nullable<DateTime> newestDate = null, string language = null,
             Nullable<int> pageSize = null)
@@ -120,7 +120,7 @@ namespace Breakfast.Business.News.Models
             PageSize = pageSize;
         }        
 
-        public NewsApiSettings(NewsApiSettings toCopy)
+        public NewsSettings(NewsSettings toCopy)
         {
             Sources = new string[MaxSrcCount];
             QueryStrings = new List<string>();
@@ -153,9 +153,9 @@ namespace Breakfast.Business.News.Models
         }
         #endregion
 
-        public NewsApiSettings Copy()
+        public NewsSettings Copy()
         {
-            return new NewsApiSettings(this);
+            return new NewsSettings(this);
         }
 
 
