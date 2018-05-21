@@ -59,6 +59,7 @@ namespace Breakfast.Service.Controllers
 
         [HttpPost]
         [ResponseType(typeof(void))]
+        [Route("api/settings/traffic/{userId}")]
         public IHttpActionResult SaveTrafficSettings(string userId, TrafficSettingsBusiness ts)
         {
             try { TrafficCrud.SaveSettings(userId, ts); return StatusCode(HttpStatusCode.Accepted); }
