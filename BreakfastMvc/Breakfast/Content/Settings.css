@@ -3,6 +3,10 @@
     font-family: "Roboto", sans-serif;
     text-decoration: none;
 }
+#map { 
+    height: 64rem; 
+    overflow: auto; 
+} 
 
 .wrapper {
     background: #cac8ce;

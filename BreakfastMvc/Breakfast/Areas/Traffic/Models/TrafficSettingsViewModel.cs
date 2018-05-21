@@ -10,9 +10,9 @@ namespace Breakfast.Areas.Traffic.Models
         public int Id { get; set; }
         public bool Enabled { get; set; } = true;
         public string Address { get; set; } = null;
-        public string WorkAddress { get; set; } = null;  //rootObject.wind.speed
-        public string TravelMode { get; set; } = "DRIVING";    //rootObject.main.humidity
-        public string AddressPlaceId { get; set; } = null; //rootObject.clouds.all
+        public string WorkAddress { get; set; } = null;  
+        public bool Driving { get; set; } = true;    
+        public string AddressPlaceId { get; set; } = null; 
         public string WorkAddressPlaceId { get; set; } = null;
         public double[] LatLng { get; set; }
 

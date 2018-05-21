@@ -95,7 +95,7 @@ namespace Breakfast.Data
                 currentTrafficSettings.Enabled = ts.Enabled;
                 currentTrafficSettings.Address = ts.Address;
                 currentTrafficSettings.WorkAddress = ts.WorkAddress;
-                currentTrafficSettings.TravelMode = ts.TravelMode;
+                currentTrafficSettings.Driving = ts.Driving;
                 currentTrafficSettings.AddressPlaceId = ts.AddressPlaceId;
                 currentTrafficSettings.WorkAddressPlaceId = ts.WorkAddressPlaceId;
                 currentTrafficSettings.LatLng = ts.LatLng;
