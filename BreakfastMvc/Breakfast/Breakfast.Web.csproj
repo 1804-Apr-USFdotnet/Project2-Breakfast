@@ -204,6 +204,7 @@
     <Content Include="Content\Contact.css" />
     <Content Include="Content\Home.css" />
     <Content Include="Content\Settings.css" />
+    <Content Include="Content\Sidebar.css" />
     <Content Include="Content\WeatherModule.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

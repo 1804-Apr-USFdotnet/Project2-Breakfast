@@ -1,13 +1,13 @@
 ﻿$( document ).ready( function() {
-  // scrollTo('.sideBar-links')		;
+  // scrollTo('.Sidebar-links')		;
   scrollTo();
   scrollToTop();
 });
 
 function scrollTo () {
-  $('.sideBar a').click(function(e) {
+  $('.Sidebar a').click(function(e) {
       e.preventDefault();
-      $('.sideBar a').removeClass('active');
+      $('.Sidebar a').removeClass('active');
       $(this).addClass('active');
     
      var distanceTopToSection = $( '#' +  $(this).data('target')).offset().top;
@@ -21,7 +21,7 @@ function scrollToTop () {
   var showBackTotop = $(window).height();
   backToTop.hide();
   
-  var children = $(".sideBar li").children(); 
+  var children = $(".Sidebar li").children(); 
   var tab = []; 
   for (var i=0; i < children.length; i++) {
     console.log(children[i]);
@@ -48,25 +48,25 @@ function scrollToTop () {
         var divPos = $(link).offset().top; 
         var divHeight = $(link).height(); 
         if (windowScrollTop >= divPos && windowScrollTop < (divPos + divHeight)) {
-            $(".sideBar a[href='" + link + "']").addClass("active");
+            $(".Sidebar a[href='" + link + "']").addClass("active");
         } else {
-            $(".sideBar a[href='" + link + "']").removeClass("active");
+            $(".Sidebar a[href='" + link + "']").removeClass("active");
         }
     }
 
     if(windowScrollTop + windowHeight == docHeight) {
-        if (!$(".sideBar li:last-child a").hasClass("active")) {
+        if (!$(".Sidebar li:last-child a").hasClass("active")) {
             var navActive = $(".active").attr("href");
-            $(".sideBar a[href='" + navActive + "']").removeClass("active");
-            $(".sideBar li:last-child a").addClass("active");
+            $(".Sidebar a[href='" + navActive + "']").removeClass("active");
+            $(".Sidebar li:last-child a").addClass("active");
         }
     }
   });
 
   backToTop.click( function(e) {
     e.preventDefault();
-    $(' .sideBar li a ').removeClass( 'active' );
-    $(' .sideBar li a:first ').addClass( 'active' );
+    $(' .Sidebar li a ').removeClass( 'active' );
+    $(' .Sidebar li a:first ').addClass( 'active' );
     $(' body, html ').animate( {scrollTop : 0}, 'slow' );
   });
 }
