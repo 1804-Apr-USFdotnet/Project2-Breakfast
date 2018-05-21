@@ -40,8 +40,7 @@ namespace Breakfast.Areas.Traffic.Controllers
                 var result = match.Captures[0].Value;
                 ViewBag.TimeToWork = result;
             }
-
-            int minuteIndex = insert.IndexOf("mins");
+            
             ViewBag.Insert = insert;
             ViewBag.Address = "Bellarmine Newman Hall";
             ViewBag.WorkAddress = "Tampa, FL";
