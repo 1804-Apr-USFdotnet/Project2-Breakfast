@@ -7,6 +7,8 @@ using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using Breakfast.Business.Traffic.Models;
 using Breakfast.Business.Traffic;
+using System;
+using System.Diagnostics;
 using Breakfast.Business.News;
 using Breakfast.Business.News.Models;
 
@@ -48,7 +50,11 @@ namespace Breakfast.Service.Controllers
         public IHttpActionResult SaveWeatherSettings(string userId, WeatherSettings ws)
         {
             try { WeatherCrud.SaveSettings(userId, ws); return StatusCode(HttpStatusCode.Accepted); }
-            catch { return InternalServerError(); }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                return InternalServerError();
+            }
         }
 
         [HttpPost]

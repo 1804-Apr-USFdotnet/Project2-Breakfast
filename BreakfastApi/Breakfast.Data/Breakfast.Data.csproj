@@ -49,6 +49,15 @@
   <ItemGroup>
     <Compile Include="DefaultDBUtils.cs" />
     <Compile Include="IDButils.cs" />
+    <Compile Include="Migrations\201805192206048_InitialCreate.cs" />
+    <Compile Include="Migrations\201805192206048_InitialCreate.Designer.cs">
+      <DependentUpon>201805192206048_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805211915585_ChangeTables.cs" />
+    <Compile Include="Migrations\201805211915585_ChangeTables.Designer.cs">
+      <DependentUpon>201805211915585_ChangeTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\NewsSettings.cs" />
     <Compile Include="Models\SettingsTable.cs" />
     <Compile Include="Models\TrafficSettings.cs" />
@@ -61,6 +70,13 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201805192206048_InitialCreate.resx">
+      <DependentUpon>201805192206048_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805211915585_ChangeTables.resx">
+      <DependentUpon>201805211915585_ChangeTables.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
