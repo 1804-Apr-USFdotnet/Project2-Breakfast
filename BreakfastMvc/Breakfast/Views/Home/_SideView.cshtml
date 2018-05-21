@@ -1,4 +1,6 @@
 ﻿<link rel="stylesheet" href="~/Content/Sidebar.css">
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="~/Scripts/IndexScrolling.js"></script>
 
 <div class="Wrapper" ng-app="sideBarApp">
     <div class="Sidebar" ng-class="collapse ? 'is-collapsed' : ''">
@@ -6,19 +8,23 @@
             <ul>
                 <li class="Sidebar-navItem">
                     <i class="Sidebar-menuIcon fa fa-coffee"></i>
-                    <a href="">Welcome</a>
+                    <a href="#i-one" data-target="#i-one">Welcome</a>
                 </li>
                 <li class="Sidebar-navItem">
                     <i class="Sidebar-menuIcon fa fa-cloud"></i>
-                    <a href="#">Weather</a>
+                    <a href="#i-two" data-target="#i-two">Weather</a>
                 </li>
                 <li class="Sidebar-navItem">
                     <i class="Sidebar-menuIcon fa fa-car"></i>
-                    <a href="#">Traffic</a>
+                    <a href="#i-three" data-target="#i-three">Traffic</a>
                 </li>
                 <li class="Sidebar-navItem">
                     <i class="Sidebar-menuIcon fa fa-newspaper-o"></i>
-                    <a href="#">News</a>
+                    <a href="#i-four" data-target="#i-four">News</a>
+                </li>
+                <li class="Sidebar-navItem">
+                    <i class="Sidebar-menuIcon fa fa-coffee"></i>
+                    <a href="#i-four" data-target="#i-five">End</a>
                 </li>
                 <li class="Sidebar-navItem">
                     <i class="Sidebar-menuIcon fa fa-sign-out"></i>
