@@ -12,6 +12,7 @@ namespace Breakfast.Business.News.Models
         //private static readonly Dictionary<string, string> LanguageCodes;
         private static readonly int MaxSrcCount = 20;
 
+        public int Id;
         public List<string> Queries;
         public string[] Sources; // questioning implementation here
         public List<string> Domains;
@@ -24,7 +25,6 @@ namespace Breakfast.Business.News.Models
 
 
         #region PropertyFields
-        public int Id { get; private set; }
 
         public string OldestDate
         {

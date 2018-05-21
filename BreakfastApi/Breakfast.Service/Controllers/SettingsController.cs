@@ -53,12 +53,12 @@ namespace Breakfast.Service.Controllers
             catch { return InternalServerError(); }
         }
 
-/*        [HttpPost]
+        [HttpPost]
         [ResponseType(typeof(void))]
         public IHttpActionResult SaveNewsSettigs (string userId, NewsSettings ns)
         {
-            try {  }
+            try { NewsCrud.SaveSettings(userId, ns); return StatusCode(HttpStatusCode.Accepted); }
             catch { return InternalServerError(); }
-        }*/
+        }
     }
 }

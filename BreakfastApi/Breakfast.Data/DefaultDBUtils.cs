@@ -79,7 +79,13 @@ namespace Breakfast.Data
             {
                 NewsSettings currentNewsSettings = db.NewsSettings.SingleOrDefault(x => x.Pk_NewsId == ns.Pk_NewsId);
                 currentNewsSettings.Enabled = ns.Enabled;
-                // TODO: add other settings
+                currentNewsSettings.Domains = ns.Domains ;
+                currentNewsSettings.Sources = ns.Sources ;
+                currentNewsSettings.Queries = ns.Queries ;
+                currentNewsSettings.OldestDate = ns.OldestDate ;
+                currentNewsSettings.NewestDate = ns.NewestDate ;
+                currentNewsSettings.Language = ns.Language ;
+                currentNewsSettings.PageSize = ns.PageSize ; 
 
                 db.NewsSettings.Attach(currentNewsSettings);
                 db.Entry(currentNewsSettings).State = EntityState.Modified;
