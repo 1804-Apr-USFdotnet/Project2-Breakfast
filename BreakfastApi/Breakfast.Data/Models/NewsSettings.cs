@@ -12,11 +12,11 @@ namespace Breakfast.Data.Models
         public bool Enabled { get; set; }
         // TODO: add news specific settings
 
-        public string QueryStrings;
+        public string Queries;
         public string Sources; // questioning implementation here
         public string Domains;
-        private Nullable<DateTime> _OldestDate;
-        private Nullable<DateTime> _NewestDate;
+        public Nullable<DateTime> OldestDate;
+        public Nullable<DateTime> NewestDate;
         public string Language;
         public Nullable<int> PageSize;
     }

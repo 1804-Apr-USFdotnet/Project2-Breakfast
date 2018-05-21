@@ -6,6 +6,8 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Breakfast.Business.Traffic.Models;
 using Breakfast.Business.Traffic;
+using Breakfast.Business.News;
+using Breakfast.Business.News.Models;
 
 namespace Breakfast.Service.Controllers
 {
@@ -50,5 +52,13 @@ namespace Breakfast.Service.Controllers
             try { TrafficCrud.SaveSettings(userId, ts); return StatusCode(HttpStatusCode.Accepted); }
             catch { return InternalServerError(); }
         }
+
+/*        [HttpPost]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult SaveNewsSettigs (string userId, NewsSettings ns)
+        {
+            try {  }
+            catch { return InternalServerError(); }
+        }*/
     }
 }
