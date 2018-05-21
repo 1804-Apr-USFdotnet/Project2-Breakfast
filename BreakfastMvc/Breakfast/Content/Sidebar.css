@@ -29,7 +29,9 @@ a {
 }
 
 .Sidebar {
-    position: relative;
+    position: fixed;
+    z-index: 9999;
+    padding-top: 150px;
     display: table-cell;
     min-width: 240px;
     max-width: 240px;
