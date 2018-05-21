@@ -3,6 +3,7 @@ using Breakfast.Business.Weather;
 using Breakfast.Business.Weather.Models;
 using System.Net;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using Breakfast.Business.Traffic.Models;
 using Breakfast.Business.Traffic;
@@ -13,6 +14,8 @@ namespace Breakfast.Service.Controllers
     {
         [HttpGet]
         [ResponseType(typeof(void))]
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
+        [Route("test/testresponse")]
         public IHttpActionResult TestResponse()
         {
             return Ok();
@@ -20,6 +23,7 @@ namespace Breakfast.Service.Controllers
 
         [HttpGet]
         [ResponseType(typeof(SettingsModel))]
+        [Route("api/settings/get/{userId}")]
         public IHttpActionResult GetSettings(string userId)
         {
             SettingsModel settings = Settings.getSettings(userId);
@@ -29,6 +33,7 @@ namespace Breakfast.Service.Controllers
 
         [HttpPut]
         [ResponseType(typeof(void))]
+        [Route("api/settings/initialize/{userId}")]
         public IHttpActionResult InitializeSettings(string userId)
         {
             try { Settings.initializeSettings(userId); return StatusCode(HttpStatusCode.Created); }
@@ -37,6 +42,7 @@ namespace Breakfast.Service.Controllers
 
         [HttpPost]
         [ResponseType(typeof(void))]
+        [Route("api/settings/weather/{userId}")]
         public IHttpActionResult SaveWeatherSettings(string userId, WeatherSettings ws)
         {
             try { WeatherCrud.SaveSettings(userId, ws); return StatusCode(HttpStatusCode.Accepted); }
