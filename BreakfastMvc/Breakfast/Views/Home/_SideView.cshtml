@@ -1,0 +1,38 @@
+﻿<div class="Wrapper" ng-app="sideBarApp">
+    <div class="Sidebar" ng-class="collapse ? 'is-collapsed' : ''">
+        <header class="Sidebar-header">
+            <div class="Sidebar-logo"></div>
+        </header>
+        <nav role="navigation">
+            <ul>
+                <li class="Sidebar-navItem">
+                    <i class="Sidebar-menuIcon fa fa-coffee"></i>
+                    <a href="">Welcome</a>
+                </li>
+                <li class="Sidebar-navItem">
+                    <i class="Sidebar-menuIcon fa fa-cloud"></i>
+                    <a href="#">Weather</a>
+                </li>
+                <li class="Sidebar-navItem">
+                    <i class="Sidebar-menuIcon fa fa-car"></i>
+                    <a href="#">Traffic</a>
+                </li>
+                <li class="Sidebar-navItem">
+                    <i class="Sidebar-menuIcon fa fa-newspaper-o"></i>
+                    <a href="#">News</a>
+                </li>
+                <li class="Sidebar-navItem">
+                    <i class="Sidebar-menuIcon fa fa-sign-out"></i>
+                    <a href="#">Log out</a>
+                </li>
+            </ul>
+        </nav>
+        <footer class="Sidebar-footer" ng-click="collapse = !collapse">
+            <i class="Sidebar-toggleArrow Sidebar-menuIcon fa fa-arrow-left" ng-class="collapse ? 'rotate' : ''"></i>
+            <span class="Sidebar-toggleText">Minimize menu</span>
+        </footer>
+    </div>
+    <div class="Main"></div>
+</div>
+
+<script>var app = angular.module('sideBarApp', []);</script>
