@@ -1,7 +1,16 @@
 ﻿<link rel="stylesheet" href="~/Content/Home.css">
+<link rel="stylesheet" href="~/Content/Sidebar.css">
+<script src="~/Scripts/angular.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="~/Scripts/IndexScrolling.js"></script>
+<script src="https://use.fontawesome.com/b6e164ee43.js"></script>
+<script>var app = angular.module('sideBarApp', []);</script>
+
 
 <div class="home-container">
-    <section>
+    @Html.Partial("/Views/Home/_SideView.cshtml")
+
+    <section class="sectionOnePage" id="i-one">
         <div class="image" data-type="background" data-speed="2"></div>
         <div class="stuff" data-type="content">
             @using Microsoft.AspNet.Identity
@@ -19,32 +28,31 @@
             }
             else
             {
-                    <h1>
-                        Welcome! Please @Html.ActionLink("register", "Register", "auth", routeValues: null, htmlAttributes: new { id = "registerLink", style = "text-decoration:underline;" })
-                        or @Html.ActionLink("log in", "LogIn", "auth", routeValues: null, htmlAttributes: new { id = "loginLink", style = "text-decoration:underline;" }) to view your daily feed!
-                    </h1>
+                <h1>
+                    Welcome! Please @Html.ActionLink("register", "Register", "auth", routeValues: null, htmlAttributes: new { id = "registerLink", style = "text-decoration:underline;" })
+                    or @Html.ActionLink("log in", "LogIn", "auth", routeValues: null, htmlAttributes: new { id = "loginLink", style = "text-decoration:underline;" }) to view your daily feed!
+                </h1>
             }
         </div>
     </section>
 
-    <section>
+    <section class="sectionOnePage" id="i-two">
         <div class="image" data-type="background" data-speed="7"></div>
         <div class="stuff" data-type="content">Weather</div>
     </section>
 
-    <section>
+    <section class="sectionOnePage" id="i-three">
         <div class="image" data-type="background" data-speed="6"></div>
         <div class="stuff" data-type="content">Traffic</div>
     </section>
 
-    <section>
+    <section class="sectionOnePage" id="i-four">
         <div class="image" data-type="background" data-speed="5"></div>
         <div class="stuff" data-type="content">News</div>
     </section>
 
-    <section>
+    <section class="sectionOnePage"id="i-five">
         <div class="image" data-type="background" data-speed="3"></div>
         <div class="stuff" data-type="content">Have a great day!</div>
     </section>
-
 </div>
