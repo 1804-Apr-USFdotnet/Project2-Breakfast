@@ -4,6 +4,8 @@ using Breakfast.Business.Weather.Models;
 using System.Net;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Breakfast.Business.Traffic.Models;
+using Breakfast.Business.Traffic;
 
 namespace Breakfast.Service.Controllers
 {
@@ -38,6 +40,14 @@ namespace Breakfast.Service.Controllers
         public IHttpActionResult SaveWeatherSettings(string userId, WeatherSettings ws)
         {
             try { WeatherCrud.SaveSettings(userId, ws); return StatusCode(HttpStatusCode.Accepted); }
+            catch { return InternalServerError(); }
+        }
+
+        [HttpPost]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult SaveTrafficSettings(string userId, TrafficSettingsBusiness ts)
+        {
+            try { TrafficCrud.SaveSettings(userId, ts); return StatusCode(HttpStatusCode.Accepted); }
             catch { return InternalServerError(); }
         }
     }

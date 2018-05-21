@@ -40,8 +40,7 @@ namespace Breakfast.Areas.Traffic.Controllers
                 var result = match.Captures[0].Value;
                 ViewBag.TimeToWork = result;
             }
-
-            int minuteIndex = insert.IndexOf("mins");
+            
             ViewBag.Insert = insert;
             ViewBag.Address = "Bellarmine Newman Hall";
             ViewBag.WorkAddress = "Tampa, FL";
@@ -51,9 +50,21 @@ namespace Breakfast.Areas.Traffic.Controllers
 
         public ActionResult Settings()
         {
+            string apiKey = null;
+            try
+            {
+                apiKey = System.IO.File.ReadAllText(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory.ToString(), "mapskey.txt"));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Shit failed");
+            }
+
+            ViewBag.APIKey = apiKey;
             ViewBag.Address = "Bellarmine Newman Hall";
             ViewBag.WorkAddress = "Tampa, FL";
             ViewBag.ZoomLevel = 12;
+            
             return View();
         }
 
