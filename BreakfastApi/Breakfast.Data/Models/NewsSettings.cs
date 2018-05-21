@@ -10,14 +10,12 @@ namespace Breakfast.Data.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Pk_NewsId { get; set; }
         public bool Enabled { get; set; }
-        // TODO: add news specific settings
-
-        public string QueryStrings;
-        public string Sources; // questioning implementation here
-        public string Domains;
-        private Nullable<DateTime> _OldestDate;
-        private Nullable<DateTime> _NewestDate;
-        public string Language;
-        public Nullable<int> PageSize;
+        public string QueryStrings { get; set; }
+        public string Sources { get; set; }// questioning implementation here
+        public string Domains { get; set; }
+        private Nullable<DateTime> _OldestDate { get; set; }
+        private Nullable<DateTime> _NewestDate { get; set; }
+        public string Language { get; set; }
+        public Nullable<int> PageSize { get; set; }
     }
 }
