@@ -1,4 +1,5 @@
-﻿using Breakfast.Business.Weather.Models;
+﻿using Breakfast.Business.Traffic.Models;
+using Breakfast.Business.Weather.Models;
 
 namespace Breakfast.Business
 {
@@ -6,6 +7,7 @@ namespace Breakfast.Business
     {
         public string UserEmail { get; set; }
         public WeatherSettings Weather { get; set; }
+        public TrafficSettingsBusiness Traffic { get; set; }
         //TODO: create and add domain objects for traffic and news settings like above line
         //Example 1: public NewsSettings News { get; set; }
         //Example 2: public TrafficSettings Traffic { get; get; }
