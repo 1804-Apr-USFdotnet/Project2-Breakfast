@@ -28,23 +28,23 @@ html, body {
         background-color: #000;
     }
 
-        .home-container section:nth-child(1) .image {
+        .home-container section:nth-child(4) .image {
             background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Hazy_Crazy_Sunrise.jpg/1200px-Hazy_Crazy_Sunrise.jpg);
         }
 
-        .home-container section:nth-child(2) .image {
+        .home-container section:nth-child(5) .image {
             background-image: url(http://miriadna.com/desctopwalls/images/max/Soft-silver-clouds.jpg);
         }
 
-        .home-container section:nth-child(3) .image {
+        .home-container section:nth-child(6) .image {
             background-image: url(https://www.rd.com/wp-content/uploads/2016/06/05-traffic-one-lane.jpg);
         }
 
-        .home-container section:nth-child(4) .image {
+        .home-container section:nth-child(7) .image {
             background-image: url(http://news.bbcimg.co.uk/news/special/2015/newsspec_10077/content/english/img/1024/future_of_news.jpg);
         }
 
-        .home-container section:nth-child(5) .image {
+        .home-container section:nth-child(8) .image {
             background-image: url(https://cdn.cnn.com/cnnnext/dam/assets/150929101049-black-coffee-stock-exlarge-169.jpg);
         }
 
