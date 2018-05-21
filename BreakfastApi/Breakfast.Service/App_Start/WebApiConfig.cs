@@ -24,11 +24,11 @@ namespace Breakfast.Service
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            config.Routes.MapHttpRoute(
-                name: "Default",
-                routeTemplate: "",
-                defaults: new { controller = "Settings" }
-            );
+            //config.Routes.MapHttpRoute(
+            //    name: "Default",
+            //    routeTemplate: "",
+            //    defaults: new { controller = "Settings" }
+            //);
         }
     }
 }
