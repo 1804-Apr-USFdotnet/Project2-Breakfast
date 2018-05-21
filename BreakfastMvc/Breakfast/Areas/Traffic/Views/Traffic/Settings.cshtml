@@ -32,8 +32,8 @@
                 @Html.EditorFor(m => m.WorkAddress, new { htmlattributes = new { id = "autocompleteWork", placeholder = "Enter your work address", onFocus = "geolocate('WorkAddress')", style = "width: 100%" } })
             </p>
         </div>
-                @Html.HiddenFor(m => m.AddressPlaceId, new { htmlattribues = new { id = "origisnPlace", @value = ""} })
-                @Html.HiddenFor(m => m.WorkAddressPlaceId, new { htmlattribues = new { id = "origisnPlace", @value = ""} })
+                @Html.EditorFor(m => m.AddressPlaceId, new { htmlattribues = new { id = "origisnPlace", @value = ""} })
+                @Html.EditorFor(m => m.WorkAddressPlaceId, new { htmlattribues = new { id = "origisnPlace", @value = ""} })
         <div class="item">
             <div class="label">
                 Travel mode: @Html.LabelFor(m => m.Driving, "Driving", new { id="travel"})
