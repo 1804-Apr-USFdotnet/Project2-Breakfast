@@ -40,9 +40,11 @@
         <div class="image" data-type="background" data-speed="7"></div>
         @if (!Request.IsAuthenticated)
         {
-        <div class="stuff" data-type="content">
-            Please @Html.ActionLink("register", "Register", "auth", routeValues: null, htmlAttributes: new { id = "registerLink", style = "text-decoration:underline;" }) or @Html.ActionLink("log in", "LogIn", "auth", routeValues: null, htmlAttributes: new { id = "loginLink", style = "text-decoration:underline;" }) to view weather
-        </div>
+            <div class="stuff" data-type="content">
+                <nobr>
+                    Please @Html.ActionLink("register", "Register", "auth", routeValues: null, htmlAttributes: new { id = "registerLink", style = "text-decoration:underline;" }) or @Html.ActionLink("log in", "LogIn", "auth", routeValues: null, htmlAttributes: new { id = "loginLink", style = "text-decoration:underline;" }) to view weather
+                </nobr>
+            </div>
         }
     </section>
 
@@ -50,9 +52,11 @@
         <div class="image" data-type="background" data-speed="6"></div>
         @if (!Request.IsAuthenticated)
         {
-        <div class="stuff" data-type="content">
-            Please @Html.ActionLink("register", "Register", "auth", routeValues: null, htmlAttributes: new { id = "registerLink", style = "text-decoration:underline;" }) or @Html.ActionLink("log in", "LogIn", "auth", routeValues: null, htmlAttributes: new { id = "loginLink", style = "text-decoration:underline;" }) to view traffic
-        </div>
+            <div class="stuff" data-type="content">
+                <nobr>
+                    Please @Html.ActionLink("register", "Register", "auth", routeValues: null, htmlAttributes: new { id = "registerLink", style = "text-decoration:underline;" }) or @Html.ActionLink("log in", "LogIn", "auth", routeValues: null, htmlAttributes: new { id = "loginLink", style = "text-decoration:underline;" }) to view traffic
+                </nobr>
+            </div>
         }
     </section>
 
@@ -60,9 +64,11 @@
         <div class="image" data-type="background" data-speed="5"></div>
         @if (!Request.IsAuthenticated)
         {
-        <div class="stuff" data-type="content">
-            Please @Html.ActionLink("register", "Register", "auth", routeValues: null, htmlAttributes: new { id = "registerLink", style = "text-decoration:underline;" }) or @Html.ActionLink("log in", "LogIn", "auth", routeValues: null, htmlAttributes: new { id = "loginLink", style = "text-decoration:underline;" }) to view news
-        </div>
+            <div class="stuff" data-type="content">
+                <nobr>
+                    Please @Html.ActionLink("register", "Register", "auth", routeValues: null, htmlAttributes: new { id = "registerLink", style = "text-decoration:underline;" }) or @Html.ActionLink("log in", "LogIn", "auth", routeValues: null, htmlAttributes: new { id = "loginLink", style = "text-decoration:underline;" }) to view news
+                </nobr>
+            </div>
         }
     </section>
 
