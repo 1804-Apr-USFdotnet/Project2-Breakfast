@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Breakfast.ViewModels;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,7 +11,8 @@ namespace Breakfast.Models
 {
     public class SettingsModel
     {
-        string uri = "http://ec2-18-191-47-17.us-east-2.compute.amazonaws.com/Breakfast.Service_deploy/";
+        static JsonSettings jsonSettings = new JsonSettings();
+        static string uri = "http://ec2-18-191-47-17.us-east-2.compute.amazonaws.com/Breakfast.Service_deploy/";
         
         public void GetSettings(string userId)
         {
@@ -20,6 +23,8 @@ namespace Breakfast.Models
                 StreamReader reader = new StreamReader(response.GetResponseStream());
                 apiResponse = reader.ReadToEnd();
             }
+
+            jsonSettings = JsonConvert.DeserializeObject<JsonSettings>(apiResponse);
         }
     }
 }
