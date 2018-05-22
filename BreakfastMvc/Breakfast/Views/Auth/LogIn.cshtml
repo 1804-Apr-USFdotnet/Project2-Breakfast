@@ -14,8 +14,7 @@
 
     <div class="tab-content">
         <div id="signup">
-            <h1>Sign Up for Free</h1>
-            @using (Html.BeginForm("Register", "Auth", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+            @using (Html.BeginForm("Register", "Auth", FormMethod.Post))
             {
                 <div class="top-row">
                     <div class="field-wrap">
@@ -53,12 +52,11 @@
                     @Html.TextBoxFor(m => m.register.WorkAddress)
                 </div>
 
-                <button type="submit" class="button button-block" value="Sign Up" />
+                <button type="submit" class="button button-block" value="Submit">Sign Up</button>
             }
         </div>
         <div id="login">
-            <h1>Welcome Back!</h1>
-            @using (Html.BeginForm("Login", "Auth", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+            @using (Html.BeginForm("Login", "Auth", FormMethod.Post))
             {
                 <div class="field-wrap">
                     <label>
@@ -73,7 +71,7 @@
                     @Html.TextBoxFor(m => m.login.Password)
                 </div>
                 <p class="forgot"><a href="#">Forgot Password?</a></p>
-                <button type="submit" class="button button-block">Log In</button>
+                <button type="submit" value="Submit" class="button button-block">Log In</button>
             }
         </div>
     </div>

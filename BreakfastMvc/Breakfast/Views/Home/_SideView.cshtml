@@ -29,17 +29,23 @@
                 @using Microsoft.AspNet.Identity
                 @if (Request.IsAuthenticated)
                 {
-                    <li class="Sidebar-navItem">
-                        <i class="Sidebar-menuIcon fa fa-sign-out"></i>
-                        <a href="#">Log out</a>
-                    </li>
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <li class="Sidebar-navItem">
+                            <i class="Sidebar-menuIcon fa fa-sign-out"></i>
+                            <a href="@Url.Action("logout", "auth")">Log Out</a>
+                        </li>
+                    }
                 }
                 else
                 {
-                    <li class="Sidebar-navItem">
-                        <i class="Sidebar-menuIcon fa fa-sign-in"></i>
-                        <a href="#">Log in</a>
-                    </li>
+                        <li class="Sidebar-navItem2">
+                            <i class="Sidebar-menuIcon fa fa-sign-in"></i>
+                            @*<a href="@Url.Action("LogIn", "auth")">Log In</a>*@
+                            @Html.ActionLink("log in", "LogIn", "auth", routeValues: null, htmlAttributes: new { id = "loginLink"})
+                        </li>
                 }
             </ul>
         </nav>
