@@ -29,23 +29,32 @@ a {
     /*width: 480px;*/
     /*margin: 0 auto;*/
     padding: 10px 60px 40px;
-    background-color: #191970;
+    /*background-color: #191970;*/
 }
 
     .wrapper .custom-control {
         /*float: right;
         margin-right: -150px;
         margin-top: -20px;*/
-        color: white;
+        /*color: white;*/
     }
 
-.wrapper .dark-mode {
-    background: transparent;
+.dark-mode {
+    background-color: transparent;
+    color: #e67e22;
 }
 
-    .wrapper .dark-mode .custom-control {
-        color: #e67e22;
+        .dark-mode .custom-control {
+            color: #e67e22;
+        }
+
+    .light-mode {
+        background-color: #191970;
     }
+
+        .light-mode .custom-control {
+            color: white;
+        }
 
 .searchbar,
 .button {

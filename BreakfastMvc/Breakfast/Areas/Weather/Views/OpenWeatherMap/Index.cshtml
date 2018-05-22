@@ -4,7 +4,7 @@
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="~/Scripts/DarkMode.js"></script>
 
-<div class='wrapper'>
+<div class='wrapper light-mode'>
 
     <search>
         @using (Html.BeginForm("Index", "OpenWeatherMap", FormMethod.Post))
@@ -100,15 +100,6 @@
             case '50':
                 icon.addClass('wi wi-fog');
                 break;
-        }
-    });
-
-    $('#mode').on('change', function () {
-        if ($(this).prop('checked')) {
-            $('.wrapper').addClass('dark-mode');
-        }
-        else {
-            $('.wrapper').addClass('dark-mode');
         }
     });
 </script>
