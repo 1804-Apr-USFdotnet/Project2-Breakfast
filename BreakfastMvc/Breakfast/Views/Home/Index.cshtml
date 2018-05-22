@@ -21,7 +21,7 @@
                     @Html.AntiForgeryToken()
 
                     <h1>
-                        Welcome @User.Identity.Name! You can either <a style="text-decoration:underline;" href="@Url.Action("logout", "auth")">log out</a>
+                        Welcome! You can either <a style="text-decoration:underline;" href="@Url.Action("logout", "auth")">log out</a>
                         or continue scrolling to see your daily feed!
                     </h1>
                 }
@@ -40,12 +40,18 @@
         <div class="image" data-type="background" data-speed="7"></div>
         @if (!Request.IsAuthenticated)
         {
-        <div class="stuff" data-type="content">
-            @Html.Partial("~/Areas/Weather/Views/OpenWeatherMap/Index.cshtml", new Breakfast.Areas.Weather.Models.OpenWeatherMap())
-            @*<nobr>
-            Please @Html.ActionLink("register", "Register", "auth", routeValues: null, htmlAttributes: new { id = "registerLink", style = "text-decoration:underline;" }) or @Html.ActionLink("log in", "LogIn", "auth", routeValues: null, htmlAttributes: new { id = "loginLink", style = "text-decoration:underline;" }) to view weather
-        </nobr>*@
-        </div>
+            <div class="stuff" data-type="content">
+                <nobr>
+                    Please @Html.ActionLink("register", "Register", "auth", routeValues: null, htmlAttributes: new { id = "registerLink", style = "text-decoration:underline;" }) or @Html.ActionLink("log in", "LogIn", "auth", routeValues: null, htmlAttributes: new { id = "loginLink", style = "text-decoration:underline;" }) to view weather
+                </nobr>
+            </div>
+        }
+        else
+        {
+            <div class="stuff" data-type="content">
+                @Html.Partial("~/Areas/Weather/Views/OpenWeatherMap/Index.cshtml", new Breakfast.Areas.Weather.Models.OpenWeatherMap())
+
+            </div>
         }
     </section>
 

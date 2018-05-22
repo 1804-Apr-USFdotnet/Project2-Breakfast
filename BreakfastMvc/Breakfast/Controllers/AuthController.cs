@@ -14,7 +14,7 @@ namespace Breakfast.Controllers
 
         public ActionResult LogIn()
         {
-            return View();
+            return View(new Account());
         }
 
         [HttpPost]
@@ -50,14 +50,8 @@ namespace Breakfast.Controllers
             return RedirectToAction("index", "home");
         }
 
-        [HttpGet]
-        public ActionResult Register()
-        {
-            return View();
-        }
-
         [HttpPost]
-        public ActionResult Register(Register model)
+        public ActionResult Register(Account model)
         {
             if (!ModelState.IsValid)
             {
@@ -66,13 +60,13 @@ namespace Breakfast.Controllers
 
             var user = new AppUser
             {
-                UserName = model.Email,
-                zipcode = model.Zipcode,
-                address = model.Address,
-                workAddress = model.WorkAddress
+                UserName = model.register.Email,
+                zipcode = model.register.Zipcode,
+                address = model.register.Address,
+                workAddress = model.register.WorkAddress
             };
 
-            var result = userManager.Create(user, model.Password);
+            var result = userManager.Create(user, model.register.Password);
 
             if (result.Succeeded)
             {
