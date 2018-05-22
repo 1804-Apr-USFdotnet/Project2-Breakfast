@@ -10,35 +10,46 @@
     <div class="tab-content">
         <div id="signup">
             <h1>Sign Up for Free</h1>
-            <form action="/" method="post">
+            @using (Html.BeginForm("Register", "Auth", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+            {
                 <div class="top-row">
                     <div class="field-wrap">
                         <label>
-                            First Name<span class="req">*</span>
+                            E-mail<span class="req">*</span>
                         </label>
-                        <input type="text" required autocomplete="off" />
+                        @Html.TextBoxFor(m => m.register.Email)
                     </div>
                     <div class="field-wrap">
                         <label>
-                            Last Name<span class="req">*</span>
+                            Password<span class="req">*</span>
                         </label>
-                        <input type="text" required autocomplete="off" />
+                        @Html.TextBoxFor(m => m.register.Password)
                     </div>
                 </div>
+
                 <div class="field-wrap">
                     <label>
-                        Email Address<span class="req">*</span>
+                        Address<span class="req">*</span>
                     </label>
-                    <input type="email" required autocomplete="off" />
+                    @Html.TextBoxFor(m => m.register.Address)
                 </div>
+
                 <div class="field-wrap">
                     <label>
-                        Set A Password<span class="req">*</span>
+                        Zipcode<span class="req">*</span>
                     </label>
-                    <input type="password" required autocomplete="off" />
+                    @Html.TextBoxFor(m => m.register.Zipcode)
                 </div>
-                <button type="submit" class="button button-block" />Get Started</button>
-            </form>
+
+                <div class="field-wrap">
+                    <label>
+                        Work Address<span class="req">*</span>
+                    </label>
+                    @Html.TextBoxFor(m => m.register.WorkAddress)
+                </div>
+
+                <button type="submit" class="button button-block" value="Sign Up"/>
+                }
         </div>
         <div id="login">
             <h1>Welcome Back!</h1>
@@ -47,16 +58,16 @@
                     <label>
                         Email Address<span class="req">*</span>
                     </label>
-                    <input type="email" required autocomplete="off" />
+                    @Html.TextBoxFor(m => m.login.Email)
                 </div>
                 <div class="field-wrap">
                     <label>
                         Password<span class="req">*</span>
                     </label>
-                    <input type="password" required autocomplete="off" />
+                    @Html.TextBoxFor(m => m.login.Password)
                 </div>
                 <p class="forgot"><a href="#">Forgot Password?</a></p>
-                <button class="button button-block">Log In</button>
+                <button type="submit" class="button button-block">Log In</button>
             </form>
         </div>
     </div>
