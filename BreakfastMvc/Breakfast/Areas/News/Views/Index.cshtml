@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Breakfast.Areas.News.Models.NewsArticle>
+
+@foreach (var item in Model) {
+
+    Html.RenderPartial("ArticleDetails", item);
+
+    if (item != Model.First<Breakfast.Areas.News.Models.NewsArticle>())
+    {
+        <hr />
+    }
+}
