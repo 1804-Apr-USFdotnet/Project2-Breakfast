@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace Breakfast.Models
@@ -18,7 +21,7 @@ namespace Breakfast.Models
         {
             HttpWebRequest apiRequest = WebRequest.Create(uri + "api/settings/get/" + userId) as HttpWebRequest;
             string apiResponse = "";
-            using (HttpWebResponse response = apiRequest.GetResponse() as HttpWebResponse)
+            using (var response = apiRequest.GetResponse() as HttpWebResponse)
             {
                 StreamReader reader = new StreamReader(response.GetResponseStream());
                 apiResponse = reader.ReadToEnd();
@@ -33,9 +36,23 @@ namespace Breakfast.Models
             apiRequest.ContentType = "application/json";
             apiRequest.Method = "PUT";
 
-            using (HttpWebResponse response = apiRequest.GetResponse() as HttpWebResponse)
+            using (var response = apiRequest.GetResponse() as HttpWebResponse)
             {
                  //do something with response.StatusCode
+            }
+        }
+
+        public async void SaveWeatherSettings(string userId, JsonSettings.Weather weather)
+        {
+            string myJson = JsonConvert.SerializeObject(weather);
+            using (var client = new HttpClient())
+            {
+                using (var response = await client.PostAsync(
+                    uri + "api/settings/weather/" + userId,
+                     new StringContent(myJson, Encoding.UTF8, "application/json")))
+                {
+                    //do something with response.StatusCode
+                }
             }
         }
     }
