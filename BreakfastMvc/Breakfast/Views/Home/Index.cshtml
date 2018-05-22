@@ -40,11 +40,12 @@
         <div class="image" data-type="background" data-speed="7"></div>
         @if (!Request.IsAuthenticated)
         {
-            <div class="stuff" data-type="content">
-                <nobr>
-                    Please @Html.ActionLink("register", "Register", "auth", routeValues: null, htmlAttributes: new { id = "registerLink", style = "text-decoration:underline;" }) or @Html.ActionLink("log in", "LogIn", "auth", routeValues: null, htmlAttributes: new { id = "loginLink", style = "text-decoration:underline;" }) to view weather
-                </nobr>
-            </div>
+        <div class="stuff" data-type="content">
+            @Html.Partial("/Areas/Weather/Views/OpenWeatherMap/Index.cshtml", new Breakfast.Areas.Weather.Models.OpenWeatherMap())
+            @*<nobr>
+            Please @Html.ActionLink("register", "Register", "auth", routeValues: null, htmlAttributes: new { id = "registerLink", style = "text-decoration:underline;" }) or @Html.ActionLink("log in", "LogIn", "auth", routeValues: null, htmlAttributes: new { id = "loginLink", style = "text-decoration:underline;" }) to view weather
+        </nobr>*@
+        </div>
         }
     </section>
 

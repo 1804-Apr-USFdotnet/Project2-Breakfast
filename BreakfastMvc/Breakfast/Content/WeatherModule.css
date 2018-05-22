@@ -26,11 +26,19 @@ a {
     }
 
 .wrapper {
-    width: 480px;
+    /*width: 480px;*/
     /*margin: 0 auto;*/
     padding: 10px 60px 40px;
-    background-color: steelblue;
+    background-color: #191970;
 }
+
+    .wrapper .custom-control {
+        /*float: right;
+        margin-right: -150px;
+        margin-top: -20px;*/
+        color: white;
+    }
+
 
 .searchbar,
 .button {
