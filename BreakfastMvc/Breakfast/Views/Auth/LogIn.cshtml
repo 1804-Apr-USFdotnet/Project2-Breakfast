@@ -1,5 +1,10 @@
 ﻿@model Breakfast.ViewModels.Account
 
+<link rel="stylesheet" href="~/Content/Login.css" />
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="~/Scripts/login.js"></script>
+
+
 <div class="form">
 
     <ul class="tab-group">
@@ -48,8 +53,8 @@
                     @Html.TextBoxFor(m => m.register.WorkAddress)
                 </div>
 
-                <button type="submit" class="button button-block" value="Sign Up"/>
-                }
+                <button type="submit" class="button button-block" value="Sign Up" />
+            }
         </div>
         <div id="login">
             <h1>Welcome Back!</h1>
