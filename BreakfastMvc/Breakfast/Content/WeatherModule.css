@@ -39,6 +39,10 @@ a {
         color: white;
     }
 
+body.dark-mode {
+    background: transparent;
+    color: #e67e22;
+}
 
 .searchbar,
 .button {
