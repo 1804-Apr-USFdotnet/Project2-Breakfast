@@ -38,20 +38,35 @@
 
     <section class="sectionOnePage" id="i-two">
         <div class="image" data-type="background" data-speed="7"></div>
-        <div class="stuff" data-type="content">Weather</div>
+        @if (!Request.IsAuthenticated)
+        {
+        <div class="stuff" data-type="content">
+            Please @Html.ActionLink("register", "Register", "auth", routeValues: null, htmlAttributes: new { id = "registerLink", style = "text-decoration:underline;" }) or @Html.ActionLink("log in", "LogIn", "auth", routeValues: null, htmlAttributes: new { id = "loginLink", style = "text-decoration:underline;" }) to view weather
+        </div>
+        }
     </section>
 
     <section class="sectionOnePage" id="i-three">
         <div class="image" data-type="background" data-speed="6"></div>
-        <div class="stuff" data-type="content">Traffic</div>
+        @if (!Request.IsAuthenticated)
+        {
+        <div class="stuff" data-type="content">
+            Please @Html.ActionLink("register", "Register", "auth", routeValues: null, htmlAttributes: new { id = "registerLink", style = "text-decoration:underline;" }) or @Html.ActionLink("log in", "LogIn", "auth", routeValues: null, htmlAttributes: new { id = "loginLink", style = "text-decoration:underline;" }) to view traffic
+        </div>
+        }
     </section>
 
     <section class="sectionOnePage" id="i-four">
         <div class="image" data-type="background" data-speed="5"></div>
-        <div class="stuff" data-type="content">News</div>
+        @if (!Request.IsAuthenticated)
+        {
+        <div class="stuff" data-type="content">
+            Please @Html.ActionLink("register", "Register", "auth", routeValues: null, htmlAttributes: new { id = "registerLink", style = "text-decoration:underline;" }) or @Html.ActionLink("log in", "LogIn", "auth", routeValues: null, htmlAttributes: new { id = "loginLink", style = "text-decoration:underline;" }) to view news
+        </div>
+        }
     </section>
 
-    <section class="sectionOnePage"id="i-five">
+    <section class="sectionOnePage" id="i-five">
         <div class="image" data-type="background" data-speed="3"></div>
         <div class="stuff" data-type="content">Have a great day!</div>
     </section>
