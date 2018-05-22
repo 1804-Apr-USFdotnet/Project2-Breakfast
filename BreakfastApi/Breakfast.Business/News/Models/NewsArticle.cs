@@ -18,6 +18,8 @@ namespace Breakfast.Business.News.Models
         [DataMember]
         public readonly string Url;
         [DataMember]
+        public readonly string ImgUrl;
+        [DataMember]
         public readonly string Desc;
         [DataMember]
         public readonly DateTime PublDate;
@@ -26,12 +28,13 @@ namespace Breakfast.Business.News.Models
         {
         }
 
-        public NewsArticle(string title, string author, string source, string url, string desc, DateTime publDate)
+        public NewsArticle(string title, string author, string source, string url, string imageUrl, string desc, DateTime publDate)
         {
             Title = String.Copy(title);
             Author = String.Copy(author);
             Source = String.Copy(source);
             Url = String.Copy(url);
+            ImgUrl = String.Copy(imageUrl);
             Desc = String.Copy(desc);
             PublDate = publDate;
         }
@@ -42,6 +45,7 @@ namespace Breakfast.Business.News.Models
             Author = String.Copy(toCopy.Author);
             Source = String.Copy(toCopy.Source);
             Url = String.Copy(toCopy.Url);
+            ImgUrl = String.Copy(toCopy.ImgUrl);
             Desc = String.Copy(toCopy.Desc);
             PublDate = toCopy.PublDate;
         }

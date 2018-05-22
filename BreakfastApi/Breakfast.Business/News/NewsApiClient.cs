@@ -59,6 +59,7 @@ namespace Breakfast.Business.News
             Regex grabAuthor = new Regex("(?<=\"author\":\"){1}([^\"]*)(?=\"){1}");
             Regex grabSource = new Regex("(?<=\"name\":\"){1}([^\"]*)(?=\"){1}");
             Regex grabUrl = new Regex("(?<=\"url\":\"){1}([^\"]*)(?=\"){1}");
+            Regex grabImgUrl = new Regex("(?<=\"urlToImage\":\"){1}([^\"]*)(?=\"){1}");
             Regex grabDesc = new Regex("(?<=\"description\":\"){1}([^\"]*)(?=\"){1}");
             Regex grabDate = new Regex("(?<=\"publishedAt\":\"){1}([^\"]*)(?=\"){1}");
 
@@ -66,10 +67,11 @@ namespace Breakfast.Business.News
             string author = grabAuthor.Match(json).ToString();
             string source = grabSource.Match(json).ToString();
             string url = grabUrl.Match(json).ToString();
+            string imageUrl = grabImgUrl.Match(json).ToString();
             string desc = grabDesc.Match(json).ToString();
             DateTime publDate = DateTime.Parse(grabDate.Match(json).ToString());
 
-            return new NewsArticle(title, author, source, url, desc, publDate);
+            return new NewsArticle(title, author, source, url, imageUrl, desc, publDate);
         }
 
         public string CallNewsApi(int pageNum = 1)
@@ -104,14 +106,14 @@ namespace Breakfast.Business.News
 
         private string GetSubstringQueries ()
         {
-            if (Settings.QueryStrings.Count == 0)
+            if (Settings.Queries.Count == 0)
             {
                 return "";
             }
             else
             {
                 string substring = "q=";
-                foreach (var queryString in Settings.QueryStrings)
+                foreach (var queryString in Settings.Queries)
                 {
                     substring = substring + queryString + ",";
                 }

@@ -7,10 +7,13 @@ using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using Breakfast.Business.Traffic.Models;
 using Breakfast.Business.Traffic;
-using System;
-using System.Diagnostics;
+<<<<<<< HEAD
 using Breakfast.Business.News;
 using Breakfast.Business.News.Models;
+=======
+using System;
+using System.Diagnostics;
+>>>>>>> dev
 
 namespace Breakfast.Service.Controllers
 {
@@ -59,7 +62,6 @@ namespace Breakfast.Service.Controllers
 
         [HttpPost]
         [ResponseType(typeof(void))]
-        [Route("api/settings/traffic/{userId}")]
         public IHttpActionResult SaveTrafficSettings(string userId, TrafficSettingsBusiness ts)
         {
             try { TrafficCrud.SaveSettings(userId, ts); return StatusCode(HttpStatusCode.Accepted); }
