@@ -61,6 +61,10 @@
     <Compile Include="Migrations\201805212316270_ChangeNewsSettings.Designer.cs">
       <DependentUpon>201805212316270_ChangeNewsSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805220008154_FixNewsSettings.cs" />
+    <Compile Include="Migrations\201805220008154_FixNewsSettings.Designer.cs">
+      <DependentUpon>201805220008154_FixNewsSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\NewsSettings.cs" />
     <Compile Include="Models\SettingsTable.cs" />
@@ -83,6 +87,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805212316270_ChangeNewsSettings.resx">
       <DependentUpon>201805212316270_ChangeNewsSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805220008154_FixNewsSettings.resx">
+      <DependentUpon>201805220008154_FixNewsSettings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
