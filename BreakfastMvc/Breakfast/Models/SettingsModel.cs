@@ -26,5 +26,17 @@ namespace Breakfast.Models
 
             jsonSettings = JsonConvert.DeserializeObject<JsonSettings>(apiResponse);
         }
+
+        public void IntializeSettings(string userId)
+        {
+            HttpWebRequest apiRequest = WebRequest.Create(uri + "api/settings/get/" + userId) as HttpWebRequest;
+            apiRequest.ContentType = "application/json";
+            apiRequest.Method = "PUT";
+
+            using (HttpWebResponse response = apiRequest.GetResponse() as HttpWebResponse)
+            {
+                 //do something with response.StatusCode
+            }
+        }
     }
 }
