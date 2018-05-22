@@ -169,14 +169,25 @@ namespace Breakfast.Business.News.Models
             string concatSourceString = nsData.Queries;
             char[] separatorCharacters = new char[] { '"' };
 
-            string[] parsedQueries = concatQueryString.Split(separatorCharacters);
-            string[] parsedDomains = concatDomainString.Split(separatorCharacters);
+            //string[] parsedQueries = concatQueryString.Split(separatorCharacters);
+            string[] parsedQueries = { };
+            if (concatQueryString != null)
+                parsedQueries = concatQueryString.Split(separatorCharacters);
+
+            //string[] parsedDomains = concatDomainString.Split(separatorCharacters);
+            string[] parsedDomains = { };
+            if (concatDomainString != null)
+                parsedDomains = concatDomainString.Split(separatorCharacters);
+
+            string[] parsedSources = { };
+            if (concatSourceString != null)
+                parsedSources = concatSourceString.Split(separatorCharacters);
 
             NewsSettings newsSettings = new NewsSettings()
             {
                 Id = nsData.Pk_NewsId,
                 Queries = parsedQueries.ToList(),
-                Sources = concatSourceString.Split(separatorCharacters),
+                Sources = parsedSources, //concatSourceString.Split(separatorCharacters),
                 Domains = parsedDomains.ToList(),
                 _OldestDate = nsData.OldestDate,
                 _NewestDate = nsData.NewestDate,
