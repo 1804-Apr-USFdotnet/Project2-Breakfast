@@ -18,14 +18,14 @@ namespace Breakfast.Controllers
         }
 
         [HttpPost]
-        public ActionResult LogIn(Login model)
+        public ActionResult LogIn(Account model)
         {
             if (!ModelState.IsValid)
             {
                 return View();
             }
 
-            var user = userManager.Find(model.Email, model.Password);
+            var user = userManager.Find(model.login.Email, model.login.Password);
 
             if (user != null)
             {
