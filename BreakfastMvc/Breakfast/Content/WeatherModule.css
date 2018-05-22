@@ -1,11 +1,15 @@
 ﻿@import url('https://fonts.googleapis.com/css?family=Roboto:400,300,100');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/weather-icons/1.3.2/css/weather-icons.min.css');
 
+* {
+    color: white;
+}
+
 h1,
 h2,
 h3,
 h4 {
-    color: white;
+    /*color: white;*/
     font-family: 'Roboto';
     font-weight: 100;
     line-height: 1.1;
@@ -15,7 +19,7 @@ h4 {
 }
 
 a {
-    color: white;
+    /*color: white;*/
     opacity: 0.54;
     text-decoration: none;
 }
@@ -41,10 +45,9 @@ a {
 
 .dark-mode {
     background-color: transparent;
-    color: #e67e22;
 }
 
-        .dark-mode .custom-control {
+        .dark-mode-text {
             color: #e67e22;
         }
 
@@ -52,7 +55,7 @@ a {
         background-color: #191970;
     }
 
-        .light-mode .custom-control {
+        .light-mode-text {
             color: white;
         }
 
@@ -64,7 +67,7 @@ a {
     font: 400 1rem 'Roboto';
     letter-spacing: 0.025em;
     text-transform: uppercase;
-    color: white;
+    /*color: white;*/
     border: none;
 }
 
@@ -77,48 +80,48 @@ a {
 }
 
     .searchbar::-webkit-input-placeholder {
-        color: white;
+        /*color: white;*/
         opacity: 0.35;
     }
 
     .searchbar::-moz-placeholder {
-        color: white;
+        /*color: white;*/
         opacity: 0.35;
     }
 
     .searchbar:-ms-input-placeholder {
-        color: white;
+        /*color: white;*/
         opacity: 0.35;
     }
 
     .searchbar:-moz-placeholder {
-        color: white;
+        /*color: white;*/
         opacity: 0.35;
     }
 
     .button:focus,
     .searchbar:focus {
         outline: none;
-        color: white;
+        /*color: white;*/
     }
 
         .searchbar:focus::-webkit-input-placeholder {
-            color: white;
+            /*color: white;*/
             opacity: 0.7;
         }
 
         .searchbar:focus::-moz-placeholder {
-            color: white;
+            /*color: white;*/
             opacity: 0.7;
         }
 
         .searchbar:focus:-ms-input-placeholder {
-            color: white;
+            /*color: white;*/
             opacity: 0.7;
         }
 
         .searchbar:focus:-moz-placeholder {
-            color: white;
+            /*color: white;*/
             opacity: 0.7;
         }
 
