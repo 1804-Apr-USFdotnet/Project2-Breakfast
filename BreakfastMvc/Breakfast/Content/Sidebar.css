@@ -31,11 +31,11 @@ a {
 .Sidebar {
     position: fixed;
     z-index: 9999;
-    padding-top: 150px;
     display: table-cell;
     min-width: 240px;
     max-width: 240px;
     min-height: 100%;
+    height: fit-content;
     background-color: #212121;
     transition: max-width 0.4s ease, min-width 0.4s ease;
     -webkit-user-select: none;
@@ -43,10 +43,13 @@ a {
     -ms-user-select: none;
     user-select: none;
 }
+    .Sidebar.not-collapsed ul {
+        margin-left: 10px;
+    }
 
     .Sidebar.is-collapsed {
-        max-width: 50px;
-        min-width: 50px;
+        max-width: 70px;
+        min-width: 70px;
         transition: max-width 0.4s ease, min-width 0.4s ease;
     }
 
@@ -249,9 +252,15 @@ a {
     }
 }
 
+.sidebar-nav {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 .Sidebar ul {
     list-style-type: none;
-    margin-left: 5px;
+    font-size: xx-large;
 }
 
     .Sidebar ul li {
@@ -264,6 +273,7 @@ a {
             text-transform: uppercase;
             font: 400 14px PT Sans;
             margin-left: 0px;
+            font-size: large;
             -webkit-transition: all 300ms;
             -moz-transition: all 300ms;
             -ms-transition: all 300ms;

@@ -2,6 +2,7 @@
 
 <link rel="stylesheet" href="~/Content/WeatherModule.css">
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="~/Scripts/DarkMode.js"></script>
 
 <div class='wrapper'>
 
@@ -9,8 +10,16 @@
         @using (Html.BeginForm("Index", "OpenWeatherMap", FormMethod.Post))
         {
             <input class='searchbar transparent' id='search' name="zipcode" type='text' placeholder='enter city, country' />
-            <input class='button transparent' id='button' type="submit" value='GO' />
+            @*<input class='button transparent' id='button' type="submit" value='GO' />*@
+            <div class="custom-control custom-checkbox" style="float:right">
+                <input type="checkbox" id="mode" class="custom-control-input">
+                <label class="custom-control-label" for="mode">Dark Mode</label>
+            </div>
         }
+        @*<div class="custom-control custom-checkbox" style="float:right">
+                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                <label class="custom-control-label" for="customCheck1">Dark Mode</label>
+            </div>*@
     </search>
     <div class='panel'>
         <h2 class='city' id='city'>@Model.city, @Model.country</h2>
@@ -20,9 +29,9 @@
                 <h3 id='description'>@Model.description</h3>
             </div>
             <div class='group secondary'>
-                <h3 id='wind'>Wind: @Model.windSpeed mph</h3>
-                <h3 id='humidity'>Humidity: @Model.humidity% </h3>
-                <h3 id='humidity'>Cloudiness: @Model.cloudiness% </h3>
+                <h3 id='wind'><nobr>Wind: @Model.windSpeed mph</nobr></h3>
+                <h3 id='humidity'><nobr>Humidity: @Model.humidity%</nobr></h3>
+                <h3 id='cloudiness'><nobr>Cloudiness: @Model.cloudiness%</nobr></h3>
             </div>
             <div class='temperature' id='temperature'>
                 <h1 class='temp' id='temp'>
@@ -91,6 +100,15 @@
             case '50':
                 icon.addClass('wi wi-fog');
                 break;
+        }
+    });
+
+    $('#mode').on('change', function () {
+        if ($(this).prop('checked')) {
+            $('.wrapper').addClass('dark-mode');
+        }
+        else {
+            $('.wrapper').addClass('dark-mode');
         }
     });
 </script>
