@@ -14,7 +14,7 @@ namespace Breakfast.Models
 {
     public class SettingsModel
     {
-        static JsonSettings jsonSettings = new JsonSettings();
+        static JsonSettings.RootObject jsonSettings = new JsonSettings.RootObject();
         static string uri = "http://ec2-18-191-47-17.us-east-2.compute.amazonaws.com/Breakfast.Service_deploy/";
         
         public void GetSettings(string userId)
@@ -27,7 +27,8 @@ namespace Breakfast.Models
                 apiResponse = reader.ReadToEnd();
             }
 
-            jsonSettings = JsonConvert.DeserializeObject<JsonSettings>(apiResponse);
+            jsonSettings = JsonConvert.DeserializeObject<JsonSettings.RootObject>(apiResponse);
+            
         }
 
         public async void IntializeSettings(string userId)

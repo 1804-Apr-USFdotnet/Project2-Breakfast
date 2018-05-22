@@ -2,6 +2,7 @@
 
 <link rel="stylesheet" href="~/Content/WeatherModule.css">
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="~/Scripts/DarkMode.js"></script>
 
 <div class='wrapper'>
 
@@ -12,7 +13,7 @@
             @*<input class='button transparent' id='button' type="submit" value='GO' />*@
             <div class="custom-control custom-checkbox" style="float:right">
                 <input type="checkbox" id="mode" class="custom-control-input">
-                <label class="custom-control-label" for="customCheck1">Dark Mode</label>
+                <label class="custom-control-label" for="mode">Dark Mode</label>
             </div>
         }
         @*<div class="custom-control custom-checkbox" style="float:right">
@@ -99,6 +100,15 @@
             case '50':
                 icon.addClass('wi wi-fog');
                 break;
+        }
+    });
+
+    $('#mode').on('change', function () {
+        if ($(this).prop('checked')) {
+            $('.wrapper').addClass('dark-mode');
+        }
+        else {
+            $('.wrapper').addClass('dark-mode');
         }
     });
 </script>

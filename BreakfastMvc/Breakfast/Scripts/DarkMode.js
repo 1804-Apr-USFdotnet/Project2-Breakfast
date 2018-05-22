@@ -1,9 +1,8 @@
 ﻿$('#mode').change(function () {
-
     if ($(this).prop('checked')) {
-        $('body').addClass('dark-mode');
+        $('.wrapper').addClass('dark-mode');
     }
     else {
-        $('body').removeClass('dark-mode');
+        $('.wrapper').removeClass('dark-mode');
     }
 });
