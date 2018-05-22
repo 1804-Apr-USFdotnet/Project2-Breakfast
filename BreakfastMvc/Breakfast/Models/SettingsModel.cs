@@ -55,5 +55,33 @@ namespace Breakfast.Models
                 }
             }
         }
+
+        public async void SaveTrafficSettings(string userId, JsonSettings.Traffic traffic)
+        {
+            string myJson = JsonConvert.SerializeObject(traffic);
+            using (var client = new HttpClient())
+            {
+                using (var response = await client.PostAsync(
+                    uri + "api/settings/weather/" + userId,
+                     new StringContent(myJson, Encoding.UTF8, "application/json")))
+                {
+                    //do something with response.StatusCode
+                }
+            }
+        }
+
+        public async void SaveNewsSettings(string userId, JsonSettings.News news)
+        {
+            string myJson = JsonConvert.SerializeObject(news);
+            using (var client = new HttpClient())
+            {
+                using (var response = await client.PostAsync(
+                    uri + "api/settings/weather/" + userId,
+                     new StringContent(myJson, Encoding.UTF8, "application/json")))
+                {
+                    //do something with response.StatusCode
+                }
+            }
+        }
     }
 }
