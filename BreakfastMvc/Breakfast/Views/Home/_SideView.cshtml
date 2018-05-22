@@ -26,10 +26,21 @@
                     <i class="Sidebar-menuIcon fa fa-coffee"></i>
                     <a href="#i-four" data-target="#i-five">End</a>
                 </li>
-                <li class="Sidebar-navItem">
-                    <i class="Sidebar-menuIcon fa fa-sign-out"></i>
-                    <a href="#">Log out</a>
-                </li>
+                @using Microsoft.AspNet.Identity
+                @if (Request.IsAuthenticated)
+                {
+                    <li class="Sidebar-navItem">
+                        <i class="Sidebar-menuIcon fa fa-sign-out"></i>
+                        <a href="#">Log out</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="Sidebar-navItem">
+                        <i class="Sidebar-menuIcon fa fa-sign-in"></i>
+                        <a href="#">Log in</a>
+                    </li>
+                }
             </ul>
         </nav>
         <footer class="Sidebar-footer" ng-click="collapse = !collapse">
