@@ -1,8 +1,6 @@
-﻿using Breakfast.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Breakfast.Areas.Weather.Models;
+using Breakfast.Models;
+using Breakfast.ViewModels;
 using System.Web.Mvc;
 
 namespace Breakfast.Controllers
@@ -11,12 +9,23 @@ namespace Breakfast.Controllers
     {
         public ActionResult Index()
         {
-            return View(new Account());
-        }
-
-        public ActionResult Index(Account accountSettings)
-        {
-            return View(accountSettings);
+            if (User.Identity.IsAuthenticated)
+            {
+                Data data = new Data()
+                {
+                    // get settings for current user
+                    settings = new SettingsModel().GetSettings(User.Identity.Name),
+                    // get weather data for current user
+                    weatherData = new OpenWeatherMap("10305")
+                    // get traffic data for current user
+                    // TODO
+                    // get news data for current user
+                    // TODO
+                };
+                return View(data);
+            }
+            else
+                return View(new Data());
         }
 
         public ActionResult About()
