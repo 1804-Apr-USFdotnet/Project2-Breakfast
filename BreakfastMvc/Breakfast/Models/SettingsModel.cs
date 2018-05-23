@@ -34,7 +34,7 @@ namespace Breakfast.Models
 
         public void InitializeSettings(string userId)
         {
-            HttpWebRequest apiRequest = WebRequest.Create(uri + "api/settings/intialize/" + userId + "/") as HttpWebRequest;
+            HttpWebRequest apiRequest = WebRequest.Create(uri + "api/settings/initialize/" + userId + "/") as HttpWebRequest;
             using (var response = apiRequest.GetResponse() as HttpWebResponse)
             {
                 //do something with response.StatusCode

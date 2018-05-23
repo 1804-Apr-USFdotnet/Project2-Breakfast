@@ -14,9 +14,9 @@ namespace Breakfast.Controllers
                 Data data = new Data()
                 {
                     // get settings for current user
-                   // settings = new SettingsModel().GetSettings(User.Identity.Name),
+                    settings = new SettingsModel().GetSettings(User.Identity.Name),
                     // get weather data for current user
-                   // weatherData = new OpenWeatherMap("10305")
+                    weatherData = new OpenWeatherMap("10305")
                     // get traffic data for current user
                     // TODO
                     // get news data for current user

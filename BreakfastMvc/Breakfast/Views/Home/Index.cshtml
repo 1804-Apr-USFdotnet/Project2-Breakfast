@@ -51,7 +51,7 @@
         else
         {
             <div class="stuff" data-type="content">
-                @Html.Partial("~/Areas/Weather/Views/OpenWeatherMap/Index.cshtml", new Breakfast.Areas.Weather.Models.OpenWeatherMap())
+                @Html.Partial("~/Areas/Weather/Views/OpenWeatherMap/Index.cshtml", Model.weatherData)
             </div>
         }
     </section>
