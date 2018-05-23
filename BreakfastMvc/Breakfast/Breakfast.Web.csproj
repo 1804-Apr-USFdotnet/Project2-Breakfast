@@ -196,6 +196,8 @@
     <Compile Include="Models\SettingsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Account.cs" />
+    <Compile Include="ViewModels\Data.cs" />
     <Compile Include="ViewModels\JsonSettings.cs" />
     <Compile Include="ViewModels\Login.cs" />
     <Compile Include="ViewModels\Register.cs" />
@@ -205,6 +207,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Contact.css" />
     <Content Include="Content\Home.css" />
+    <Content Include="Content\Login.css" />
     <Content Include="Content\Settings.css" />
     <Content Include="Content\Sidebar.css" />
     <Content Include="Content\WeatherModule.css" />
@@ -1012,6 +1015,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\login.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -1031,7 +1035,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Auth\LogIn.cshtml" />
-    <Content Include="Views\Auth\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\_SideView.cshtml" />
     <Content Include="Scripts\version.json" />

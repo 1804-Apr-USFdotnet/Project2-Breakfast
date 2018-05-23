@@ -10,8 +10,8 @@ namespace Breakfast.ViewModels
     public class Login
     {
         [Required]
-        [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
+        [DataType(DataType.Text)]
+        public string Username { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

@@ -66,7 +66,16 @@ a {
             transition: padding-left 0.4s ease;
         }
 
+        .Sidebar.is-collapsed .Sidebar-navItem2 {
+            padding-left: 17px;
+            transition: padding-left 0.4s ease;
+        }
+
             .Sidebar.is-collapsed .Sidebar-navItem a {
+                opacity: 0;
+            }
+
+            .Sidebar.is-collapsed .Sidebar-navItem2 a {
                 opacity: 0;
             }
 

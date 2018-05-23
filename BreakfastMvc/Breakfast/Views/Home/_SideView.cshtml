@@ -3,7 +3,7 @@
 <script src="~/Scripts/IndexScrolling.js"></script>
 
 <div class="Wrapper" ng-app="sideBarApp">
-    <div class="Sidebar" ng-class="collapse ? 'is-collapsed' : 'not-collapsed'">
+    <div class="Sidebar" ng-class="collapse ? 'not-collapsed' : 'is-collapsed'">
         <nav role="navigation" class="sidebar-nav">
             <ul>
                 <li class="Sidebar-navItem">
@@ -26,10 +26,27 @@
                     <i class="Sidebar-menuIcon fa fa-coffee"></i>
                     <a href="#i-four" data-target="#i-five">End</a>
                 </li>
-                <li class="Sidebar-navItem">
+                @using Microsoft.AspNet.Identity
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                <li class="Sidebar-navItem2">
                     <i class="Sidebar-menuIcon fa fa-sign-out"></i>
-                    <a href="#">Log out</a>
+                    @Html.ActionLink("Log out", "LogOut", "auth", routeValues: null, htmlAttributes: new { id = "loginLink" })
                 </li>
+                    }
+                }
+                else
+                {
+                        <li class="Sidebar-navItem2">
+                            <i class="Sidebar-menuIcon fa fa-sign-in"></i>
+                            @*<a href="@Url.Action("LogIn", "auth")">Log In</a>*@
+                            @Html.ActionLink("Log in", "LogIn", "auth", routeValues: null, htmlAttributes: new { id = "loginLink"})
+                        </li>
+                }
             </ul>
         </nav>
         <footer class="Sidebar-footer" ng-click="collapse = !collapse">

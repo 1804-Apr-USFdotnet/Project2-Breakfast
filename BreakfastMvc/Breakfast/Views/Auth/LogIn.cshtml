@@ -1,13 +1,78 @@
-﻿@model Breakfast.ViewModels.Login
+﻿@model Breakfast.ViewModels.Account
 
-<h2>Log In</h2>
+<link rel="stylesheet" href="~/Content/Login.css" />
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="~/Scripts/login.js"></script>
 
-@Html.ValidationSummary(true)
 
-@using (Html.BeginForm())
-{
-    @Html.EditorForModel()
-    <p>
-        <button type="submit">Log In</button>
-    </p>
-}
+<div class="form">
+
+    <ul class="tab-group">
+        <li class="tab active"><a href="#signup">Sign Up</a></li>
+        <li class="tab"><a href="#login">Log In</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="signup">
+            @using (Html.BeginForm("Register", "Auth", FormMethod.Post))
+            {
+                <div class="top-row">
+                    <div class="field-wrap">
+                        <label>
+                            Username<span class="req">*</span>
+                        </label>
+                        @Html.TextBoxFor(m => m.register.Username)
+                    </div>
+                    <div class="field-wrap">
+                        <label>
+                            Password<span class="req">*</span>
+                        </label>
+                        @Html.TextBoxFor(m => m.register.Password)
+                    </div>
+                </div>
+
+                <div class="field-wrap">
+                    <label>
+                        Address<span class="req">*</span>
+                    </label>
+                    @Html.TextBoxFor(m => m.register.Address)
+                </div>
+
+                <div class="field-wrap">
+                    <label>
+                        Zipcode<span class="req">*</span>
+                    </label>
+                    @Html.TextBoxFor(m => m.register.Zipcode)
+                </div>
+
+                <div class="field-wrap">
+                    <label>
+                        Work Address<span class="req">*</span>
+                    </label>
+                    @Html.TextBoxFor(m => m.register.WorkAddress)
+                </div>
+
+                <button type="submit" class="button button-block" value="Submit">Sign Up</button>
+            }
+        </div>
+        <div id="login">
+            @using (Html.BeginForm("Login", "Auth", FormMethod.Post))
+            {
+                <div class="field-wrap">
+                    <label>
+                        Username<span class="req">*</span>
+                    </label>
+                    @Html.TextBoxFor(m => m.login.Username)
+                </div>
+                <div class="field-wrap">
+                    <label>
+                        Password<span class="req">*</span>
+                    </label>
+                    @Html.TextBoxFor(m => m.login.Password)
+                </div>
+                <p class="forgot"><a href="#">Forgot Password?</a></p>
+                <button type="submit" value="Submit" class="button button-block">Log In</button>
+            }
+        </div>
+    </div>
+</div>
