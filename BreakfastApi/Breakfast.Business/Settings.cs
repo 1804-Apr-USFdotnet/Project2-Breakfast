@@ -23,6 +23,13 @@ namespace Breakfast.Business
                 NewsSettings = new Data.Models.NewsSettings()
                 {
                     Enabled = true,
+                    Queries = null,
+                    Domains = null,
+                    Sources = null,
+                    OldestDate = null,
+                    NewestDate = null,
+                    Language = null,
+                    PageSize = null
                     //TODO: Add default news settings
                 },
 
