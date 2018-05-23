@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Breakfast.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,12 @@ namespace Breakfast.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View(new Account());
+        }
+
+        public ActionResult Index(Account accountSettings)
+        {
+            return View(accountSettings);
         }
 
         public ActionResult About()
