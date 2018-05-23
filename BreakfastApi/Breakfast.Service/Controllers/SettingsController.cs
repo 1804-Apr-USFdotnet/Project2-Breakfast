@@ -35,7 +35,6 @@ namespace Breakfast.Service.Controllers
             catch { return InternalServerError(); }
         }
 
-        [HttpPut]
         [ResponseType(typeof(void))]
         [Route("api/settings/initialize/{userId}")]
         public IHttpActionResult InitializeSettings(string userId)
