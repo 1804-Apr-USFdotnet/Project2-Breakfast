@@ -209,6 +209,7 @@
     <Content Include="Content\Home.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\Settings.css" />
+    <Content Include="Content\SettingsPage.css" />
     <Content Include="Content\Sidebar.css" />
     <Content Include="Content\WeatherModule.css" />
     <Content Include="favicon.ico" />
