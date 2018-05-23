@@ -25,14 +25,13 @@ namespace Breakfast.Controllers
                 return View();
             }
 
-            var user = userManager.Find(model.login.Email, model.login.Password);
+            var user = userManager.Find(model.login.Username, model.login.Password);
 
             if (user != null)
             {
                 var identity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                 GetAuthenticationManager().SignIn(new AuthenticationProperties { IsPersistent = true }, identity);
 
-                Session["username"] = user.Email;
                 Session["zipcode"] = user.zipcode;
                 Session["address"] = user.address;
                 Session["workaddress"] = user.workAddress;
@@ -55,12 +54,12 @@ namespace Breakfast.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                return RedirectToAction("index", "home");
             }
 
             var user = new AppUser
             {
-                UserName = model.register.Email,
+                UserName = model.register.Username,
                 zipcode = model.register.Zipcode,
                 address = model.register.Address,
                 workAddress = model.register.WorkAddress
@@ -73,7 +72,7 @@ namespace Breakfast.Controllers
                 var identity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                 GetAuthenticationManager().SignIn(identity);
                 //initialize default settings using rest service
-                new SettingsModel().IntializeSettings(User.Identity.Name);
+                new SettingsModel().IntializeSettings(user.UserName);
                 return RedirectToAction("index", "home");
             }
 
@@ -82,7 +81,7 @@ namespace Breakfast.Controllers
                 ModelState.AddModelError("", error);
             }
 
-            return View();
+            return RedirectToAction("index", "home");
         }
 
         public AuthController()

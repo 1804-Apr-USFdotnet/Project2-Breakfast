@@ -19,7 +19,7 @@ namespace Breakfast.Models
         
         public JsonSettings.RootObject GetSettings(string userId)
         {
-            HttpWebRequest apiRequest = WebRequest.Create(uri + "api/settings/get/" + userId) as HttpWebRequest;
+            HttpWebRequest apiRequest = WebRequest.Create(uri + "api/settings/get/" + userId + "/") as HttpWebRequest;
             string apiResponse = "";
             using (var response = apiRequest.GetResponse() as HttpWebResponse)
             {
@@ -36,7 +36,7 @@ namespace Breakfast.Models
             using (var client = new HttpClient())
             {
                 using (var response = await client.PostAsync(
-                    uri + "api/settings/intialize/" + userId,
+                    uri + "api/settings/intialize/" + userId + "/",
                     null))
                 {
                     //do something with response.StatusCode
