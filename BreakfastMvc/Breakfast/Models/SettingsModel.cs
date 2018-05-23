@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -17,9 +18,9 @@ namespace Breakfast.Models
         static JsonSettings.RootObject jsonSettings = new JsonSettings.RootObject();
         static string uri = "http://ec2-18-191-47-17.us-east-2.compute.amazonaws.com/Breakfast.Service_deploy/";
         
-        public void GetSettings(string userId)
+        public JsonSettings.RootObject GetSettings(string userId)
         {
-            HttpWebRequest apiRequest = WebRequest.Create(uri + "api/settings/get/" + userId) as HttpWebRequest;
+            HttpWebRequest apiRequest = WebRequest.Create(uri + "api/settings/get/" + userId + "/") as HttpWebRequest;
             string apiResponse = "";
             using (var response = apiRequest.GetResponse() as HttpWebResponse)
             {
@@ -28,19 +29,17 @@ namespace Breakfast.Models
             }
 
             jsonSettings = JsonConvert.DeserializeObject<JsonSettings.RootObject>(apiResponse);
-            
+            return jsonSettings;
         }
 
-        public async void IntializeSettings(string userId)
+        public void InitializeSettings(string userId)
         {
-            using (var client = new HttpClient())
+            HttpWebRequest apiRequest = WebRequest.Create(uri + "api/settings/intialize/" + userId + "/") as HttpWebRequest;
+            using (var response = apiRequest.GetResponse() as HttpWebResponse)
             {
-                using (var response = await client.PostAsync(
-                    uri + "api/settings/intialize/" + userId,
-                    null))
-                {
-                    //do something with response.StatusCode
-                }
+                //do something with response.StatusCode
+                Debug.WriteLine(response.StatusCode);
+                Debug.WriteLine(response.StatusDescription);
             }
         }
 
@@ -54,6 +53,8 @@ namespace Breakfast.Models
                      new StringContent(myJson, Encoding.UTF8, "application/json")))
                 {
                     //do something with response.StatusCode
+                    Debug.WriteLine(response.StatusCode);
+                    Debug.WriteLine(response.ReasonPhrase);
                 }
             }
         }
@@ -68,6 +69,8 @@ namespace Breakfast.Models
                      new StringContent(myJson, Encoding.UTF8, "application/json")))
                 {
                     //do something with response.StatusCode
+                    Debug.WriteLine(response.StatusCode);
+                    Debug.WriteLine(response.ReasonPhrase);
                 }
             }
         }
@@ -82,6 +85,8 @@ namespace Breakfast.Models
                      new StringContent(myJson, Encoding.UTF8, "application/json")))
                 {
                     //do something with response.StatusCode
+                    Debug.WriteLine(response.StatusCode);
+                    Debug.WriteLine(response.ReasonPhrase);
                 }
             }
         }

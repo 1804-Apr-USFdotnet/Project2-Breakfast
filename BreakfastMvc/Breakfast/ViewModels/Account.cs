@@ -2,7 +2,7 @@
 {
     public class Account
     {
-        public Login login = new Login();
-        public Register register = new Register();
+        public Login login { get; set; }
+        public Register register { get; set; }
     }
 }
