@@ -17,18 +17,27 @@ namespace Breakfast.Models
         static JsonSettings.RootObject jsonSettings = new JsonSettings.RootObject();
         static string uri = "http://ec2-18-191-47-17.us-east-2.compute.amazonaws.com/Breakfast.Service_deploy/";
         
-        public void GetSettings(string userId)
+        public async void GetSettings(string userId)
         {
+
             HttpWebRequest apiRequest = WebRequest.Create(uri + "api/settings/get/" + userId) as HttpWebRequest;
             string apiResponse = "";
-            using (var response = apiRequest.GetResponse() as HttpWebResponse)
-            {
-                StreamReader reader = new StreamReader(response.GetResponseStream());
-                apiResponse = reader.ReadToEnd();
-            }
+            if (apiRequest != null)
+                using (var response = await apiRequest.GetResponseAsync() as HttpWebResponse)
+                {
+                    if (response != null)
+                    {
+                        StreamReader reader = new StreamReader(response.GetResponseStream() ?? throw new InvalidOperationException());
+                        apiResponse = reader.ReadToEnd();
+                    }
+                }
 
             jsonSettings = JsonConvert.DeserializeObject<JsonSettings.RootObject>(apiResponse);
-            
+        }
+
+        public JsonSettings.RootObject GetJson()
+        {
+            return jsonSettings;
         }
 
         public async void IntializeSettings(string userId)

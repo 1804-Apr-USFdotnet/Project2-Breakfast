@@ -8,46 +8,59 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using Breakfast.Areas.Traffic.Models;
+using Breakfast.Models;
+using Breakfast.ViewModels;
+
 //using Breakfast.Data;
 
 namespace Breakfast.Areas.Traffic.Controllers
 {
     public class TrafficController : AsyncController
     {
+        private static string apiKey = null;
+         
+
+        public TrafficController()
+        {
+            setApiKey();
+        }
         // GET: Traffic/Traffic
         public async Task<ActionResult> ViewMap(string userId)
         {
-          
-            HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync(@"http://ec2-18-191-47-17.us-east-2.compute.amazonaws.com/Breakfast.Service_deploy/api/settings/get/" +userId);
-            string insert = null;
-            if (response.IsSuccessStatusCode)
-            {
-               insert = await response.Content.ReadAsStringAsync();
-            }
+            SettingsModel settingsModel = new SettingsModel();
+            settingsModel.GetSettings(userId);
+            JsonSettings.RootObject jsonSettings = settingsModel.GetJson();
+            TrafficSettingsViewModel tsvm = new TrafficSettingsViewModel();
+            tsvm = (TrafficSettingsViewModel)jsonSettings.Traffic;
+            
 
-            if (insert != null)
-            {
-
-            }
-            Match match = Regex.Match(insert, "[0-9]+(?= mins)");
-            if (match.Success)
-            {
-                var result = match.Captures[0].Value;
-                ViewBag.TimeToWork = result;
-            }
-
-            string apiKey = null;
-            ViewBag.Insert = insert;
-            ViewBag.Address = "Bellarmine Newman Hall";
-            ViewBag.WorkAddress = "Tampa, FL";
+            
+            ViewBag.TimeToWork = "Not sure";
+            ViewBag.Address = tsvm.Address;
+            ViewBag.WorkAddress = tsvm.WorkAddress;
             ViewBag.APIKey = apiKey;
             return View();
         }
 
-        public ActionResult Settings()
+        public ActionResult Settings(string userId)
         {
-            string apiKey = null;
+            
+           
+            SettingsModel settingsModel = new SettingsModel();
+            settingsModel.GetSettings(userId);
+            JsonSettings.RootObject jsonSettings = settingsModel.GetJson();
+            TrafficSettingsViewModel tsvm = new TrafficSettingsViewModel();
+            tsvm = (TrafficSettingsViewModel)jsonSettings.Traffic;
+            ViewBag.APIKey = apiKey;
+            ViewBag.Address = tsvm.Address;
+            ViewBag.WorkAddress = tsvm.WorkAddress;
+            ViewBag.ZoomLevel = 12;
+            
+            return View(tsvm);
+        }
+
+        private void setApiKey()
+        {
             try
             {
                 apiKey = System.IO.File.ReadAllText(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory.ToString(), "mapskey.txt"));
@@ -56,15 +69,7 @@ namespace Breakfast.Areas.Traffic.Controllers
             {
                 Console.WriteLine("Shit failed");
             }
-
-            ViewBag.APIKey = apiKey;
-            ViewBag.Address = "Bellarmine Newman Hall";
-            ViewBag.WorkAddress = "Tampa, FL";
-            ViewBag.ZoomLevel = 12;
-            
-            return View();
         }
-
         [HttpPost]
         public ActionResult SaveSettings(TrafficSettingsViewModel ts)
         {
