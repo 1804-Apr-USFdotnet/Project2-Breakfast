@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -37,6 +38,8 @@ namespace Breakfast.Models
             using (var response = apiRequest.GetResponse() as HttpWebResponse)
             {
                 //do something with response.StatusCode
+                Debug.WriteLine(response.StatusCode);
+                Debug.WriteLine(response.StatusDescription);
             }
         }
 
@@ -50,6 +53,8 @@ namespace Breakfast.Models
                      new StringContent(myJson, Encoding.UTF8, "application/json")))
                 {
                     //do something with response.StatusCode
+                    Debug.WriteLine(response.StatusCode);
+                    Debug.WriteLine(response.ReasonPhrase);
                 }
             }
         }
@@ -64,6 +69,8 @@ namespace Breakfast.Models
                      new StringContent(myJson, Encoding.UTF8, "application/json")))
                 {
                     //do something with response.StatusCode
+                    Debug.WriteLine(response.StatusCode);
+                    Debug.WriteLine(response.ReasonPhrase);
                 }
             }
         }
@@ -78,6 +85,8 @@ namespace Breakfast.Models
                      new StringContent(myJson, Encoding.UTF8, "application/json")))
                 {
                     //do something with response.StatusCode
+                    Debug.WriteLine(response.StatusCode);
+                    Debug.WriteLine(response.ReasonPhrase);
                 }
             }
         }
