@@ -31,16 +31,12 @@ namespace Breakfast.Models
             return jsonSettings;
         }
 
-        public async void IntializeSettings(string userId)
+        public void InitializeSettings(string userId)
         {
-            using (var client = new HttpClient())
+            HttpWebRequest apiRequest = WebRequest.Create(uri + "api/settings/intialize/" + userId + "/") as HttpWebRequest;
+            using (var response = apiRequest.GetResponse() as HttpWebResponse)
             {
-                using (var response = await client.PostAsync(
-                    uri + "api/settings/intialize/" + userId + "/",
-                    null))
-                {
-                    //do something with response.StatusCode
-                }
+                //do something with response.StatusCode
             }
         }
 
