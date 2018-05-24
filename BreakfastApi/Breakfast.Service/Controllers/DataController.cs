@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Breakfast.Business.Traffic;
 
 
 namespace Breakfast.Service.Controllers
@@ -19,6 +20,21 @@ namespace Breakfast.Service.Controllers
         {
             try { return Ok(OpenWeatherMapApi.GetResponse(zipcode)); }
             catch { return InternalServerError(); }
+        }
+
+        [HttpGet]
+        [ResponseType(typeof(string))]
+        [Route("api/traffic/get/{homePlaceId}/{workPlaceId}/{travelMode}")]
+        public IHttpActionResult TrafficTimeToWork(string homePlaceId, string workPlaceId, string travelMode)
+        {
+            try
+            {
+                return Ok(TrafficApi.GetTimeToWork(homePlaceId, workPlaceId, travelMode));
+            }
+            catch
+            {
+                return InternalServerError();
+            }
         }
     }
 }
