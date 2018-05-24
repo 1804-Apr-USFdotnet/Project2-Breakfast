@@ -77,8 +77,6 @@ namespace Breakfast.Areas.Traffic.Controllers
             
             ViewModels.Traffic jsonSettingsTraffic = (ViewModels.Traffic)ts;
             var response = await settingsModel.SaveTrafficSettings(ts.UserId, jsonSettingsTraffic);
-            //Storage storage = new Storage(new DefaultDBUtils());
-            //storage.SaveTrafficSettings((Data.Models.TrafficSettings)ts);
             return RedirectToAction("Index", "Home", new { area = "" });
         }
     }

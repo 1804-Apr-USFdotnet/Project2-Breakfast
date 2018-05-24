@@ -9,9 +9,9 @@ using Breakfast.Business.Traffic.Models;
 
 namespace Breakfast.Business.Traffic
 {
-    public class TrafficApi
+    public static class TrafficApi
     {
-        public async Task<string> GetTimeToWork(TrafficSettingsBusiness tsb)
+        public static async Task<string> GetTimeToWork(string homePlaceId, string workPlaceId, string travelMode)
         {
             string apiKey = null;
             try
@@ -23,12 +23,8 @@ namespace Breakfast.Business.Traffic
                 Console.WriteLine("It failed, do you have mapskey.txt in the same directory of the project");
             }
             HttpClient client = new HttpClient();
-            string travelMode = "driving";
-            if (!tsb.Driving)
-            {
-                travelMode = "walking";
-            }
-            HttpResponseMessage response = await client.GetAsync(@"https://maps.googleapis.com/maps/api/distancematrix/json?origins=place_id:" + tsb.AddressPlaceId + "&destinations=place_id:"+ tsb.WorkAddressPlaceId +"&mode=" + travelMode + "&key=" + apiKey);
+            
+            HttpResponseMessage response = await client.GetAsync(@"https://maps.googleapis.com/maps/api/distancematrix/json?origins=place_id:" + homePlaceId + "&destinations=place_id:"+ workPlaceId +"&mode=" + travelMode + "&key=" + apiKey);
             string insert = null;
             if (response.IsSuccessStatusCode)
             {
