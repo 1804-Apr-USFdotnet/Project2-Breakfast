@@ -16,6 +16,7 @@ namespace Breakfast.Areas.Traffic.Models
         public string AddressPlaceId { get; set; } = null; 
         public string WorkAddressPlaceId { get; set; } = null;
         public double[] LatLng { get; set; }
+        public string UserId { get; set; }
 
         //TODO: fix conversion
         //convert to domain object
@@ -30,7 +31,7 @@ namespace Breakfast.Areas.Traffic.Models
                 Driving = tsData.Driving,
                 AddressPlaceId = tsData.AddressPlaceId,
                 WorkAddressPlaceId = tsData.WorkAddressPlaceId,
-                LatLng = tsData.LatLng
+                LatLng = tsData.LatLng,
             };
 
             return trafficSettings;

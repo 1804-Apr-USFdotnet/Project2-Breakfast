@@ -28,8 +28,7 @@ namespace Breakfast.Areas.Traffic.Controllers
         public async Task<ActionResult> ViewMap(string userId)
         {
             SettingsModel settingsModel = new SettingsModel();
-            settingsModel.GetSettings(userId);
-            JsonSettings.RootObject jsonSettings = settingsModel.GetJson();
+            JsonSettings.RootObject jsonSettings = settingsModel.GetSettings(userId);
             TrafficSettingsViewModel tsvm = new TrafficSettingsViewModel();
             tsvm = (TrafficSettingsViewModel)jsonSettings.Traffic;
             
@@ -47,10 +46,10 @@ namespace Breakfast.Areas.Traffic.Controllers
             
            
             SettingsModel settingsModel = new SettingsModel();
-            settingsModel.GetSettings(userId);
-            JsonSettings.RootObject jsonSettings = settingsModel.GetJson();
+            JsonSettings.RootObject jsonSettings = settingsModel.GetSettings(userId);
             TrafficSettingsViewModel tsvm = new TrafficSettingsViewModel();
             tsvm = (TrafficSettingsViewModel)jsonSettings.Traffic;
+            tsvm.UserId = userId;
             ViewBag.APIKey = apiKey;
             ViewBag.Address = tsvm.Address;
             ViewBag.WorkAddress = tsvm.WorkAddress;
@@ -71,9 +70,13 @@ namespace Breakfast.Areas.Traffic.Controllers
             }
         }
         [HttpPost]
-        public ActionResult SaveSettings(TrafficSettingsViewModel ts)
+        public async Task<ActionResult> SaveSettings(TrafficSettingsViewModel ts)
         {
             //TODO: Fix data access
+            SettingsModel settingsModel = new SettingsModel();
+            
+            JsonSettings.Traffic jsonSettingsTraffic = (JsonSettings.Traffic)ts;
+            var response = await settingsModel.SaveTrafficSettings(ts.UserId, jsonSettingsTraffic);
             //Storage storage = new Storage(new DefaultDBUtils());
             //storage.SaveTrafficSettings((Data.Models.TrafficSettings)ts);
             return RedirectToAction("Index", "Home", new { area = "" });
