@@ -36,12 +36,20 @@ namespace Breakfast.Areas.Weather.Models
         {
             string apiKey = "6e0c425a741c67ae35eda9b8812c60b8";
             HttpWebRequest apiRequest = WebRequest.Create("http://api.openweathermap.org/data/2.5/weather?zip=" + zipcode.ToString() + "&appid=" + apiKey + "&units=imperial") as HttpWebRequest;
-           
+            HttpWebRequest apiRequest2 = WebRequest.Create("http://ec2-18-188-45-20.us-east-2.compute.amazonaws.com/Breakfast.Service_deploy/" + "api/weather/get/" + zipcode) as HttpWebRequest;
+
             string apiResponse = "";
+            string apiResponse2 = "";
             using (HttpWebResponse response = apiRequest.GetResponse() as HttpWebResponse)
             {
                 StreamReader reader = new StreamReader(response.GetResponseStream());
                 apiResponse = reader.ReadToEnd();
+            }
+
+            using (HttpWebResponse response2 = apiRequest2.GetResponse() as HttpWebResponse)
+            {
+                StreamReader reader = new StreamReader(response2.GetResponseStream());
+                apiResponse2 = reader.ReadToEnd();
             }
 
             JsonResponseHelpers.CurrentWeather.ResponseWeather rootObject = JsonConvert.DeserializeObject<JsonResponseHelpers.CurrentWeather.ResponseWeather>(apiResponse);

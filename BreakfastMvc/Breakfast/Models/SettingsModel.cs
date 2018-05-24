@@ -16,7 +16,7 @@ namespace Breakfast.Models
     public class SettingsModel
     {
         static RootObject jsonSettings = new RootObject();
-        static string uri = "http://ec2-18-191-47-17.us-east-2.compute.amazonaws.com/Breakfast.Service_deploy/";
+        static string uri = "http://ec2-18-188-45-20.us-east-2.compute.amazonaws.com/Breakfast.Service_deploy/";
         
         public RootObject GetSettings(string userId)
         {
