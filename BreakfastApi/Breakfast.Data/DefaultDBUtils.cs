@@ -68,6 +68,30 @@ namespace Breakfast.Data
         }
 
         /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+        * 
+        *          Get individual settings section
+        *            
+        * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+        public NewsSettings GetNewsSettings(int newsSettingsId)
+        {
+            using (var db = new DefaultContext())
+                return db.NewsSettings.SingleOrDefault(x => x.Pk_NewsId == newsSettingsId);
+        }
+
+        public WeatherSettings GetWeatherSettings(int weatherSettingsId)
+        {
+            using (var db = new DefaultContext())
+                return db.WeatherSettings.SingleOrDefault(x => x.Pk_WeatherId == weatherSettingsId);
+        }
+
+        public TrafficSettings GetTrafficSettings(int trafficSettingsId)
+        {
+            using (var db = new DefaultContext())
+                return db.TrafficSettings.SingleOrDefault(x => x.Pk_TrafficId == trafficSettingsId);
+        }
+
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * *
          * 
          *          Save individual settings section
          *            

@@ -21,6 +21,11 @@ namespace Breakfast.Data
         public int GetTrafficId(string userId) { return utility.GetTrafficId(userId); }
         public int GetWeatherId(string userId) { return utility.GetWeatherId(userId); }
 
+        // Get individual settings
+        public NewsSettings GetNewsSettings(string userId) { return utility.GetNewsSettings(utility.GetNewsId(userId)); }
+        public TrafficSettings GetTrafficSettings(string userId) { return utility.GetTrafficSettings(utility.GetTrafficId(userId)); }
+        public WeatherSettings GetWeatherSettings(string userId) { return utility.GetWeatherSettings(utility.GetWeatherId(userId)); }
+
         // Save settings
         public void SaveNewsSettings(NewsSettings ns) { utility.SaveNewsSettings(ns); }
         public void SaveTrafficSettings(TrafficSettings ts) { utility.SaveTrafficSettings(ts); }

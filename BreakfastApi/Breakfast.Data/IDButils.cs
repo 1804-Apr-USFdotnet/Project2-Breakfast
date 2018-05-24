@@ -15,6 +15,11 @@ namespace Breakfast.Data
         int GetTrafficId(string userId);
         int GetWeatherId(string userId);
 
+        // Get individual settings
+        NewsSettings GetNewsSettings(int id);
+        TrafficSettings GetTrafficSettings(int id);
+        WeatherSettings GetWeatherSettings(int id);
+
         // Save settings
         void SaveNewsSettings(NewsSettings ns);
         void SaveTrafficSettings(TrafficSettings ts);
