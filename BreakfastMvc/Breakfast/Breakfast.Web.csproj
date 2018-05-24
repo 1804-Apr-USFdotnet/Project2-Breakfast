@@ -175,6 +175,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\News\Models\NewsSettings.cs" />
     <Compile Include="Areas\News\NewsApiClient.cs" />
     <Compile Include="Areas\News\Models\NewsArticle.cs" />
     <Compile Include="Areas\News\NewsAreaRegistration.cs" />
@@ -182,8 +183,7 @@
     <Compile Include="Areas\Traffic\Models\TrafficSettingsViewModel.cs" />
     <Compile Include="Areas\Traffic\TrafficAreaRegistration.cs" />
     <Compile Include="Areas\Weather\Controllers\OpenWeatherMapController.cs" />
-    <Compile Include="Areas\Weather\JsonResponseHelpers\CurrentWeather.cs" />
-    <Compile Include="Areas\Weather\JsonResponseHelpers\ForecastWeather.cs" />
+    <Compile Include="Areas\Weather\JsonResponseHelpers\WeatherData.cs" />
     <Compile Include="Areas\Weather\Models\ForecastDay.cs" />
     <Compile Include="Areas\Weather\Models\OpenWeatherMap.cs" />
     <Compile Include="Areas\Weather\Models\WeatherSettings.cs" />

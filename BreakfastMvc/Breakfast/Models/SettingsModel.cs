@@ -17,7 +17,7 @@ namespace Breakfast.Models
     {
         static string uri = "http://ec2-18-188-45-20.us-east-2.compute.amazonaws.com/Breakfast.Service_deploy/";
         static RootObject jsonSettings = new RootObject();
-        
+
         public RootObject GetSettings(string userId)
         {
             HttpWebRequest apiRequest = WebRequest.Create(uri + "api/settings/get/" + userId + "/") as HttpWebRequest;
