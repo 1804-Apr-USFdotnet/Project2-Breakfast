@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
     var tabs = $(".tabs li a");
+    $("#two").find('.wrapper-settings').hide();
+    $("#three").find('.wrapper-settings').hide();
     tabs.click(function () {
         var content = this.hash.replace('/', '');
         tabs.removeClass("active");

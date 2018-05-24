@@ -2,6 +2,7 @@
     margin: 0;
     font-family: "Roboto", sans-serif;
     text-decoration: none;
+    color: #6edeef;
 }
 .wrapper-settings #map {
     height: 64rem;
@@ -22,14 +23,14 @@
     width: 400px;
 }
 
-    .window .nav-bar {
-        z-index: 5;
-        background: #62168c;
-        height: 56px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+.window .nav-bar {
+    z-index: 5;
+    background: #545f60;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
         .window .nav-bar .title {
             color: white;
@@ -37,11 +38,11 @@
             font-size: 20px;
         }
 
-    .window .settings {
-        background: #71539b;
-        /*height: 100%;*/
-        padding: 8px 0;
-    }
+.window .settings {
+    background: #545f60;
+    /*height: 100%;*/
+    padding: 8px 0;
+}
 
         .window .settings .item {
             padding: 0 16px;
