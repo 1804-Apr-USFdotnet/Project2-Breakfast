@@ -93,6 +93,10 @@ namespace Breakfast.Controllers
             this.userManager = userManager;
         }
 
+        public AuthController(bool? x, bool? y)
+        {
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && userManager != null)

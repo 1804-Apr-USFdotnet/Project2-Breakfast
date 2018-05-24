@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using Breakfast.Controllers;
+using Breakfast.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Breakfast.Web.Tests.Controllers
@@ -12,7 +13,7 @@ namespace Breakfast.Web.Tests.Controllers
         public void TestAuth()
         {
             //Arrange
-            AuthController controller = new AuthController();
+            AuthController controller = new AuthController(false,false);
             bool expectedReadOnly = false;
             bool expectedValid = true;
 
