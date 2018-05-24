@@ -19,17 +19,7 @@ namespace Breakfast.Service.Controllers
         [Route("api/NewsArticle/{userId}")]
         public IHttpActionResult GetArticles(string userId)
         {
-            //NewsSettings settings = NewsCrud.ReadSettings(userId);
-            NewsSettings settings = new NewsSettings
-            {
-                Id = 1,
-                Sources = new string[20],
-                Queries = new List<string>(),
-                Domains = new List<string>(),
-                Language = "en",
-                PageSize = 10
-            };
-            settings.Queries.Add("Bitcoin");
+            NewsSettings settings = NewsCrud.ReadSettings(userId);
             NewsApiClient client = new NewsApiClient(settings);
             IEnumerable<NewsArticle> articles = client.GetNewsArticles();
             return Ok(articles);
