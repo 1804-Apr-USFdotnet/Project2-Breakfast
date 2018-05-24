@@ -35,14 +35,19 @@ namespace Breakfast.Business.Traffic
                 insert = await response.Content.ReadAsStringAsync();
             }
 
-            Match match = Regex.Match(insert, "[0-9]+(?= mins)");
-            if (match.Success)
+            if (insert != null)
             {
-                var result = match.Captures[0].Value;
-                return  result;
+                Match match = Regex.Match(insert, "[0-9]+(?= mins)");
+                if (match.Success)
+                {
+                    var result = match.Captures[0].Value;
+                    return result;
+                }
             }
 
             return "Unable to get your time to work";
         }
+
+        
     }
 }

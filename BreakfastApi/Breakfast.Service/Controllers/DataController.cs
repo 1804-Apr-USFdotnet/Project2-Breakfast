@@ -1,5 +1,6 @@
-﻿using Breakfast.Business.Weather;
-using Breakfast.Business.Weather.Models;
+﻿using Breakfast.Business.News;
+using Breakfast.Business.News.Models;
+using Breakfast.Business.Weather;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -21,6 +22,17 @@ namespace Breakfast.Service.Controllers
         {
             try { return Ok(OpenWeatherMapApi.GetResponse(zipcode)); }
             catch (Exception e) { Debug.WriteLine(e); return InternalServerError(); }
+        }
+
+        [HttpGet]
+        [ResponseType(typeof(IEnumerable<NewsArticle>))]
+        [Route("api/news/getArticles/{userId}")]
+        public IHttpActionResult GetArticles(string userId)
+        {
+            NewsSettings settings = NewsCrud.ReadSettings(userId);
+            NewsApiClient client = new NewsApiClient(settings);
+            IEnumerable<NewsArticle> articles = client.GetNewsArticles();
+            return Ok(articles);
         }
     }
 }

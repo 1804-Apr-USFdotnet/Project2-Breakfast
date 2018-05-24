@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Breakfast.ViewModels;
 
 namespace Breakfast.Areas.Traffic.Models
 {
@@ -15,42 +16,43 @@ namespace Breakfast.Areas.Traffic.Models
         public string AddressPlaceId { get; set; } = null; 
         public string WorkAddressPlaceId { get; set; } = null;
         public double[] LatLng { get; set; }
+        public string UserId { get; set; }
 
         //TODO: fix conversion
         //convert to domain object
-        //public static explicit operator TrafficSettingsViewModel(Data.Models.TrafficSettings tsData)
-        //{
-        //    TrafficSettingsViewModel trafficSettings = new TrafficSettingsViewModel()
-        //    {
-        //        Id = tsData.Fk_TrafficId,
-        //        Enabled = tsData.Enabled,
-        //        Address = tsData.Address,
-        //        WorkAddress = tsData.WorkAddress,
-        //        TravelMode = tsData.TravelMode,
-        //        AddressPlaceId = tsData.AddressPlaceId,
-        //        WorkAddressPlaceId = tsData.WorkAddressPlaceId,
-        //        LatLng = tsData.LatLng
-        //    };
+        public static explicit operator TrafficSettingsViewModel(ViewModels.Traffic tsData)
+        {
+            TrafficSettingsViewModel trafficSettings = new TrafficSettingsViewModel()
+            {
+                Id = tsData.Id,
+                Enabled = tsData.Enabled,
+                Address = tsData.Address,
+                WorkAddress = tsData.WorkAddress,
+                Driving = tsData.Driving,
+                AddressPlaceId = tsData.AddressPlaceId,
+                WorkAddressPlaceId = tsData.WorkAddressPlaceId,
+                LatLng = tsData.LatLng,
+            };
 
-        //    return trafficSettings;
-        //}
+            return trafficSettings;
+        }
 
         ////convert to entity object
-        //public static explicit operator Data.Models.TrafficSettings(TrafficSettingsViewModel ts)
-        //{
-        //    Data.Models.TrafficSettings tsData = new Data.Models.TrafficSettings()
-        //    {
-        //        Fk_TrafficId = ts.Id,
-        //        Enabled = ts.Enabled,
-        //        Address = ts.Address,
-        //        WorkAddress = ts.WorkAddress,
-        //        TravelMode = ts.TravelMode,
-        //        AddressPlaceId = ts.AddressPlaceId,
-        //        WorkAddressPlaceId = ts.WorkAddressPlaceId,
-        //        LatLng = ts.LatLng
-        //    };
+        public static explicit operator ViewModels.Traffic(TrafficSettingsViewModel ts)
+        {
+            ViewModels.Traffic tsData = new ViewModels.Traffic()
+            {
+                Id = ts.Id,
+                Enabled = ts.Enabled,
+                Address = ts.Address,
+                WorkAddress = ts.WorkAddress,
+                Driving = ts.Driving,
+                AddressPlaceId = ts.AddressPlaceId,
+                WorkAddressPlaceId = ts.WorkAddressPlaceId,
+                LatLng = ts.LatLng
+            };
 
-        //    return tsData;
-        //}
+            return tsData;
+        }
     }
 }
