@@ -14,8 +14,14 @@ namespace Breakfast.Business.News
         public static void SaveSettings(string userId, NewsSettings ns)
         {
             Storage storage = new Storage(new DefaultDBUtils());
-            ns.Id = storage.GetTrafficId(userId);
+            ns.Id = storage.GetNewsId(userId);
             storage.SaveNewsSettings((Data.Models.NewsSettings) ns);
+        }
+
+        public static NewsSettings ReadSettings(string userId)
+        {
+            Storage storage = new Storage(new DefaultDBUtils());
+            return (NewsSettings) storage.GetNewsSettings(userId);
         }
     }
 }

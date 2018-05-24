@@ -82,7 +82,7 @@ namespace Breakfast.Business.News
             GetSubstringSources() +
             GetSubstringLanguage() +
             GetSubstringOldestDate() +
-             GetSubstringNewestDate() +
+            GetSubstringNewestDate() +
             GetSubstringPageSize() +
             GetSubstringPage(pageNum) +
              GetSubstringApiKey();

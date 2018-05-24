@@ -175,6 +175,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\News\NewsApiClient.cs" />
     <Compile Include="Areas\News\Models\NewsArticle.cs" />
     <Compile Include="Areas\News\NewsAreaRegistration.cs" />
     <Compile Include="Areas\Traffic\Controllers\TrafficController.cs" />
@@ -200,7 +201,11 @@
     <Compile Include="ViewModels\Data.cs" />
     <Compile Include="ViewModels\JsonSettings.cs" />
     <Compile Include="ViewModels\Login.cs" />
+    <Compile Include="ViewModels\News.cs" />
     <Compile Include="ViewModels\Register.cs" />
+    <Compile Include="ViewModels\RootObject.cs" />
+    <Compile Include="ViewModels\Traffic.cs" />
+    <Compile Include="ViewModels\Weather.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -209,6 +214,7 @@
     <Content Include="Content\Home.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\Settings.css" />
+    <Content Include="Content\SettingsPage.css" />
     <Content Include="Content\Sidebar.css" />
     <Content Include="Content\WeatherModule.css" />
     <Content Include="favicon.ico" />
@@ -268,6 +274,9 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
+    <Content Include="Areas\News\Views\ArticleDetails.cshtml" />
+    <Content Include="Areas\News\Views\Index.cshtml" />
+    <Content Include="Areas\News\Views\Settings.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\i18n\angular-locale_af-za.js" />
@@ -1020,6 +1029,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\sitemap.xml" />
+    <Content Include="Scripts\tabs.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1038,6 +1048,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\_SideView.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Home\Settings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -93,6 +93,8 @@ namespace Breakfast.Areas.Weather.Models
                 // Go through entire day to get max and min temperature of the day
                 for (int j = 0; j < 8; j++)
                 {
+                    if ((i * 8 + j) >= rootObject.list.Count)
+                        break;
                     if (forecastDays[i].tempMax < rootObject.list[i * 8 + j].main.temp_max)
                         forecastDays[i].tempMax = (int)rootObject.list[i * 8 + j].main.temp_max;
                     if (forecastDays[i].tempMin > rootObject.list[i * 8 + j].main.temp_min)

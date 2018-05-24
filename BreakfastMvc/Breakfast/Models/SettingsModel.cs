@@ -15,10 +15,10 @@ namespace Breakfast.Models
 {
     public class SettingsModel
     {
-        static JsonSettings.RootObject jsonSettings = new JsonSettings.RootObject();
         static string uri = "http://ec2-18-188-45-20.us-east-2.compute.amazonaws.com/Breakfast.Service_deploy/";
+        static RootObject jsonSettings = new RootObject();
         
-        public JsonSettings.RootObject GetSettings(string userId)
+        public RootObject GetSettings(string userId)
         {
             HttpWebRequest apiRequest = WebRequest.Create(uri + "api/settings/get/" + userId + "/") as HttpWebRequest;
             string apiResponse = "";
@@ -28,7 +28,7 @@ namespace Breakfast.Models
                 apiResponse = reader.ReadToEnd();
             }
 
-            jsonSettings = JsonConvert.DeserializeObject<JsonSettings.RootObject>(apiResponse);
+            jsonSettings = JsonConvert.DeserializeObject<RootObject>(apiResponse);
             return jsonSettings;
         }
 
@@ -43,7 +43,7 @@ namespace Breakfast.Models
             }
         }
 
-        public async void SaveWeatherSettings(string userId, JsonSettings.Weather weather)
+        public async void SaveWeatherSettings(string userId, Weather weather)
         {
             string myJson = JsonConvert.SerializeObject(weather);
             using (var client = new HttpClient())
@@ -76,7 +76,7 @@ namespace Breakfast.Models
             }
         }
 
-        public async void SaveNewsSettings(string userId, JsonSettings.News news)
+        public async void SaveNewsSettings(string userId, News news)
         {
             string myJson = JsonConvert.SerializeObject(news);
             using (var client = new HttpClient())

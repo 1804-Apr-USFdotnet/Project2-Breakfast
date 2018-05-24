@@ -164,9 +164,9 @@ namespace Breakfast.Business.News.Models
 
         static public explicit operator NewsSettings(Data.Models.NewsSettings nsData)
         {
-            string concatQueryString = nsData.Queries;
-            string concatDomainString = nsData.Queries;
-            string concatSourceString = nsData.Queries;
+            string concatQueryString = nsData?.Queries;
+            string concatDomainString = nsData?.Queries;
+            string concatSourceString = nsData?.Queries;
             char[] separatorCharacters = new char[] { '"' };
 
             string[] parsedQueries = { };
@@ -205,13 +205,13 @@ namespace Breakfast.Business.News.Models
             }
 
             string concatSources = null;
-            foreach (var source in newsSettings.Sources)
+            foreach (var source in newsSettings?.Sources)
             {
                 concatSources += source + "\"";
             }
 
             string concatDomains = null;
-            foreach (var domain in newsSettings.Domains)
+            foreach (var domain in newsSettings?.Domains)
             {
                 concatDomains += domain + "\"";
             }
