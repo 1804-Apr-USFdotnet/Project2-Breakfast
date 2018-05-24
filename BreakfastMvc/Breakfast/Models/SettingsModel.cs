@@ -15,8 +15,8 @@ namespace Breakfast.Models
 {
     public class SettingsModel
     {
+        static string uri = "http://ec2-18-188-45-20.us-east-2.compute.amazonaws.com/Breakfast.Service_deploy/";
         static RootObject jsonSettings = new RootObject();
-        static string uri = "http://ec2-18-191-47-17.us-east-2.compute.amazonaws.com/Breakfast.Service_deploy/";
         
         public RootObject GetSettings(string userId)
         {
@@ -59,18 +59,19 @@ namespace Breakfast.Models
             }
         }
 
-        public async void SaveTrafficSettings(string userId, Traffic traffic)
+        public async Task<HttpResponseMessage> SaveTrafficSettings(string userId, Traffic traffic)
         {
             string myJson = JsonConvert.SerializeObject(traffic);
             using (var client = new HttpClient())
             {
                 using (var response = await client.PostAsync(
-                    uri + "api/settings/weather/" + userId,
+                    uri + "api/settings/traffic/" + userId,
                      new StringContent(myJson, Encoding.UTF8, "application/json")))
                 {
                     //do something with response.StatusCode
                     Debug.WriteLine(response.StatusCode);
                     Debug.WriteLine(response.ReasonPhrase);
+                    return response;
                 }
             }
         }

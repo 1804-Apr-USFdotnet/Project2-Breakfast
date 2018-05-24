@@ -16,8 +16,8 @@ namespace Breakfast.Areas.Traffic
         {
             context.MapRoute(
                 "Traffic_default",
-                "Traffic/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                "Traffic/{controller}/{action}/{userId}",
+                new { action = "Index", userId = UrlParameter.Optional }
             );
         }
     }
