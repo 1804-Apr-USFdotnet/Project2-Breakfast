@@ -1,31 +1,21 @@
 ﻿@model Breakfast.ViewModels.RootObject
 
 <link rel="stylesheet" href="~/Content/SettingsPage.css">
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="~/Scripts/tabs.js"></script>
 
-<div id='tabs'>
-    <ul>
-        <li><a href='#tabs-1'><span class='fas fa-cloud'></span>Weather</a></li>
-        <li><a href='#tabs-2'><span class='fas fa-car'></span>Traffic</a></li>
-        <li><a href='#tabs-3'><span class='fas fa-newspaper'></span>News</a></li>
+<div class="wrap">
+
+    <ul class="tabs group">
+        <li><a class="active" href="#/one">Weather</a></li>
+        <li><a href="#/two">Traffic</a></li>
+        <li><a href="#/three">News</a></li>
     </ul>
-    <section class='tabs-content'>
-        <article id='tabs-1'>
-           
-            <div class='readmore'>
-                <a href='#'>Save<span class='fa fa-chevron-right'></span></a>
-            </div>
-        </article>
-        <article id='tabs-2'>
-           
-            <div class='readmore'>
-                <a href='#'>Save<span class='fa fa-chevron-right'></span></a>
-            </div>
-        </article>
-        <article id='tabs-3'>
-           
-            <div class='readmore'>
-                <a href='#'>Save<span class='fa fa-chevron-right'></span></a>
-            </div>
-        </article>
-    </section>
+
+    <div id="content">
+        <div id="one">@Html.Partial("~/Areas/Weather/Views/OpenWeatherMap/Settings.cshtml", Model.Weather)</div>
+        <div id="two"><p>Traffic settings</p></div>
+        <div id="three"><p>News settings</p></div>
+    </div>
+
 </div>
