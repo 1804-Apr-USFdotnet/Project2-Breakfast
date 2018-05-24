@@ -25,7 +25,7 @@ namespace Breakfast.Service.Controllers
 
         [HttpGet]
         [ResponseType(typeof(IEnumerable<NewsArticle>))]
-        [Route("api/data/{userId}")]
+        [Route("api/news/getArticles/{userId}")]
         public IHttpActionResult GetArticles(string userId)
         {
             NewsSettings settings = NewsCrud.ReadSettings(userId);
