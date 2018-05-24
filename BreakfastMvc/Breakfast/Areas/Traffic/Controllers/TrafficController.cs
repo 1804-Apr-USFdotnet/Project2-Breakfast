@@ -8,72 +8,75 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using Breakfast.Areas.Traffic.Models;
+using Breakfast.Models;
+using Breakfast.ViewModels;
+
 //using Breakfast.Data;
 
 namespace Breakfast.Areas.Traffic.Controllers
 {
     public class TrafficController : AsyncController
     {
-        // GET: Traffic/Traffic
-        public async Task<ActionResult> ViewMap()
-        {
-            string apiKey = null;
-            try
-            {
-                apiKey = System.IO.File.ReadAllText(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory.ToString(), "mapskey.txt"));
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Shit failed");
-            }
-            HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync(@"https://maps.googleapis.com/maps/api/distancematrix/json?origins=Bellarmine+Newman+Hall&destinations=MacDintons+SoHo&mode=driving&key=AIzaSyD0FSkqNKs7dZ30P_yDVwmFQglHpazFCgQ=");
-            string insert = null;
-            if (response.IsSuccessStatusCode)
-            {
-               insert = await response.Content.ReadAsStringAsync();
-            }
+        private static string apiKey = null;
+         
 
-            Match match = Regex.Match(insert, "[0-9]+(?= mins)");
-            if (match.Success)
-            {
-                var result = match.Captures[0].Value;
-                ViewBag.TimeToWork = result;
-            }
+        public TrafficController()
+        {
+            setApiKey();
+        }
+        // GET: Traffic/Traffic
+        public async Task<ActionResult> ViewMap(string userId)
+        {
+            SettingsModel settingsModel = new SettingsModel();
+            RootObject jsonSettings = settingsModel.GetSettings(userId);
+            TrafficSettingsViewModel tsvm = new TrafficSettingsViewModel();
+            tsvm = (TrafficSettingsViewModel)jsonSettings.Traffic;
             
-            ViewBag.Insert = insert;
-            ViewBag.Address = "Bellarmine Newman Hall";
-            ViewBag.WorkAddress = "Tampa, FL";
+
+            
+            ViewBag.TimeToWork = "Not sure";
+            ViewBag.Address = tsvm.Address;
+            ViewBag.WorkAddress = tsvm.WorkAddress;
             ViewBag.APIKey = apiKey;
             return View();
         }
 
-        public ActionResult Settings()
+        public ActionResult Settings(string userId)
         {
-            string apiKey = null;
-            try
-            {
-                apiKey = System.IO.File.ReadAllText(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory.ToString(), "mapskey.txt"));
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Shit failed");
-            }
-
+            
+           
+            SettingsModel settingsModel = new SettingsModel();
+            RootObject jsonSettings = settingsModel.GetSettings(userId);
+            TrafficSettingsViewModel tsvm = new TrafficSettingsViewModel();
+            tsvm = (TrafficSettingsViewModel)jsonSettings.Traffic;
+            tsvm.UserId = userId;
             ViewBag.APIKey = apiKey;
-            ViewBag.Address = "Bellarmine Newman Hall";
-            ViewBag.WorkAddress = "Tampa, FL";
+            ViewBag.Address = tsvm.Address;
+            ViewBag.WorkAddress = tsvm.WorkAddress;
             ViewBag.ZoomLevel = 12;
             
-            return View();
+            return View(tsvm);
         }
 
+        private void setApiKey()
+        {
+            try
+            {
+                apiKey = System.IO.File.ReadAllText(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory.ToString(), "mapskey.txt"));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Shit failed");
+            }
+        }
         [HttpPost]
-        public ActionResult SaveSettings(TrafficSettingsViewModel ts)
+        public async Task<ActionResult> SaveSettings(TrafficSettingsViewModel ts)
         {
             //TODO: Fix data access
-            //Storage storage = new Storage(new DefaultDBUtils());
-            //storage.SaveTrafficSettings((Data.Models.TrafficSettings)ts);
+            SettingsModel settingsModel = new SettingsModel();
+            
+            ViewModels.Traffic jsonSettingsTraffic = (ViewModels.Traffic)ts;
+            var response = await settingsModel.SaveTrafficSettings(ts.UserId, jsonSettingsTraffic);
             return RedirectToAction("Index", "Home", new { area = "" });
         }
     }

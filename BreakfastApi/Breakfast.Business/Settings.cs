@@ -1,4 +1,5 @@
 ﻿using Breakfast.Data;
+using System.Collections.Generic;
 
 namespace Breakfast.Business
 {
@@ -20,18 +21,18 @@ namespace Breakfast.Business
                 //
                 //   Default news settings on account creation
                 //
-                NewsSettings = new Data.Models.NewsSettings()
-                {
-                    Enabled = true,
-                    Queries = null,
-                    Domains = null,
-                    Sources = null,
-                    OldestDate = null,
-                    NewestDate = null,
-                    Language = null,
-                    PageSize = null
-                    //TODO: Add default news settings
-                },
+            NewsSettings = new Data.Models.NewsSettings()
+            {
+                Enabled = true,
+                Queries = "Bitcoin",
+                Domains = null,
+                Sources = null,
+                OldestDate = null,
+                NewestDate = null,
+                Language = null,
+                PageSize = null
+                //TODO: Add default news settings
+            },
 
                 //
                 //   Default traffic settings on account creation
@@ -39,7 +40,12 @@ namespace Breakfast.Business
                 TrafficSettings = new Data.Models.TrafficSettings()
                 {
                     Enabled = true,
-                    //TODO: Add default traffic settings
+                    Address = "",
+                    WorkAddress = "",
+                    Driving = true,
+                    AddressPlaceId = "",
+                    WorkAddressPlaceId = "",
+                    LatLng = null
                 },
 
                 //
