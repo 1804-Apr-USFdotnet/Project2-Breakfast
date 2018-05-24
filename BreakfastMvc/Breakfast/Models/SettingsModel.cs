@@ -43,7 +43,7 @@ namespace Breakfast.Models
             }
         }
 
-        public async void SaveWeatherSettings(string userId, Weather weather)
+        public async Task<HttpResponseMessage> SaveWeatherSettings(string userId, Weather weather)
         {
             string myJson = JsonConvert.SerializeObject(weather);
             using (var client = new HttpClient())
@@ -55,6 +55,7 @@ namespace Breakfast.Models
                     //do something with response.StatusCode
                     Debug.WriteLine(response.StatusCode);
                     Debug.WriteLine(response.ReasonPhrase);
+                    return response;
                 }
             }
         }
