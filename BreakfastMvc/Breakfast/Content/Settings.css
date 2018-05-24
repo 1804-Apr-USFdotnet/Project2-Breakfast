@@ -1,14 +1,14 @@
-﻿* {
+﻿.wrapper-settings * {
     margin: 0;
     font-family: "Roboto", sans-serif;
     text-decoration: none;
 }
-#map { 
-    height: 64rem; 
-    overflow: auto; 
-} 
+.wrapper-settings #map {
+    height: 64rem;
+    overflow: auto;
+}
 
-.wrapper {
+.wrapper-settings {
     background: #cac8ce;
     height: 100vh;
     display: flex;
@@ -16,7 +16,7 @@
     align-items: center;
 }
 
-.window {
+.wrapper-settings .window {
     border-radius: 8px;
     overflow: hidden;
     width: 400px;

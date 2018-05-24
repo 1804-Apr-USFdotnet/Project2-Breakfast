@@ -15,11 +15,8 @@ label, p, a, h1, div {
 }
 
 .tab-wrap {
-    width: 50%;
-    margin-left: 20%;
     position: relative;
     display: flex;
-    top: -106px;
 }
 
 input[type="radio"][name="tabs"] {
@@ -55,7 +52,7 @@ input[type="radio"][name="tabs"] {
         left: 0;
     }
 
-label {
+.settings-page {
     cursor: pointer;
     color: rgba(255, 255, 255, 0.8);
     background-color: #00bcd4;
@@ -71,7 +68,7 @@ label {
 
 .slide {
     background: #ffeb3b;
-    width: calc(100% / 4);
+    width: calc(100% / 2);
     height: 4px;
     position: absolute;
     left: 0;
@@ -99,7 +96,6 @@ label {
     .tab-wrap {
         width: 80%;
         margin-left: 10%;
-        top: -106px;
     }
 }
 

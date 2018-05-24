@@ -1,25 +1,26 @@
-﻿@model Breakfast.ViewModels.JsonSettings
+﻿@model Breakfast.ViewModels.RootObject
 
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,300,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="~/Content/SettingsPage.css">
 
 <div class="tab-wrap">
 
     <input type="radio" name="tabs" id="tab1" checked>
     <div class="tab-label-content" id="tab1-content">
-        <label for="tab1">Tab 1</label>
-        <div class="tab-content">@Html.Partial("~/Areas/Weather/Views/OpenWeatherMap/Settings.cshtml", Model.weather)</div>
+        <label class=".settings-page" for="tab1">Tab 1</label>
+        <div class="tab-content">@Html.Partial("~/Areas/Weather/Views/OpenWeatherMap/Settings.cshtml", Model.Weather)</div>
     </div>
 
     <input type="radio" name="tabs" id="tab2">
     <div class="tab-label-content" id="tab2-content">
-        <label for="tab2">Tab 2</label>
+        <label class=".settings-page" for="tab2">Tab 2</label>
         <div class="tab-content">TAB 2 - Quisque egestas, purus in tempor vulputate, diam augue mollis quam, quis elementum ipsum ex a risus. Quisque sed augue porta, facilisis felis vitae, cursus mi. Nullam mollis magna eget tincidunt mollis. Sed suscipit placerat ultricies. Sed eget lorem et ipsum ultricies congue eu a enim. Nam quis ex nec lorem dignissim suscipit eu ut felis. Vivamus molestie felis id purus congue, vel ultrices sem molestie.</div>
     </div>
 
     <input type="radio" name="tabs" id="tab3">
     <div class="tab-label-content" id="tab3-content">
-        <label for="tab3">Tab 3</label>
+        <label class=".settings-page" for="tab3">Tab 3</label>
         <div class="tab-content">TAB 3 - Donec vulputate ante ac ligula vestibulum, id mollis diam commodo. Integer at consequat magna. Sed elit sem, dictum nec porttitor ac, ultrices id enim. Morbi semper eros a enim malesuada, eu finibus erat dictum. Ut vitae orci a odio sagittis malesuada. Cras volutpat vel lorem in tempor. Duis ultricies lectus sit amet tellus vehicula faucibus. Etiam sed leo ac erat tempor feugiat at quis ipsum. Mauris pellentesque nisl lorem, ac finibus sapien sagittis vel. Donec et lobortis est. Vestibulum dignissim ligula nec erat interdum, quis sollicitudin metus pretium. Vestibulum quis dui sapien. Proin commodo justo ac orci elementum molestie. Aliquam mattis orci vitae volutpat commodo.</div>
     </div>
     <div class="slide"></div>
