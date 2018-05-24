@@ -7,12 +7,18 @@ namespace Breakfast.Business.Weather
 {
     static public class OpenWeatherMapApi
     {
-        static public HttpWebResponse GetResponse(string zipcode)
+        static public string GetResponse(string zipcode)
         {
             string apiKey = "6e0c425a741c67ae35eda9b8812c60b8";
             HttpWebRequest apiRequest = WebRequest.Create("http://api.openweathermap.org/data/2.5/weather?zip=" + zipcode.ToString() + "&appid=" + apiKey + "&units=imperial") as HttpWebRequest;
 
-            return apiRequest.GetResponse() as HttpWebResponse;
+            string apiResponse = "";
+            using (HttpWebResponse response = apiRequest.GetResponse() as HttpWebResponse)
+            {
+                StreamReader reader = new StreamReader(response.GetResponseStream());
+                apiResponse = reader.ReadToEnd();
+            }
+            return apiResponse;
         }
         //public Models.CurrentWeather GetResponse(string zipcode)
         //{
