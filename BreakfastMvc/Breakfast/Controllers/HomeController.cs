@@ -53,5 +53,12 @@ namespace Breakfast.Controllers
         {
             return View(new SettingsModel().GetSettings(User.Identity.Name));
         }
+
+        [HttpPost]
+        public ActionResult SaveWeatherSettings(Weather weather)
+        {
+            new SettingsModel().SaveWeatherSettings(User.Identity.Name, weather);
+            return RedirectToAction("index", "home");
+        }
     }
 }
