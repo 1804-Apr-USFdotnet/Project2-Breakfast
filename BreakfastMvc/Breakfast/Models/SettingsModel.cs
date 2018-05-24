@@ -1,4 +1,5 @@
 ﻿using Breakfast.ViewModels;
+using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,10 @@ namespace Breakfast.Models
 
         public async Task<HttpResponseMessage> SaveWeatherSettings(string userId, Weather weather)
         {
+            AppDbContext db = new AppDbContext();
+            AppUser currentUser = db.Users.FirstOrDefault(x => x.UserName == userId);
+            weather.location = currentUser.zipcode;
+
             string myJson = JsonConvert.SerializeObject(weather);
             using (var client = new HttpClient())
             {
