@@ -21,7 +21,7 @@ namespace Breakfast.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                return View("LogIn");
             }
 
             var user = userManager.Find(model.login.Username, model.login.Password);
@@ -39,7 +39,7 @@ namespace Breakfast.Controllers
             }
 
             // if login fails
-            return View();
+            return View("LogIn");
         }
 
         public ActionResult LogOut()
