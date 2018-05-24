@@ -175,6 +175,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\News\Models\NewsSettings.cs" />
     <Compile Include="Areas\News\NewsApiClient.cs" />
     <Compile Include="Areas\News\Models\NewsArticle.cs" />
     <Compile Include="Areas\News\NewsAreaRegistration.cs" />
