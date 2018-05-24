@@ -28,5 +28,35 @@ namespace Breakfast.Web.Tests.Controllers
             Assert.AreEqual(expectedReadOnly, isReadOnly);
             Assert.AreEqual(expectedValid, isValid);
         }
+
+        [TestMethod]
+        public void TestHomeAbout()
+        {
+            //Arrange
+            HomeController controller = new HomeController();
+            string expected = "About";
+
+            //Act
+            var action = controller.About() as ViewResult;
+            string actualViewName = action.ViewName;
+
+            //Assert
+            Assert.AreEqual(expected, actualViewName);
+        }
+
+        [TestMethod]
+        public void TestHomeContact()
+        {
+            //Arrange
+            HomeController controller = new HomeController();
+            string expected = "Contact";
+
+            //Act
+            var action = controller.Contact() as ViewResult;
+            string actualViewName = action.ViewName;
+
+            //Assert
+            Assert.AreEqual(expected, actualViewName);
+        }
     }
 }
