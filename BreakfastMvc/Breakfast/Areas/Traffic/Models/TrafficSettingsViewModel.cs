@@ -20,7 +20,7 @@ namespace Breakfast.Areas.Traffic.Models
 
         //TODO: fix conversion
         //convert to domain object
-        public static explicit operator TrafficSettingsViewModel(JsonSettings.Traffic tsData)
+        public static explicit operator TrafficSettingsViewModel(ViewModels.Traffic tsData)
         {
             TrafficSettingsViewModel trafficSettings = new TrafficSettingsViewModel()
             {
@@ -38,9 +38,9 @@ namespace Breakfast.Areas.Traffic.Models
         }
 
         ////convert to entity object
-        public static explicit operator JsonSettings.Traffic(TrafficSettingsViewModel ts)
+        public static explicit operator ViewModels.Traffic(TrafficSettingsViewModel ts)
         {
-            JsonSettings.Traffic tsData = new JsonSettings.Traffic()
+            ViewModels.Traffic tsData = new ViewModels.Traffic()
             {
                 Id = ts.Id,
                 Enabled = ts.Enabled,

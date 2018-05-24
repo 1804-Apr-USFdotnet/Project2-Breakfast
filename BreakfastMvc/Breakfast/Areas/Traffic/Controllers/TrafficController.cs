@@ -28,7 +28,7 @@ namespace Breakfast.Areas.Traffic.Controllers
         public async Task<ActionResult> ViewMap(string userId)
         {
             SettingsModel settingsModel = new SettingsModel();
-            JsonSettings.RootObject jsonSettings = settingsModel.GetSettings(userId);
+            RootObject jsonSettings = settingsModel.GetSettings(userId);
             TrafficSettingsViewModel tsvm = new TrafficSettingsViewModel();
             tsvm = (TrafficSettingsViewModel)jsonSettings.Traffic;
             
@@ -46,7 +46,7 @@ namespace Breakfast.Areas.Traffic.Controllers
             
            
             SettingsModel settingsModel = new SettingsModel();
-            JsonSettings.RootObject jsonSettings = settingsModel.GetSettings(userId);
+            RootObject jsonSettings = settingsModel.GetSettings(userId);
             TrafficSettingsViewModel tsvm = new TrafficSettingsViewModel();
             tsvm = (TrafficSettingsViewModel)jsonSettings.Traffic;
             tsvm.UserId = userId;
@@ -75,7 +75,7 @@ namespace Breakfast.Areas.Traffic.Controllers
             //TODO: Fix data access
             SettingsModel settingsModel = new SettingsModel();
             
-            JsonSettings.Traffic jsonSettingsTraffic = (JsonSettings.Traffic)ts;
+            ViewModels.Traffic jsonSettingsTraffic = (ViewModels.Traffic)ts;
             var response = await settingsModel.SaveTrafficSettings(ts.UserId, jsonSettingsTraffic);
             //Storage storage = new Storage(new DefaultDBUtils());
             //storage.SaveTrafficSettings((Data.Models.TrafficSettings)ts);

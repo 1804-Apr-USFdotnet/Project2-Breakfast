@@ -59,7 +59,7 @@ namespace Breakfast.Models
             }
         }
 
-        public async Task<HttpResponseMessage> SaveTrafficSettings(string userId, JsonSettings.Traffic traffic)
+        public async Task<HttpResponseMessage> SaveTrafficSettings(string userId, Traffic traffic)
         {
             string myJson = JsonConvert.SerializeObject(traffic);
             using (var client = new HttpClient())
