@@ -39,7 +39,12 @@ namespace Breakfast.Business
                 TrafficSettings = new Data.Models.TrafficSettings()
                 {
                     Enabled = true,
-                    //TODO: Add default traffic settings
+                    Address = "",
+                    WorkAddress = "",
+                    Driving = true,
+                    AddressPlaceId = "",
+                    WorkAddressPlaceId = "",
+                    LatLng = null
                 },
 
                 //
