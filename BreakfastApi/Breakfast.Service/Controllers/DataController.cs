@@ -1,6 +1,7 @@
 ﻿using Breakfast.Business.News;
 using Breakfast.Business.News.Models;
 using Breakfast.Business.Weather;
+using Breakfast.Business.Weather.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
