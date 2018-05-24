@@ -14,7 +14,7 @@ namespace Breakfast.Service.Controllers
     {
         [HttpGet]
         [ResponseType(typeof(string))]
-        [Route("api/settings/get/{userId}")]
+        [Route("api/data/get/{zipcode}")]
         public IHttpActionResult WeatherData(string zipcode)
         {
             try { return Ok(OpenWeatherMapApi.GetResponse(zipcode)); }
