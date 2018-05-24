@@ -7,7 +7,6 @@ using System.Web.Mvc;
 
 namespace Breakfast.Controllers
 {
-    //[AllowAnonymous]
     public class AuthController : Controller
     {
         private readonly UserManager<AppUser> userManager;
