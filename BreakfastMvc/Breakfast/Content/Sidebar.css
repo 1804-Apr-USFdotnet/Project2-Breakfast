@@ -75,9 +75,10 @@ a {
                 opacity: 0;
             }
 
-            .Sidebar.is-collapsed .Sidebar-navItem2 a {
-                opacity: 0;
-            }
+        .Sidebar.is-collapsed .Sidebar-navItem2 a {
+            opacity: 0;
+            position: absolute;
+        }
 
         .Sidebar.is-collapsed .Sidebar-toggleText {
             display: none;

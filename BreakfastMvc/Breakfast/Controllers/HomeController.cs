@@ -41,5 +41,10 @@ namespace Breakfast.Controllers
 
             return View();
         }
+
+        public ActionResult Settings()
+        {
+            return View(new SettingsModel().GetSettings(User.Identity.Name));
+        }
     }
 }
