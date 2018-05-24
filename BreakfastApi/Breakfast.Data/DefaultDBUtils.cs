@@ -68,6 +68,30 @@ namespace Breakfast.Data
         }
 
         /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+        * 
+        *          Get individual settings section
+        *            
+        * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+        public NewsSettings GetNewsSettings(int newsSettingsId)
+        {
+            using (var db = new DefaultContext())
+                return db.NewsSettings.SingleOrDefault(x => x.Pk_NewsId == newsSettingsId);
+        }
+
+        public WeatherSettings GetWeatherSettings(int weatherSettingsId)
+        {
+            using (var db = new DefaultContext())
+                return db.WeatherSettings.SingleOrDefault(x => x.Pk_WeatherId == weatherSettingsId);
+        }
+
+        public TrafficSettings GetTrafficSettings(int trafficSettingsId)
+        {
+            using (var db = new DefaultContext())
+                return db.TrafficSettings.SingleOrDefault(x => x.Pk_TrafficId == trafficSettingsId);
+        }
+
+        /* * * * * * * * * * * * * * * * * * * * * * * * * * *
          * 
          *          Save individual settings section
          *            
@@ -79,7 +103,13 @@ namespace Breakfast.Data
             {
                 NewsSettings currentNewsSettings = db.NewsSettings.SingleOrDefault(x => x.Pk_NewsId == ns.Pk_NewsId);
                 currentNewsSettings.Enabled = ns.Enabled;
-                // TODO: add other settings
+                currentNewsSettings.Domains = ns.Domains ;
+                currentNewsSettings.Sources = ns.Sources ;
+                currentNewsSettings.Queries = ns.Queries ;
+                currentNewsSettings.OldestDate = ns.OldestDate ;
+                currentNewsSettings.NewestDate = ns.NewestDate ;
+                currentNewsSettings.Language = ns.Language ;
+                currentNewsSettings.PageSize = ns.PageSize ; 
 
                 db.NewsSettings.Attach(currentNewsSettings);
                 db.Entry(currentNewsSettings).State = EntityState.Modified;
@@ -95,7 +125,7 @@ namespace Breakfast.Data
                 currentTrafficSettings.Enabled = ts.Enabled;
                 currentTrafficSettings.Address = ts.Address;
                 currentTrafficSettings.WorkAddress = ts.WorkAddress;
-                currentTrafficSettings.TravelMode = ts.TravelMode;
+                currentTrafficSettings.Driving = ts.Driving;
                 currentTrafficSettings.AddressPlaceId = ts.AddressPlaceId;
                 currentTrafficSettings.WorkAddressPlaceId = ts.WorkAddressPlaceId;
                 currentTrafficSettings.LatLng = ts.LatLng;

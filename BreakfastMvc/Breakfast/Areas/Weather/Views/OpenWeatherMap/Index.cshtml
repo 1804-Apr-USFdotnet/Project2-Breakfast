@@ -2,49 +2,59 @@
 
 <link rel="stylesheet" href="~/Content/WeatherModule.css">
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="~/Scripts/DarkMode.js"></script>
 
-<div class='wrapper'>
+<div class="weather-wrapper">
+    <div class="wrapper light-mode">
 
-    <search>
-        @using (Html.BeginForm("Index", "OpenWeatherMap", FormMethod.Post))
-        {
-            <input class='searchbar transparent' id='search' name="zipcode" type='text' placeholder='enter city, country' />
-            <input class='button transparent' id='button' type="submit" value='GO' />
-        }
-    </search>
-    <div class='panel'>
-        <h2 class='city' id='city'>@Model.city, @Model.country</h2>
-        <div class='weather' id='weather'>
-            <div class='group secondary'>
-                <h3 id='dt' value="//dt"></h3>
-                <h3 id='description'>@Model.description</h3>
-            </div>
-            <div class='group secondary'>
-                <h3 id='wind'>Wind: @Model.windSpeed mph</h3>
-                <h3 id='humidity'>Humidity: @Model.humidity% </h3>
-                <h3 id='humidity'>Cloudiness: @Model.cloudiness% </h3>
-            </div>
-            <div class='temperature' id='temperature'>
-                <h1 class='temp' id='temp'>
-                    <i id='condition' value=@Model.condition></i>
-                    <span id='num'>@Model.temperature</span>
-                    <span class='fahrenheit active' id='fahrenheit'>&deg;@Model.temperatureType</span>
-                </h1>
-            </div>
-            <div class='forecast' id='forecast'>
-
-                @foreach (var item in Model.forecastDays)
+        @*<search>
+                @using (Html.BeginForm("Index", "OpenWeatherMap", FormMethod.Post))
                 {
-                    if (item != null)
-                    {
-                        <div class='block'>
-                            <h3 class='secondary'>@item.day</h3>
-                            <h2 class='high'>@item.tempMax</h2>
-                            <h4 class='secondary'>@item.tempMin</h4>
-                            @*<i id='condition' value=@item.condition></i>*@
-                        </div>
-                    }
+                    <input class="searchbar transparent" id="search" name="zipcode" type="text" placeholder="enter city, country" />
+                    <div class="custom-control custom-checkbox" style="float:right">
+                        <input type="checkbox" id="mode" class="custom-control-input">
+                        <label class="custom-control-label" for="mode">Dark Mode</label>
+                    </div>
                 }
+            </search>*@
+        <div class="custom-control custom-checkbox" style="float:right">
+            <input type="checkbox" id="mode" class="custom-control-input">
+            <label class="custom-control-label" for="mode">Dark Mode</label>
+        </div>
+        <div class="panel">
+            <h2 class="city" id="city">@Model.city, @Model.country</h2>
+            <div class="weather" id="weather">
+                <div class="group secondary">
+                    <h3 id="dt" value="//dt"></h3>
+                    <h3 id="description">@Model.description</h3>
+                </div>
+                <div class="group secondary">
+                    <h3 id="wind"><nobr>Wind: @Model.windSpeed mph</nobr></h3>
+                    <h3 id="humidity"><nobr>Humidity: @Model.humidity%</nobr></h3>
+                    <h3 id="cloudiness"><nobr>Cloudiness: @Model.cloudiness%</nobr></h3>
+                </div>
+                <div class="temperature" id="temperature">
+                    <h1 class="temp" id="temp">
+                        <i id="condition" value=@Model.condition></i>
+                        <span id="num">@Model.temperature</span>
+                        <span class="fahrenheit active" id="fahrenheit">&deg;@Model.temperatureType</span>
+                    </h1>
+                </div>
+                <div class="forecast" id="forecast">
+
+                    @foreach (var item in Model.forecastDays)
+                    {
+                        if (item != null)
+                        {
+                            <div class="block">
+                                <h3 class="secondary">@item.day</h3>
+                                <h2 class="high">@item.tempMax</h2>
+                                <h4 class="secondary">@item.tempMin</h4>
+                                @*<i id="condition" value=@item.condition></i>*@
+                            </div>
+                        }
+                    }
+                </div>
             </div>
         </div>
     </div>
@@ -52,44 +62,44 @@
 
 <script>
     $(document).ready(function () {
-        var icon = $('#condition');
+        var icon = $("#condition");
         var condition = "@(Model.condition.Length > 1 ? Model.condition : "00d")";
         switch (condition) {
-            case '01d':
-                icon.addClass('wi wi-day-sunny');
+            case "01d":
+                icon.addClass("wi wi-day-sunny");
                 break;
-            case '02d':
-                icon.addClass('wi wi-day-sunny-overcast');
+            case "02d":
+                icon.addClass("wi wi-day-sunny-overcast");
                 break;
-            case '01n':
-                icon.addClass('wi wi-night-clear');
+            case "01n":
+                icon.addClass("wi wi-night-clear");
                 break;
-            case '02n':
-                icon.addClass('wi wi-night-partly-cloudy');
+            case "02n":
+                icon.addClass("wi wi-night-partly-cloudy");
                 break;
         }
 
         switch (condition.substr(0, 2)) {
-            case '03':
-                icon.addClass('wi wi-cloud');
+            case "03":
+                icon.addClass("wi wi-cloud");
                 break;
-            case '04':
-                icon.addClass('wi wi-cloudy');
+            case "04":
+                icon.addClass("wi wi-cloudy");
                 break;
-            case '09':
-                icon.addClass('wi wi-showers');
+            case "09":
+                icon.addClass("wi wi-showers");
                 break;
-            case '10':
-                icon.addClass('wi wi-rain');
+            case "10":
+                icon.addClass("wi wi-rain");
                 break;
-            case '11':
-                icon.addClass('wi wi-thunderstorm');
+            case "11":
+                icon.addClass("wi wi-thunderstorm");
                 break;
-            case '13':
-                icon.addClass('wi wi-snow');
+            case "13":
+                icon.addClass("wi wi-snow");
                 break;
-            case '50':
-                icon.addClass('wi wi-fog');
+            case "50":
+                icon.addClass("wi wi-fog");
                 break;
         }
     });

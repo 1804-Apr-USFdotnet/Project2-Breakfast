@@ -1,0 +1,67 @@
+﻿<link rel="stylesheet" href="~/Content/Sidebar.css">
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="~/Scripts/IndexScrolling.js"></script>
+
+<div class="Wrapper" ng-app="sideBarApp">
+    <div class="Sidebar" ng-class="collapse ? 'not-collapsed' : 'is-collapsed'">
+        <nav role="navigation" class="sidebar-nav">
+            <ul>
+                <li class="Sidebar-navItem">
+                    <i class="Sidebar-menuIcon fa fa-coffee"></i>
+                    <a href="#i-one" data-target="#i-one">Welcome</a>
+                </li>
+                <li class="Sidebar-navItem">
+                    <i class="Sidebar-menuIcon fa fa-cloud"></i>
+                    <a href="#i-two" data-target="#i-two">Weather</a>
+                </li>
+                <li class="Sidebar-navItem">
+                    <i class="Sidebar-menuIcon fa fa-car"></i>
+                    <a href="#i-three" data-target="#i-three">Traffic</a>
+                </li>
+                <li class="Sidebar-navItem">
+                    <i class="Sidebar-menuIcon fa fa-newspaper-o"></i>
+                    <a href="#i-four" data-target="#i-four">News</a>
+                </li>
+                <li class="Sidebar-navItem">
+                    <i class="Sidebar-menuIcon fa fa-coffee"></i>
+                    <a href="#i-four" data-target="#i-five">End</a>
+                </li>
+                @using Microsoft.AspNet.Identity
+                @if (Request.IsAuthenticated)
+                {
+                    <li class="Sidebar-navItem2">
+                        <i class="Sidebar-menuIcon fa fa-cog"></i>
+                        @Html.ActionLink("Settings", "Settings", "Home", routeValues: null, htmlAttributes: new { id = "settingsLink" })
+                    </li>
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <li class="Sidebar-navItem2">
+                            <i class="Sidebar-menuIcon fa fa-sign-out"></i>
+                            @Html.ActionLink("Log out", "LogOut", "auth", routeValues: null, htmlAttributes: new { id = "loginLink" })
+                        </li>
+                    }
+                }
+                else
+                {
+                    <li class="Sidebar-navItem2">
+                        <i class="Sidebar-menuIcon fa fa-sign-in"></i>
+                        @*<a href="@Url.Action("LogIn", "auth")">Log In</a>*@
+                        @Html.ActionLink("Log in", "LogIn", "auth", routeValues: null, htmlAttributes: new { id = "loginLink" })
+                    </li>
+                }
+            </ul>
+        </nav>
+        <footer class="Sidebar-footer" ng-click="collapse = !collapse">
+            <i class="Sidebar-toggleArrow Sidebar-menuIcon fa fa-arrow-left" ng-class="collapse ? 'rotate' : ''"></i>
+            <span class="Sidebar-toggleText">Minimize menu</span>
+        </footer>
+    </div>
+    <div class="Main"></div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/angular.js"></script>
+    <script src="https://use.fontawesome.com/b6e164ee43.js"></script>
+}
