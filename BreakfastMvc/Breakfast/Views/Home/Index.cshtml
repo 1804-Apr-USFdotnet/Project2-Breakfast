@@ -51,7 +51,16 @@
         else
         {
             <div class="stuff" data-type="content">
-                @Html.Partial("~/Areas/Weather/Views/OpenWeatherMap/Index.cshtml", Model.weatherData)
+                @if (Model.weatherData.weatherSettings != null)
+                {
+                    Html.Partial("~/Areas/Weather/Views/OpenWeatherMap/Index.cshtml", Model.weatherData);
+                }
+                else
+                {
+                    <nobr>
+                        Server error
+                    </nobr>
+                }
             </div>
         }
     </section>

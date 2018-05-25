@@ -29,10 +29,19 @@ namespace Breakfast.Areas.Weather.Models
             HttpWebRequest apiRequest = WebRequest.Create("http://ec2-18-188-45-20.us-east-2.compute.amazonaws.com/Breakfast.Service_deploy/" + "api/weather/get/" + zipcode) as HttpWebRequest;
 
             string apiResponse = "";
-            using (HttpWebResponse response = apiRequest.GetResponse() as HttpWebResponse)
+            try
             {
-                StreamReader reader = new StreamReader(response.GetResponseStream());
-                apiResponse = reader.ReadToEnd();
+                using (HttpWebResponse response = apiRequest.GetResponse() as HttpWebResponse)
+                {
+                    StreamReader reader = new StreamReader(response.GetResponseStream());
+                    apiResponse = reader.ReadToEnd();
+                }
+            }
+            catch
+            {
+                weatherSettings = null;
+                forecastDays = null;
+                return;
             }
 
             JsonResponseHelpers.WeatherData.RootObject rootObject = JsonConvert.DeserializeObject<JsonResponseHelpers.WeatherData.RootObject>(apiResponse);
