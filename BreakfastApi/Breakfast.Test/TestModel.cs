@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Breakfast.Test
 {
     [TestClass]
-    public class ModelTest
+    public class TestModel
     {
         [TestMethod]
         public void TestWeatherDefaults()
