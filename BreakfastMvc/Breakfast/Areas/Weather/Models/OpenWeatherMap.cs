@@ -69,5 +69,23 @@ namespace Breakfast.Areas.Weather.Models
                 curr++;
             }
         }
+
+        public void ToCelcius()
+        {
+            weatherSettings.temperature = FtoC(weatherSettings.temperature);
+            foreach (var item in forecastDays)
+            {
+                item.tempMax = FtoC(item.tempMax);
+                item.tempMin = FtoC(item.tempMin);
+            }
+        }
+
+        private int FtoC(int temp)
+        {
+            temp -= 32;
+            temp *= 5;
+            temp /= 9;
+            return temp;
+        }
     }
 }

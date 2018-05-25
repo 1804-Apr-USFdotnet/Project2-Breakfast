@@ -29,6 +29,10 @@ namespace Breakfast.Controllers
                     // get news data for current user
                     // TODO
                 };
+
+                if (data.settings.Weather.farenheit == false)
+                    data.weatherData.ToCelcius();
+
                 return View(data);
             }
             else
