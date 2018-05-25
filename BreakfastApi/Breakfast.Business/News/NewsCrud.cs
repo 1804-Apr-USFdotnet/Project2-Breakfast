@@ -15,7 +15,8 @@ namespace Breakfast.Business.News
         {
             Storage storage = new Storage(new DefaultDBUtils());
             ns.Id = storage.GetNewsId(userId);
-            storage.SaveNewsSettings((Data.Models.NewsSettings) ns);
+            Data.Models.NewsSettings nsData = (Data.Models.NewsSettings) ns ;
+            storage.SaveNewsSettings( nsData);
         }
 
         public static NewsSettings ReadSettings(string userId)
