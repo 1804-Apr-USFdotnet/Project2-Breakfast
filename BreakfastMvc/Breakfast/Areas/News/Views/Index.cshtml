@@ -1,12 +1,15 @@
 ﻿@model IEnumerable<Breakfast.Areas.News.Models.NewsArticle>
 
-@foreach (var item in Model)
-{
-    if (item != Model.First<Breakfast.Areas.News.Models.NewsArticle>())
+<link rel="style" href="~/Content/NewsModule.css" />
+<div>
+    @foreach (var item in Model)
     {
-        <hr />
+        if (item != Model.First<Breakfast.Areas.News.Models.NewsArticle>())
+        {
+            <hr />
+        }
+
+        @Html.Partial("~/Areas/News/Views/ArticleDetails.cshtml", item);
+
     }
-
-    Html.RenderPartial("ArticleDetails", item);
-
-}
+</div>
