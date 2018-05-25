@@ -76,6 +76,8 @@ namespace Breakfast.Business.Weather
                 // Go through entire day to get max and min temperature of the day
                 for (int j = 0; j < 8; j++)
                 {
+                    if ((i * 8 + j) >= rootObject.list.Count)
+                        break;
                     if (days[i].tempMax < rootObject.list[i * 8 + j].main.temp_max)
                         days[i].tempMax = (int)rootObject.list[i * 8 + j].main.temp_max;
                     if (days[i].tempMin > rootObject.list[i * 8 + j].main.temp_min)
