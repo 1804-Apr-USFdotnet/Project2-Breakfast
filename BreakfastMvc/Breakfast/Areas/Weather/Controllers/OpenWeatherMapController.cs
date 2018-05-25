@@ -1,4 +1,5 @@
 ﻿using Breakfast.Areas.Weather.Models;
+using Breakfast.ViewModels;
 //using Breakfast.Data;
 using System.Web.Mvc;
 
@@ -9,7 +10,7 @@ namespace Breakfast.Areas.Weather.Controllers
         // GET: Weather/OpenWeatherMap
         public ActionResult Index()
         {
-            return View(new OpenWeatherMap());
+            return View(new Data());
         }
 
         [HttpPost]
