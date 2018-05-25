@@ -53,7 +53,7 @@
             <div class="stuff" data-type="content">
                 @if (Model.weatherData.weatherSettings != null)
                 {
-                    Html.Partial("~/Areas/Weather/Views/OpenWeatherMap/Index.cshtml", Model.weatherData);
+                    Html.RenderPartial("~/Areas/Weather/Views/OpenWeatherMap/Index.cshtml", Model);
                 }
                 else
                 {
