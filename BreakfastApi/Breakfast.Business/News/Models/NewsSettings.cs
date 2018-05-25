@@ -165,7 +165,13 @@ namespace Breakfast.Business.News.Models
             _OldestDate = toCopy._OldestDate;
             _NewestDate = toCopy._NewestDate;
 
-            Language = String.Copy(toCopy.Language);
+            if(toCopy.Language != null)
+            { 
+                Language = String.Copy(toCopy.Language);
+            } else
+            {
+                Language = toCopy.Language;
+            }
 
             PageSize = toCopy.PageSize;
             Enabled = toCopy.Enabled;
