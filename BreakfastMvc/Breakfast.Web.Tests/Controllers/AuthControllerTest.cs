@@ -1,4 +1,4 @@
-﻿using Breakfast.Controllers;
+using Breakfast.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Breakfast.Web.Tests.Controllers

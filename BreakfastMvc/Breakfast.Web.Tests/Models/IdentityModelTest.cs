@@ -1,4 +1,4 @@
-﻿using Breakfast.Models;
+using Breakfast.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Breakfast.Web.Tests.Models

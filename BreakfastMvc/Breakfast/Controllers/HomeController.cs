@@ -3,7 +3,6 @@ using Breakfast.Models;
 using Breakfast.ViewModels;
 using Microsoft.AspNet.Identity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Breakfast.Controllers
@@ -40,16 +39,12 @@ namespace Breakfast.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            return View("About");
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return View("Contact");
         }
 
         public ActionResult Settings()

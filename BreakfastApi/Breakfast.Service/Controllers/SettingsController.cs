@@ -11,18 +11,29 @@ using System;
 using System.Diagnostics;
 using Breakfast.Business.News;
 using Breakfast.Business.News.Models;
+using NLog;
 
 namespace Breakfast.Service.Controllers
 {
     public class SettingsController : ApiController
     {
+        static private Logger logger = LogManager.GetCurrentClassLogger();
+
         [HttpGet]
         [ResponseType(typeof(void))]
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         [Route("test/testresponse")]
         public IHttpActionResult TestResponse()
         {
-            return Ok();
+            try
+            {
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                logger.Error(e.Message);
+                return InternalServerError();
+            }
         }
 
         [HttpGet]
@@ -31,8 +42,15 @@ namespace Breakfast.Service.Controllers
         public IHttpActionResult GetSettings(string userId)
         {
             SettingsModel settings = Settings.getSettings(userId);
-            try { return Ok(settings); }
-            catch { return InternalServerError(); }
+            try
+            {
+                return Ok(settings);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e.Message);
+                return InternalServerError();
+            }
         }
 
         [HttpGet]
@@ -40,8 +58,16 @@ namespace Breakfast.Service.Controllers
         [Route("api/settings/initialize/{userId}")]
         public IHttpActionResult InitializeSettings(string userId)
         {
-            try { Settings.initializeSettings(userId); return StatusCode(HttpStatusCode.Created); }
-            catch { return InternalServerError(); }
+            try
+            {
+                Settings.initializeSettings(userId);
+                return StatusCode(HttpStatusCode.Created);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e.Message);
+                return InternalServerError();
+            }
         }
 
         [HttpPost]
@@ -49,10 +75,14 @@ namespace Breakfast.Service.Controllers
         [Route("api/settings/weather/{userId}")]
         public IHttpActionResult SaveWeatherSettings(string userId, WeatherSettings ws)
         {
-            try { WeatherCrud.SaveSettings(userId, ws); return StatusCode(HttpStatusCode.Accepted); }
+            try
+            {
+                WeatherCrud.SaveSettings(userId, ws);
+                return StatusCode(HttpStatusCode.Accepted);
+            }
             catch (Exception e)
             {
-                Debug.WriteLine(e);
+                logger.Error(e.Message);
                 return InternalServerError();
             }
         }
@@ -62,16 +92,32 @@ namespace Breakfast.Service.Controllers
         [Route("api/settings/traffic/{userId}")]
         public IHttpActionResult SaveTrafficSettings(string userId, TrafficSettingsBusiness ts)
         {
-            try { TrafficCrud.SaveSettings(userId, ts); return StatusCode(HttpStatusCode.Accepted); }
-            catch { return InternalServerError(); }
+            try
+            {
+                TrafficCrud.SaveSettings(userId, ts);
+                return StatusCode(HttpStatusCode.Accepted);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e.Message);
+                return InternalServerError();
+            }
         }
 
         [HttpPost]
         [ResponseType(typeof(void))]
         public IHttpActionResult SaveNewsSettigs (string userId, NewsSettings ns)
         {
-            try { NewsCrud.SaveSettings(userId, ns); return StatusCode(HttpStatusCode.Accepted); }
-            catch { return InternalServerError(); }
+            try
+            {
+                NewsCrud.SaveSettings(userId, ns);
+                return StatusCode(HttpStatusCode.Accepted);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e.Message);
+                return InternalServerError();
+            }
         }
     }
 }
