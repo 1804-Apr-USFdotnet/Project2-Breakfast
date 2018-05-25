@@ -49,13 +49,12 @@ namespace Breakfast.Models
             AppDbContext db = new AppDbContext();
             AppUser currentUser = db.Users.FirstOrDefault(x => x.UserName == userId);
             weather.location = currentUser.zipcode;
-            string uriTest = "http://localhost:50105/";
-
+            
             string myJson = JsonConvert.SerializeObject(weather);
             using (var client = new HttpClient())
             {
                 using (var response = await client.PostAsync(
-                    uriTest + "api/settings/weather/" + userId,
+                    uri + "api/settings/weather/" + userId,
                      new StringContent(myJson, Encoding.UTF8, "application/json")))
                 {
                     //do something with response.StatusCode
@@ -87,13 +86,12 @@ namespace Breakfast.Models
         {
             AppDbContext db = new AppDbContext();
             AppUser user = db.Users.FirstOrDefault(x => x.Id == userId);
-            string uriTest = "http://localhost:50105/";
 
             string myJson = JsonConvert.SerializeObject(news);
             using (var client = new HttpClient())
             {
                 using (var response = await client.PostAsync(
-                    uriTest + "api/settings/news/" + userId,
+                    uri + "api/settings/news/" + userId,
                      new StringContent(myJson, Encoding.UTF8, "application/json")))
                 {
                     //do something with response.StatusCode
