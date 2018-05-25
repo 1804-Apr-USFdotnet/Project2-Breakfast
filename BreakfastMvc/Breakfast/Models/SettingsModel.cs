@@ -49,12 +49,13 @@ namespace Breakfast.Models
             AppDbContext db = new AppDbContext();
             AppUser currentUser = db.Users.FirstOrDefault(x => x.UserName == userId);
             weather.location = currentUser.zipcode;
+            string uriTest = "http://localhost:50105/";
 
             string myJson = JsonConvert.SerializeObject(weather);
             using (var client = new HttpClient())
             {
                 using (var response = await client.PostAsync(
-                    uri + "api/settings/weather/" + userId,
+                    uriTest + "api/settings/weather/" + userId,
                      new StringContent(myJson, Encoding.UTF8, "application/json")))
                 {
                     //do something with response.StatusCode

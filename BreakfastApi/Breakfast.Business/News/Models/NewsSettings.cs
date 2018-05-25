@@ -128,28 +128,40 @@ namespace Breakfast.Business.News.Models
 
         public NewsSettings(NewsSettings toCopy)
         {
+            if (toCopy == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             Sources = new string[MaxSrcCount];
             Queries = new List<string>();
             Domains = new List<string>();
 
-            for(int i = 0; i < Sources.Length && i < MaxSrcCount; i++)
+            if(toCopy.Sources != null)
             {
-                if(toCopy.Sources[i] != "" && toCopy.Sources[i] != null)
+                for (int i = 0; i < Sources.Length && i < MaxSrcCount; i++)
                 {
-                    Sources[i] = String.Copy(toCopy.Sources[i]);
+                    if(toCopy.Sources[i] != "" && toCopy.Sources[i] != null)
+                    {
+                        Sources[i] = String.Copy(toCopy.Sources[i]);
+                    }
                 }
             }
 
-            foreach (var current in toCopy.Queries)
-            {
-                Queries.Add(String.Copy(current));
+            if(toCopy.Queries != null)
+            { 
+                foreach (var current in toCopy.Queries)
+                {
+                    Queries.Add(String.Copy(current));
+                }
             }
 
-            foreach (var current in toCopy.Domains)
-            {
-                Domains.Add(String.Copy(current));
+            if(toCopy.Domains != null) { 
+                foreach (var current in toCopy.Domains)
+                {
+                    Domains.Add(String.Copy(current));
+                }
             }
-
             _OldestDate = toCopy._OldestDate;
             _NewestDate = toCopy._NewestDate;
 
