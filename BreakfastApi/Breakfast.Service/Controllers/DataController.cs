@@ -42,11 +42,7 @@ namespace Breakfast.Service.Controllers
         {
             try
             {
-                //Test Settings not to be left in
-                List<string> queries = new List<string>();
-                queries.Add("bitcoin");
-                NewsSettings settings = new NewsSettings(enabled:true, queryStrings: queries, pageSize:5);
-//                NewsSettings settings = NewsCrud.ReadSettings(userId);
+                NewsSettings settings = NewsCrud.ReadSettings(userId);
                 NewsApiClient client = new NewsApiClient(settings);
                 IEnumerable<NewsArticle> articles = client.GetNewsArticles();
                 return Ok(articles);
