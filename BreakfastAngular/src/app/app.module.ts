@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { WeatherComponent } from './weather/weather.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WeatherComponent
+    WeatherComponent,
+    NavigationBarComponent
   ],
   imports: [
     BrowserModule,
