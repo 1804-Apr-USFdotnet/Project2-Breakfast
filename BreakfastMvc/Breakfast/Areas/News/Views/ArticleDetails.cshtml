@@ -1,42 +1,38 @@
 ﻿@model Breakfast.Areas.News.Models.NewsArticle
 
 <link rel="style" href="~/Content/NewsModule.css" />
-<p>this is representative of an article</p>
-
-<!--
-<div>
+<div class="article-container">
     <table>
         <tr>
             <td><span><strong>Title: </strong></span></td>
             <td>
-                <span><strong>Model.Title</strong></span>
+                <span><strong>@Model.Title</strong></span>
             </td>
         </tr>
 
         <tr>
             <td><span><strong>Authot: </strong></span></td>
             <td>
-                <span>Model.Author</span>
+                <span>@Model.Author</span>
             </td>
         </tr>
         <tr>
             <td><span><strong>Source: </strong></span></td>
             <td>
-                <span><a href="Model.Url">Model.Source</a></span>
+                <span><a href="http://@Model.Url">@Model.Source</a></span>
             </td>
         </tr>
         <tr>
             <td><span><strong>Pub. Date: </strong></span></td>
             <td>
-                <span>Model.PubDateTime</span>
+                <span>@Model.PubDateTime</span>
             </td>
         </tr>
         <tr>
             <td><span><strong>Description: </strong></span></td>
             <td>
-                <span>Model.Description</span>
+                <span>@Model.Description</span>
             </td>
         </tr>
     </table>
 </div>
-    -->

@@ -28,7 +28,7 @@ namespace Breakfast.Controllers
                     // TODO
                     // get news data for current user
                     // TODO
-                    //articles = NewsArticle
+                    //articles = NewsArticle.GetArticles();
                 };
 
                 if (data.settings.Weather.farenheit == false)

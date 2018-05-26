@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Breakfast.Areas.News.Models.NewsArticle>
 
 <link rel="style" href="~/Content/NewsModule.css" />
-<div>
+<div class="article-section">
     @foreach (var item in Model)
     {
         if (item != Model.First<Breakfast.Areas.News.Models.NewsArticle>())
