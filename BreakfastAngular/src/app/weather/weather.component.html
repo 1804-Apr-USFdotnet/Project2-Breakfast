@@ -1,0 +1,36 @@
+<div class="weather-wrapper">
+    <div class="wrapper light-mode">
+        <div class="custom-control custom-checkbox" style="float:right">
+            <input type="checkbox" id="mode" class="custom-control-input">
+            <label class="custom-control-label" for="mode">Dark Mode</label>
+        </div>
+        <div class="panel">
+            <h2 class="city light-mode-element" id="city">{{weather.city}}, {{weather.country}}</h2>
+            <div class="weather" id="weather">
+                <div class="group secondary">
+                    <h3 id="dt" value="//dt"></h3>
+                    <h3 id="description">{{weather.description}}</h3>
+                </div>
+                <div class="group secondary">
+                        <h3 id="wind">Wind: {{weather.windSpeed}} mph</h3>
+                        <h3 id="humidity">Humidity: {{weather.humidity}}%</h3>
+                        <h3 id="cloudiness">Cloudiness: {{weather.cloudiness}}%</h3>
+                </div>
+                <div class="temperature" id="temperature">
+                    <h1 class="temp" id="temp">
+                        <i id="condition" value=@Model.weatherData.weatherSettings.condition></i>
+                        <span id="num">{{weather.temperature}}</span>
+                            <span class="fahrenheit active" id="fahrenheit">&deg;F</span>
+                    </h1>
+                </div>
+                <div class="forecast" id="forecast">
+                            <div class="block" *ngFor="let forecast of forecastDays">
+                                <h3 class="secondary">{{forecast.day}}</h3>
+                                <h2 class="high">{{forecast.tempMax}}</h2>
+                                <h4 class="secondary">{{forecast.tempMin}}</h4>
+                            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
