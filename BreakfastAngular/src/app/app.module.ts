@@ -5,6 +5,9 @@ import { AppComponent } from './app.component';
 import { WeatherComponent } from './weather/weather.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from "@angular/common/http";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -14,6 +17,9 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    RouterModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],
