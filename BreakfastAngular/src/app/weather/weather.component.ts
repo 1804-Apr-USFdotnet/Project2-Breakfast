@@ -9,17 +9,19 @@ import { WeatherService } from '../weather.service';
   styleUrls: ['./weather.component.css']
 })
 export class WeatherComponent implements OnInit {
-  weatherData: WeatherData
+  weather: WeatherData
+
   constructor(
     private route: ActivatedRoute,
-    private weatherService: WeatherService,
+    private weatherService: WeatherService
   ) { }
 
   ngOnInit() {
-    var zipcode = this.route.snapshot.paramMap.get("zipcode");
+    //var zipcode = this.route.snapshot.paramMap.get("zipcode");
+    var zipcode = "33617";
     this.weatherService.getWeatherByZipcode(
       zipcode, 
-      (response) => {this.weatherData = response}
+      (response) => {this.weather = response}
     );
   }
 
