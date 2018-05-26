@@ -1,9 +1,3 @@
-@model Breakfast.ViewModels.Data
-
-<link rel="stylesheet" href="~/Content/WeatherModule.css">
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="~/Scripts/DarkMode.js"></script>
-
 <div class="weather-wrapper">
     <div class="wrapper light-mode">
         <div class="custom-control custom-checkbox" style="float:right">
@@ -11,101 +5,32 @@
             <label class="custom-control-label" for="mode">Dark Mode</label>
         </div>
         <div class="panel">
-            <h2 class="city light-mode-element" id="city">@Model.weatherData.weatherSettings.city, @Model.weatherData.weatherSettings.country</h2>
+            <h2 class="city light-mode-element" id="city">{{weather.city}}, {{weather.country}}</h2>
             <div class="weather" id="weather">
                 <div class="group secondary">
                     <h3 id="dt" value="//dt"></h3>
-                    <h3 id="description">@Model.weatherData.weatherSettings.description</h3>
+                    <h3 id="description">{{weather.description}}</h3>
                 </div>
                 <div class="group secondary">
-                    @if (Model.settings.Weather.windSpeed == true)
-                    {
-                        <h3 id="wind"><nobr>Wind: @Model.weatherData.weatherSettings.windSpeed mph</nobr></h3>
-                    }
-                    @if (Model.settings.Weather.humidity == true)
-                    {
-                        <h3 id="humidity"><nobr>Humidity: @Model.weatherData.weatherSettings.humidity%</nobr></h3>
-                    }
-                    @if (Model.settings.Weather.cloudiness == true)
-                    {
-                        <h3 id="cloudiness"><nobr>Cloudiness: @Model.weatherData.weatherSettings.cloudiness%</nobr></h3>
-                    }
+                        <h3 id="wind"><nobr>Wind: {{weather.windSpeed}} mph</nobr></h3>
+                        <h3 id="humidity"><nobr>Humidity: {{weather.humidity}}%</nobr></h3>
+                        <h3 id="cloudiness"><nobr>Cloudiness: {{weather.cloudiness}}%</nobr></h3>
                 </div>
                 <div class="temperature" id="temperature">
                     <h1 class="temp" id="temp">
                         <i id="condition" value=@Model.weatherData.weatherSettings.condition></i>
-                        <span id="num">@Model.weatherData.weatherSettings.temperature</span>
-                        @if (Model.settings.Weather.farenheit == true)
-                        {
+                        <span id="num">{{weather.temperature}}</span>
                             <span class="fahrenheit active" id="fahrenheit">&deg;F</span>
-                        }
-                        else
-                        {
-                            <span class="fahrenheit active" id="fahrenheit">&deg;C</span>
-                        }
                     </h1>
                 </div>
                 <div class="forecast" id="forecast">
-
-                    @foreach (var item in Model.weatherData.forecastDays)
-                    {
-                        if (item != null)
-                        {
-                            <div class="block">
-                                <h3 class="secondary">@item.day</h3>
-                                <h2 class="high">@item.tempMax</h2>
-                                <h4 class="secondary">@item.tempMin</h4>
-                                @*<i id="condition" value=@item.condition></i>*@
+                            <div class="block" *ngFor="let forecast of forecastDays">
+                                <h3 class="secondary">{{forecast.day}}</h3>
+                                <h2 class="high">{{forecast.tempMax}}</h2>
+                                <h4 class="secondary">{{forecast.tempMin}}</h4>
                             </div>
-                        }
-                    }
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function () {
-        var icon = $("#condition");
-        var condition = "@(Model.weatherData.weatherSettings.condition.Length > 1 ? Model.weatherData.weatherSettings.condition : "00d")";
-        switch (condition) {
-            case "01d":
-                icon.addClass("wi wi-day-sunny");
-                break;
-            case "02d":
-                icon.addClass("wi wi-day-sunny-overcast");
-                break;
-            case "01n":
-                icon.addClass("wi wi-night-clear");
-                break;
-            case "02n":
-                icon.addClass("wi wi-night-partly-cloudy");
-                break;
-        }
-
-        switch (condition.substr(0, 2)) {
-            case "03":
-                icon.addClass("wi wi-cloud");
-                break;
-            case "04":
-                icon.addClass("wi wi-cloudy");
-                break;
-            case "09":
-                icon.addClass("wi wi-showers");
-                break;
-            case "10":
-                icon.addClass("wi wi-rain");
-                break;
-            case "11":
-                icon.addClass("wi wi-thunderstorm");
-                break;
-            case "13":
-                icon.addClass("wi wi-snow");
-                break;
-            case "50":
-                icon.addClass("wi wi-fog");
-                break;
-        }
-    });
-</script>
