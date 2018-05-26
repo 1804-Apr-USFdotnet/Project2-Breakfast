@@ -51,7 +51,16 @@
         else
         {
             <div class="stuff" data-type="content">
-                @Html.Partial("~/Areas/Weather/Views/OpenWeatherMap/Index.cshtml", Model.weatherData)
+                @if (Model.weatherData.weatherSettings != null)
+                {
+                    Html.RenderPartial("~/Areas/Weather/Views/OpenWeatherMap/Index.cshtml", Model);
+                }
+                else
+                {
+                    <nobr>
+                        Server error
+                    </nobr>
+                }
             </div>
         }
     </section>
@@ -82,7 +91,7 @@
         {
             <div class="stuff">
                 <!--//Stuff for when we *are* authenticated and logged in-->
-                @Html.Partial("/Areas/News/Views/Index.cshtml", new List<Breakfast.Areas.News.Models.NewsArticle>())
+                @Html.Partial("~/Areas/News/Views/Index.cshtml", new List<Breakfast.Areas.News.Models.NewsArticle>())
             </div>
         }
 

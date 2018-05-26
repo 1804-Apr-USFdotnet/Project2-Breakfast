@@ -8,6 +8,7 @@ namespace Breakfast.ViewModels
     public class News
     {
         public int Id { get; set; }
+        public bool Enabled { get; set; }
         public List<object> Queries { get; set; }
         public List<object> Sources { get; set; }
         public List<object> Domains { get; set; }

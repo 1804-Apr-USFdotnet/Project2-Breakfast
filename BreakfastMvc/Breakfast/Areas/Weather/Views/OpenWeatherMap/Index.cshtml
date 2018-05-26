@@ -1,4 +1,4 @@
-﻿@model Breakfast.Areas.Weather.Models.OpenWeatherMap
+﻿@model Breakfast.ViewModels.Data
 
 <link rel="stylesheet" href="~/Content/WeatherModule.css">
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -6,43 +6,48 @@
 
 <div class="weather-wrapper">
     <div class="wrapper light-mode">
-
-        @*<search>
-                @using (Html.BeginForm("Index", "OpenWeatherMap", FormMethod.Post))
-                {
-                    <input class="searchbar transparent" id="search" name="zipcode" type="text" placeholder="enter city, country" />
-                    <div class="custom-control custom-checkbox" style="float:right">
-                        <input type="checkbox" id="mode" class="custom-control-input">
-                        <label class="custom-control-label" for="mode">Dark Mode</label>
-                    </div>
-                }
-            </search>*@
         <div class="custom-control custom-checkbox" style="float:right">
             <input type="checkbox" id="mode" class="custom-control-input">
             <label class="custom-control-label" for="mode">Dark Mode</label>
         </div>
         <div class="panel">
-            <h2 class="city" id="city">@Model.weatherSettings.city, @Model.weatherSettings.country</h2>
+            <h2 class="city light-mode-element" id="city">@Model.weatherData.weatherSettings.city, @Model.weatherData.weatherSettings.country</h2>
             <div class="weather" id="weather">
                 <div class="group secondary">
                     <h3 id="dt" value="//dt"></h3>
-                    <h3 id="description">@Model.weatherSettings.description</h3>
+                    <h3 id="description">@Model.weatherData.weatherSettings.description</h3>
                 </div>
                 <div class="group secondary">
-                    <h3 id="wind"><nobr>Wind: @Model.weatherSettings.windSpeed mph</nobr></h3>
-                    <h3 id="humidity"><nobr>Humidity: @Model.weatherSettings.humidity%</nobr></h3>
-                    <h3 id="cloudiness"><nobr>Cloudiness: @Model.weatherSettings.cloudiness%</nobr></h3>
+                    @if (Model.settings.Weather.windSpeed == true)
+                    {
+                        <h3 id="wind"><nobr>Wind: @Model.weatherData.weatherSettings.windSpeed mph</nobr></h3>
+                    }
+                    @if (Model.settings.Weather.humidity == true)
+                    {
+                        <h3 id="humidity"><nobr>Humidity: @Model.weatherData.weatherSettings.humidity%</nobr></h3>
+                    }
+                    @if (Model.settings.Weather.cloudiness == true)
+                    {
+                        <h3 id="cloudiness"><nobr>Cloudiness: @Model.weatherData.weatherSettings.cloudiness%</nobr></h3>
+                    }
                 </div>
                 <div class="temperature" id="temperature">
                     <h1 class="temp" id="temp">
-                        <i id="condition" value=@Model.weatherSettings.condition></i>
-                        <span id="num">@Model.weatherSettings.temperature</span>
-                        <span class="fahrenheit active" id="fahrenheit">&deg;@Model.weatherSettings.temperatureType</span>
+                        <i id="condition" value=@Model.weatherData.weatherSettings.condition></i>
+                        <span id="num">@Model.weatherData.weatherSettings.temperature</span>
+                        @if (Model.settings.Weather.farenheit == true)
+                        {
+                            <span class="fahrenheit active" id="fahrenheit">&deg;F</span>
+                        }
+                        else
+                        {
+                            <span class="fahrenheit active" id="fahrenheit">&deg;C</span>
+                        }
                     </h1>
                 </div>
                 <div class="forecast" id="forecast">
 
-                    @foreach (var item in Model.forecastDays)
+                    @foreach (var item in Model.weatherData.forecastDays)
                     {
                         if (item != null)
                         {
@@ -63,7 +68,7 @@
 <script>
     $(document).ready(function () {
         var icon = $("#condition");
-        var condition = "@(Model.weatherSettings.condition.Length > 1 ? Model.weatherSettings.condition : "00d")";
+        var condition = "@(Model.weatherData.weatherSettings.condition.Length > 1 ? Model.weatherData.weatherSettings.condition : "00d")";
         switch (condition) {
             case "01d":
                 icon.addClass("wi wi-day-sunny");

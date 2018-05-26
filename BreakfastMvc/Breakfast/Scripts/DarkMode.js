@@ -9,7 +9,6 @@
             $('.searchbar').addClass('dark-mode-element');
             $('.city').removeClass('light-mode-element');
             $('.searchbar').removeClass('light-mode-element');
-
         }
         else {
             $('.weather-wrapper .wrapper').removeClass('dark-mode');

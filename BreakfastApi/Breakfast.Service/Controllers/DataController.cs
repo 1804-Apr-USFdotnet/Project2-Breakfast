@@ -11,19 +11,28 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Breakfast.Business.Traffic;
-
+using NLog;
 
 namespace Breakfast.Service.Controllers
 {
     public class DataController : ApiController
     {
+        static private Logger logger = LogManager.GetCurrentClassLogger();
+
         [HttpGet]
         [ResponseType(typeof(CurrentWeather))]
         [Route("api/weather/get/{zipcode}")]
         public IHttpActionResult WeatherData(string zipcode)
         {
-            try { return Ok(OpenWeatherMapApi.GetResponse(zipcode)); }
-            catch (Exception e) { Debug.WriteLine(e); return InternalServerError(); }
+            try
+            {
+                return Ok(OpenWeatherMapApi.GetResponse(zipcode));
+            }
+            catch (Exception e)
+            {
+                logger.Error(e.Message);
+                return InternalServerError();
+            }
         }
 
         [HttpGet]
@@ -31,10 +40,18 @@ namespace Breakfast.Service.Controllers
         [Route("api/news/getArticles/{userId}")]
         public IHttpActionResult GetArticles(string userId)
         {
-            NewsSettings settings = NewsCrud.ReadSettings(userId);
-            NewsApiClient client = new NewsApiClient(settings);
-            IEnumerable<NewsArticle> articles = client.GetNewsArticles();
-            return Ok(articles);
+            try
+            {
+                NewsSettings settings = NewsCrud.ReadSettings(userId);
+                NewsApiClient client = new NewsApiClient(settings);
+                IEnumerable<NewsArticle> articles = client.GetNewsArticles();
+                return Ok(articles);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e.Message);
+                return InternalServerError();
+            }
         }
 
         [HttpGet]
@@ -46,8 +63,9 @@ namespace Breakfast.Service.Controllers
             {
                 return Ok( await TrafficApi.GetTimeToWork(homePlaceId, workPlaceId, travelMode));
             }
-            catch
+            catch (Exception e)
             {
+                logger.Error(e.Message);
                 return InternalServerError();
             }
         }

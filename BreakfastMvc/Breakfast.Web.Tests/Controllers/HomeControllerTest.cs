@@ -13,42 +13,50 @@ namespace Breakfast.Web.Tests.Controllers
     public class HomeControllerTest
     {
         [TestMethod]
-        public void Index()
+        public void TestHome()
         {
-            // Arrange
+            //Arrange
             HomeController controller = new HomeController();
+            bool expectedReadOnly = false;
+            bool expectedValid = true;
 
-            // Act
-            ViewResult result = controller.Index() as ViewResult;
+            //Act
+            bool isReadOnly = controller.ModelState.IsReadOnly;
+            bool isValid = controller.ModelState.IsValid;
 
-            // Assert
-            Assert.IsNotNull(result);
+            //Assert
+            Assert.AreEqual(expectedReadOnly, isReadOnly);
+            Assert.AreEqual(expectedValid, isValid);
         }
 
         [TestMethod]
-        public void About()
+        public void TestHomeAbout()
         {
-            // Arrange
+            //Arrange
             HomeController controller = new HomeController();
+            string expected = "About";
 
-            // Act
-            ViewResult result = controller.About() as ViewResult;
+            //Act
+            var action = controller.About() as ViewResult;
+            string actualViewName = action.ViewName;
 
-            // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+            //Assert
+            Assert.AreEqual(expected, actualViewName);
         }
 
         [TestMethod]
-        public void Contact()
+        public void TestHomeContact()
         {
-            // Arrange
+            //Arrange
             HomeController controller = new HomeController();
+            string expected = "Contact";
 
-            // Act
-            ViewResult result = controller.Contact() as ViewResult;
+            //Act
+            var action = controller.Contact() as ViewResult;
+            string actualViewName = action.ViewName;
 
-            // Assert
-            Assert.IsNotNull(result);
+            //Assert
+            Assert.AreEqual(expected, actualViewName);
         }
     }
 }

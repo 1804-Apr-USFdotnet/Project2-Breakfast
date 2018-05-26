@@ -7,7 +7,6 @@ using System.Web.Mvc;
 
 namespace Breakfast.Controllers
 {
-    //[AllowAnonymous]
     public class AuthController : Controller
     {
         private readonly UserManager<AppUser> userManager;
@@ -22,7 +21,7 @@ namespace Breakfast.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                return View("LogIn");
             }
 
             var user = userManager.Find(model.login.Username, model.login.Password);
@@ -40,7 +39,7 @@ namespace Breakfast.Controllers
             }
 
             // if login fails
-            return View();
+            return View("LogIn");
         }
 
         public ActionResult LogOut()
@@ -92,6 +91,10 @@ namespace Breakfast.Controllers
         public AuthController(UserManager<AppUser> userManager)
         {
             this.userManager = userManager;
+        }
+
+        public AuthController(bool? x, bool? y)
+        {
         }
 
         protected override void Dispose(bool disposing)
