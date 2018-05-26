@@ -24,7 +24,7 @@
                     </h1>
                 </div>
                 <div class="forecast" id="forecast">
-                            <div class="block" *ngFor="let forecast of forecastDays">
+                            <div class="block" *ngFor="let forecast of weather.forecastDays">
                                 <h3 class="secondary">{{forecast.day}}</h3>
                                 <h2 class="high">{{forecast.tempMax}}</h2>
                                 <h4 class="secondary">{{forecast.tempMin}}</h4>
