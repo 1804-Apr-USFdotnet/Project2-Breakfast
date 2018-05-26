@@ -60,5 +60,13 @@ namespace Breakfast.Controllers
             new SettingsModel().SaveWeatherSettings(User.Identity.Name, weather);
             return RedirectToAction("index", "home");
         }
+
+        [HttpPost]
+        public ActionResult SaveNewsSettings(News news)
+        {
+            new SettingsModel().SaveNewsSettings(User.Identity.Name, news);
+            return RedirectToAction("index", "home");
+        }
+
     }
 }

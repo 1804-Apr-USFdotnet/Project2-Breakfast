@@ -27,14 +27,17 @@ namespace Breakfast.Areas.Traffic.Controllers
         // GET: Traffic/Traffic
         public async Task<ActionResult> ViewMap(string userId)
         {
+
             SettingsModel settingsModel = new SettingsModel();
             RootObject jsonSettings = settingsModel.GetSettings(userId);
             TrafficSettingsViewModel tsvm = new TrafficSettingsViewModel();
             tsvm = (TrafficSettingsViewModel)jsonSettings.Traffic;
-            
 
-            
-            ViewBag.TimeToWork = "Not sure";
+            string timeToWork = await TrafficSettingsViewModel.SetTimeToWork(tsvm);
+            string travelMode = (tsvm.Driving) ? "DRIVING" : "WALKING";
+
+            ViewBag.TimeToWork = timeToWork;
+            ViewBag.TravelMode = travelMode;
             ViewBag.Address = tsvm.Address;
             ViewBag.WorkAddress = tsvm.WorkAddress;
             ViewBag.APIKey = apiKey;
@@ -43,8 +46,6 @@ namespace Breakfast.Areas.Traffic.Controllers
 
         public ActionResult Settings(string userId)
         {
-            
-           
             SettingsModel settingsModel = new SettingsModel();
             RootObject jsonSettings = settingsModel.GetSettings(userId);
             TrafficSettingsViewModel tsvm = new TrafficSettingsViewModel();
@@ -72,7 +73,7 @@ namespace Breakfast.Areas.Traffic.Controllers
         [HttpPost]
         public async Task<ActionResult> SaveSettings(TrafficSettingsViewModel ts)
         {
-            //TODO: Fix data access
+            
             SettingsModel settingsModel = new SettingsModel();
             
             ViewModels.Traffic jsonSettingsTraffic = (ViewModels.Traffic)ts;

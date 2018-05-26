@@ -106,6 +106,7 @@ namespace Breakfast.Service.Controllers
 
         [HttpPost]
         [ResponseType(typeof(void))]
+        [Route("api/settings/news/{userId}")]
         public IHttpActionResult SaveNewsSettigs (string userId, NewsSettings ns)
         {
             try

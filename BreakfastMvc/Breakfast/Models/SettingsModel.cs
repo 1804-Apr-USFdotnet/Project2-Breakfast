@@ -49,7 +49,7 @@ namespace Breakfast.Models
             AppDbContext db = new AppDbContext();
             AppUser currentUser = db.Users.FirstOrDefault(x => x.UserName == userId);
             weather.location = currentUser.zipcode;
-
+            
             string myJson = JsonConvert.SerializeObject(weather);
             using (var client = new HttpClient())
             {
@@ -82,18 +82,23 @@ namespace Breakfast.Models
             }
         }
 
-        public async void SaveNewsSettings(string userId, News news)
+        public async Task<HttpResponseMessage> SaveNewsSettings(string userId, News news)
         {
+            AppDbContext db = new AppDbContext();
+            AppUser user = db.Users.FirstOrDefault(x => x.Id == userId);
+
             string myJson = JsonConvert.SerializeObject(news);
             using (var client = new HttpClient())
             {
                 using (var response = await client.PostAsync(
-                    uri + "api/settings/weather/" + userId,
+                    uri + "api/settings/news/" + userId,
                      new StringContent(myJson, Encoding.UTF8, "application/json")))
                 {
                     //do something with response.StatusCode
                     Debug.WriteLine(response.StatusCode);
                     Debug.WriteLine(response.ReasonPhrase);
+
+                    return response;
                 }
             }
         }
