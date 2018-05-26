@@ -53,6 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingsModel.cs" />
     <Compile Include="Traffic\Models\TrafficSettingsBusiness.cs" />
+    <Compile Include="Traffic\Models\TravelTimeToWork.cs" />
     <Compile Include="Traffic\TrafficApi.cs" />
     <Compile Include="Traffic\TrafficCrud.cs" />
     <Compile Include="Weather\Models\CurrentWeather.cs" />

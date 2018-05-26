@@ -1,13 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using Breakfast.ViewModels;
+using Newtonsoft.Json;
 
 namespace Breakfast.Areas.Traffic.Models
 {
+
     public class TrafficSettingsViewModel
     {
+        //        const string path = @"http://ec2-18-191-47-17.us-east-2.compute.amazonaws.com/Breakfast.Service_deploy/api/traffic/get/";
+        const string path = @"http://localhost:50105/api/traffic/get/";
+
         public int Id { get; set; }
         public bool Enabled { get; set; } = true;
         public string Address { get; set; } = null;
@@ -17,8 +24,25 @@ namespace Breakfast.Areas.Traffic.Models
         public string WorkAddressPlaceId { get; set; } = null;
         public double[] LatLng { get; set; }
         public string UserId { get; set; }
+        public string TimeToWork { get; set; }
 
-        //TODO: fix conversion
+        public static async Task<string> SetTimeToWork(TrafficSettingsViewModel tsvm)
+        {
+            HttpClient client = new HttpClient();
+            string travelMode = (tsvm.Driving) ? "DRIVING" : "WALKING";
+            string url = path + tsvm.AddressPlaceId + "/" + tsvm.WorkAddressPlaceId + "/" + travelMode;
+            var response = await client.GetAsync(url);
+            string result = null;
+            if (response.IsSuccessStatusCode)
+            {
+                result = await response.Content.ReadAsStringAsync();
+            }
+            TimeJsonResponse timeJson = JsonConvert.DeserializeObject<TimeJsonResponse>(result);
+            return timeJson.Time;
+
+
+
+        }
         //convert to domain object
         public static explicit operator TrafficSettingsViewModel(ViewModels.Traffic tsData)
         {
