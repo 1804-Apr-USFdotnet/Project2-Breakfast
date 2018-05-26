@@ -180,6 +180,7 @@
     <Compile Include="Areas\News\Models\NewsArticle.cs" />
     <Compile Include="Areas\News\NewsAreaRegistration.cs" />
     <Compile Include="Areas\Traffic\Controllers\TrafficController.cs" />
+    <Compile Include="Areas\Traffic\Models\TimeJsonResponse.cs" />
     <Compile Include="Areas\Traffic\Models\TrafficSettingsViewModel.cs" />
     <Compile Include="Areas\Traffic\TrafficAreaRegistration.cs" />
     <Compile Include="Areas\Weather\Controllers\OpenWeatherMapController.cs" />
