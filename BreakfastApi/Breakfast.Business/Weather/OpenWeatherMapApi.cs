@@ -30,7 +30,7 @@ namespace Breakfast.Business.Weather
                 temperature = (int)rootObject.main.temp,
                 humidity = rootObject.main.humidity,
                 cloudiness = rootObject.clouds.all,
-                condition = rootObject.weather[0].icon,
+                condition = iconToClass(rootObject.weather[0].icon),
                 forecastDays = new Models.ForecastWeather[5]
             };
 
@@ -69,7 +69,7 @@ namespace Breakfast.Business.Weather
 
                 // Access nth day in json array, [0] = day 1, [8] = day 2, [16] = day 3, etc.
                 days[i].day = dateValue.ToString("ddd");
-                days[i].condition = rootObject.list[i * 8].weather[0].icon;
+                days[i].condition = iconToClass(rootObject.list[i * 8].weather[0].icon);
                 days[i].tempMax = (int)rootObject.list[i * 8].main.temp_max;
                 days[i].tempMin = (int)rootObject.list[i * 8].main.temp_min;
 
@@ -84,6 +84,42 @@ namespace Breakfast.Business.Weather
                         days[i].tempMin = (int)rootObject.list[i * 8 + j].main.temp_min;
                 }
             }
+        }
+
+        static private string iconToClass(string icon)
+        {
+            if (Int32.Parse(icon.Substring(0, 2)) > 3)
+            {
+                icon = icon.Substring(0, 2);
+            }
+
+            switch (icon)
+            {
+                case "01d":
+                    return "wi wi-day-sunny";
+                case "02d":
+                    return "wi wi-day-sunny-overcast";
+                case "01n":
+                    return "wi wi-night-clear";
+                case "02n":
+                    return "wi wi-night-partly-cloudy";
+                case "03":
+                    return "wi wi-cloud";
+                case "04":
+                    return "wi wi-cloudy";
+                case "09":
+                    return "wi wi-showers";
+                case "10":
+                    return "wi wi-rain";
+                case "11":
+                    return "wi wi-thunderstorm";
+                case "13":
+                    return "wi wi-snow";
+                case "50":
+                    return "wi wi-fog";
+            }
+
+            return "wi wi-day-sunny-overcast";
         }
     }
 }
