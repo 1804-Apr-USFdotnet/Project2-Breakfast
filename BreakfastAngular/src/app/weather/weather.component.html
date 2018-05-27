@@ -1,34 +1,10 @@
-<div class="Weather row center weather-container" *ngIf="weather !== undefined">
-    <div class="Weather__main column column-center split-center">
-      
-      <h3><input type="text" [(ngModel)]="searchZip" />
-          <button (click)="getWeather()">Go</button></h3>
-      <h2 id="location">{{weather.city}}, {{weather.country}}</h2>
-      <span id="temp">{{weather.temperature}}</span>
-      <div class="row center column-center Weather__main-toggle">
-        <span>F</span>
-        <button id="unit-switch"><span id="unit-toggle"></span></button>
-        <span>C</span>
-      </div>
+<div class="weather-wrapper" *ngFor="let forecast of weather.forecastDays">
+    <div class="weather-card">
+        <div class="forecast-icon"></div>
+        <h1>{{forecast.tempMin}}º - {{forecast.tempMax}}º</h1>
+        <p>{{forecast.day}}</p>
     </div>
-    
-    <div class="Weather__right column-split">
-      
-      <div class="Weather__right-icon">
-        <div class="column column-center">
-          <i id="icon" [className]="iconClass"></i>
-          <span id="coverage">{{weather.description}}</span>
-        </div> <!-- End Current Coverage -->
-      </div> <!-- End Icon Bubble -->
-      <div class="Weather__right-time column center column-center">
-        <span id="time">Humidity<span>{{weather.humidity}}%</span></span>
-      </div> <!-- End Time Bubble -->
-      <div id="refresh" class="Weather__right-refresh column center column-center">
-        <span>{{weather.windSpeed}} mph</span>
-      </div>
-      
-    </div>
-  </div>
+</div>
 
 <!-- <div class="weather-wrapper" *ngIf="weather !== undefined">
     <div class="wrapper light-mode">
