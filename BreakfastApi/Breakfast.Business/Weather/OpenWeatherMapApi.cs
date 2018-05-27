@@ -30,7 +30,7 @@ namespace Breakfast.Business.Weather
                 temperature = (int)rootObject.main.temp,
                 humidity = rootObject.main.humidity,
                 cloudiness = rootObject.clouds.all,
-                condition = rootObject.weather[0].icon,
+                condition = iconToClass(rootObject.weather[0].icon),
                 forecastDays = new Models.ForecastWeather[5]
             };
 
