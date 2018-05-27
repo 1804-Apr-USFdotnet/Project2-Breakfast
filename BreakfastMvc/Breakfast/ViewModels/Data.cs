@@ -10,6 +10,6 @@ namespace Breakfast.ViewModels
         public RootObject settings { get; set; }
         public OpenWeatherMap weatherData { get; set; }
         public TrafficSettingsViewModel trafficData;
-        public List<NewsArticle> articles { get; set; }
+        public IEnumerable<NewsArticle> articles { get; set; }
     }
 }

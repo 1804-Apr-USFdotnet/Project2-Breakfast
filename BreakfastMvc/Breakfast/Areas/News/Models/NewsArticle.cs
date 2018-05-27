@@ -17,17 +17,20 @@ namespace Breakfast.Areas.News.Models
         public readonly string Source;
         public readonly string Description;
         public readonly string Url;
+        public readonly string ImgUrl;
         public readonly DateTime PubDateTime;
 
         #region Constructors
-        public NewsArticle(string title, string author, string source, string description, string url, DateTime pubDateTime)
+        [JsonConstructor]
+        public NewsArticle(string Title, string Author, string Source, string Desc, string Url, string ImgUrl, DateTime PublDate)
         {
-            Title = title;
-            Author = author;
-            Source = source;
-            Description = description;
-            Url = url;
-            PubDateTime = pubDateTime;
+            this.Title = Title;
+            this.Author = Author;
+            this.Source = Source;
+            this.Description = Desc;
+            this.Url = Url;
+            this.ImgUrl = ImgUrl;
+            this.PubDateTime = PublDate;
         }
 
         public NewsArticle(NewsArticle toCopy)
@@ -37,6 +40,7 @@ namespace Breakfast.Areas.News.Models
             Source = String.Copy(toCopy.Source);
             Description = String.Copy(toCopy.Description);
             Url = String.Copy(toCopy.Url);
+            ImgUrl = String.Copy(toCopy.ImgUrl);
             PubDateTime = toCopy.PubDateTime;
         }
         #endregion

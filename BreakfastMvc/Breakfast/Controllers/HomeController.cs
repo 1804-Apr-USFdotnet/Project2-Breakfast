@@ -1,4 +1,5 @@
-﻿using Breakfast.Areas.Weather.Models;
+﻿using Breakfast.Areas.News.Models;
+using Breakfast.Areas.Weather.Models;
 using Breakfast.Models;
 using Breakfast.ViewModels;
 using Microsoft.AspNet.Identity;
@@ -32,7 +33,7 @@ namespace Breakfast.Controllers
                     trafficData = (TrafficSettingsViewModel) new SettingsModel().GetSettings(User.Identity.Name).Traffic
                     // get news data for current user
                     // TODO
-                    //articles = NewsArticle.GetArticles();
+                    articles = NewsArticle.GetArticles(currentUser.UserName)
                 };
                 //traffic data for viewbags
                 string timeToWork =  await TrafficSettingsViewModel.SetTimeToWork(data.trafficData);

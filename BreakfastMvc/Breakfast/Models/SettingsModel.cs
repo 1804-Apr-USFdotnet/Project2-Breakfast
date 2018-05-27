@@ -49,7 +49,6 @@ namespace Breakfast.Models
             AppDbContext db = new AppDbContext();
             AppUser currentUser = db.Users.FirstOrDefault(x => x.UserName == userId);
             weather.location = currentUser.zipcode;
-            
             string myJson = JsonConvert.SerializeObject(weather);
             using (var client = new HttpClient())
             {

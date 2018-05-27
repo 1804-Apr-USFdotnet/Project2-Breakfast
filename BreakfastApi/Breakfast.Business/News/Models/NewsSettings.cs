@@ -137,7 +137,7 @@ namespace Breakfast.Business.News.Models
             Queries = new List<string>();
             Domains = new List<string>();
 
-            if(toCopy.Sources != null)
+            if(toCopy.Sources != null && toCopy.Sources.Length != 0)
             {
                 for (int i = 0; i < Sources.Length && i < MaxSrcCount; i++)
                 {
@@ -186,8 +186,8 @@ namespace Breakfast.Business.News.Models
         static public explicit operator NewsSettings(Data.Models.NewsSettings nsData)
         {
             string concatQueryString = nsData?.Queries;
-            string concatDomainString = nsData?.Queries;
-            string concatSourceString = nsData?.Queries;
+            string concatDomainString = nsData?.Domains;
+            string concatSourceString = nsData?.Sources;
             char[] separatorCharacters = new char[] { '"' };
 
             string[] parsedQueries = { };
