@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -39,17 +41,20 @@ namespace Breakfast.Areas.News.Models
         }
         #endregion
 
-
-        public void GetArticles()
+        public static IEnumerable<NewsArticle> GetArticles(string userId)
         {
-            //todo: Parse these results into separate Articles
-            var url = "https://newsapi.org/v2/top-headlines?" +  
-                "country=us&" +
-                "apiKey=7d149bd8ce044572abb107044e4abe4a"; // hard coded API Key
+            const string uri = "http://ec2-18-188-45-20.us-east-2.compute.amazonaws.com/Breakfast.Service_deploy/";
 
-            var json = new WebClient().DownloadString(url);
+            HttpWebRequest apiRequest = WebRequest.Create(uri + "api/news/getArticles/" + userId + "/") as HttpWebRequest;
+            string apiResponse = "";
+            using (var response = apiRequest.GetResponse() as HttpWebResponse)
+            {
+                StreamReader reader = new StreamReader(response.GetResponseStream());
+                apiResponse = reader.ReadToEnd();
+            }
 
-            Console.WriteLine(json);
+            IEnumerable<NewsArticle> articles = JsonConvert.DeserializeObject<List<NewsArticle>>(apiResponse);
+            return articles;
         }
     }
 }
