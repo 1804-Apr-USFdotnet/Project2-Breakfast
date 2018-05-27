@@ -12,7 +12,7 @@ namespace Breakfast.Areas.Traffic.Models
 
     public class TrafficSettingsViewModel
     {
-        const string path = @"http://ec2-18-191-47-17.us-east-2.compute.amazonaws.com/Breakfast.Service_deploy/api/traffic/get/";
+        const string path = @"http://ec2-18-188-45-20.us-east-2.compute.amazonaws.com/Breakfast.Service_deploy/api/traffic/get/";
         
 
         public int Id { get; set; }
