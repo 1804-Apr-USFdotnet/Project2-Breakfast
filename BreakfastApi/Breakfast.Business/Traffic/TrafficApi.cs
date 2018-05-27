@@ -23,6 +23,8 @@ namespace Breakfast.Business.Traffic
             catch (Exception e)
             {
                 Console.WriteLine("It failed, do you have mapskey.txt in the same directory of the project");
+                tttw.Time = "API Key didnt parse correctly";
+                return tttw;
             }
             
             HttpClient client = new HttpClient();

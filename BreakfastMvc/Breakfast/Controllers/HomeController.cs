@@ -1,4 +1,5 @@
-﻿using Breakfast.Areas.Weather.Models;
+﻿using Breakfast.Areas.News.Models;
+using Breakfast.Areas.Weather.Models;
 using Breakfast.Models;
 using Breakfast.ViewModels;
 using Microsoft.AspNet.Identity;
@@ -23,12 +24,12 @@ namespace Breakfast.Controllers
                     // get settings for current user
                     settings = new SettingsModel().GetSettings(User.Identity.Name),
                     // get weather data for current user
-                    weatherData = new OpenWeatherMap(currentUser.zipcode)
+                    weatherData = new OpenWeatherMap(currentUser.zipcode),
                     // get traffic data for current user
                     // TODO
                     // get news data for current user
                     // TODO
-                    //articles = NewsArticle.GetArticles();
+                    articles = NewsArticle.GetArticles(currentUser.UserName)
                 };
 
                 if (data.settings.Weather.farenheit == false)
