@@ -23,17 +23,15 @@ export class WeatherComponent implements OnInit {
     var zipcode = "33617";
     this.weatherService.getWeatherByZipcode(
       zipcode, 
-      () => { if (this.weather != undefined) { this.getIcon(this.weather.condition) } },
-      (response) => {this.weather = response}
+      (response) => {this.weather = response, this.getIcon(this.weather.condition)}
     );
   }
 
   getWeather() {
     this.weatherService.getWeatherByZipcode(
       this.searchZip, 
-      () => { if (this.weather != undefined) { this.getIcon(this.weather.condition) } },
-      (response) => {this.weather = response;
-    });
+      (response) => {this.weather = response, this.getIcon(this.weather.condition)}
+    );
   }
 
   getIcon(icon: string) {
