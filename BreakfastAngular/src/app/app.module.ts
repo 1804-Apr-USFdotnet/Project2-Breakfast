@@ -9,13 +9,15 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { IndexComponent } from './index/index.component';
+import { TrafficComponent } from './traffic/traffic.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WeatherComponent,
     NavigationBarComponent,
-    IndexComponent
+    IndexComponent,
+    TrafficComponent
   ],
   imports: [
     BrowserModule,
