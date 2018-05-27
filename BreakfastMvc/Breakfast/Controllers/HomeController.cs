@@ -13,6 +13,8 @@ namespace Breakfast.Controllers
 {
     public class HomeController : AsyncController
     {
+        private static string _settingsApiKey;
+
         public async Task<ActionResult> Index()
         {
             if (User.Identity.IsAuthenticated)
@@ -36,6 +38,7 @@ namespace Breakfast.Controllers
                 string timeToWork =  await TrafficSettingsViewModel.SetTimeToWork(data.trafficData);
                 string travelMode = (data.trafficData.Driving) ? "DRIVING" : "WALKING";
                 string apiKey = data.trafficData.getApiKey();
+                _settingsApiKey = apiKey;
                 ViewBag.TimeToWork = timeToWork;
                 ViewBag.TravelMode = travelMode;
                 ViewBag.APIKey = apiKey;
@@ -61,6 +64,10 @@ namespace Breakfast.Controllers
 
         public ActionResult Settings()
         {
+            var rootSettings = new SettingsModel().GetSettings(User.Identity.Name);
+            var trafficViewModel = (TrafficSettingsViewModel) rootSettings.Traffic;
+            ViewBag.APIKey = trafficViewModel.getApiKey();
+            
             return View(new SettingsModel().GetSettings(User.Identity.Name));
         }
 
@@ -68,6 +75,13 @@ namespace Breakfast.Controllers
         public ActionResult SaveWeatherSettings(Weather weather)
         {
             new SettingsModel().SaveWeatherSettings(User.Identity.Name, weather);
+            return RedirectToAction("index", "home");
+        }
+
+        [HttpPost]
+        public ActionResult SaveTrafficSettings(Traffic traffic)
+        {
+            new SettingsModel().SaveTrafficSettings(User.Identity.Name, traffic);
             return RedirectToAction("index", "home");
         }
 

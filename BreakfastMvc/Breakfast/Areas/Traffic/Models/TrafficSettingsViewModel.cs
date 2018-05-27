@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 namespace Breakfast.Areas.Traffic.Models
 {
 
-    public class TrafficSettingsViewModel
+    public  class TrafficSettingsViewModel
     {
         const string path = @"http://ec2-18-188-45-20.us-east-2.compute.amazonaws.com/Breakfast.Service_deploy/api/traffic/get/";
         
@@ -25,6 +25,7 @@ namespace Breakfast.Areas.Traffic.Models
         public double[] LatLng { get; set; }
         public string UserId { get; set; }
         public string TimeToWork { get; set; }
+        
 
         public TrafficSettingsViewModel()
         {
@@ -58,6 +59,7 @@ namespace Breakfast.Areas.Traffic.Models
             try
             {
                 string apiKey = System.IO.File.ReadAllText(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory.ToString(), "mapskey.txt"));
+                
                 return apiKey;
             }
             catch (Exception e)
