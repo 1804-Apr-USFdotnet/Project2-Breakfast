@@ -12,6 +12,7 @@ import { WeatherService } from '../weather.service';
 export class WeatherComponent implements OnInit {
   weather: WeatherData;
   searchZip: string;
+  iconClass = "02d";
 
   constructor(private route: ActivatedRoute, private weatherService: WeatherService) { 
     // this.weather.forecastDays = new Array<ForecastDay>(new ForecastDay({tempMin: 1, tempMax: 2}));
@@ -24,6 +25,10 @@ export class WeatherComponent implements OnInit {
       zipcode, 
       (response) => {this.weather = response}
     );
+    if (this.weather.condition != undefined)
+    {
+      this.iconClass = this.weather.condition;
+    }
   }
 
   getWeather() {
@@ -31,6 +36,10 @@ export class WeatherComponent implements OnInit {
       this.searchZip, 
       (response) => {this.weather = response;
     });
+    if (this.weather.condition != undefined)
+    {
+      this.iconClass = this.weather.condition;
+    }
   }
 
 }

@@ -18,7 +18,7 @@
                 </div>
                 <div class="temperature" id="temperature">
                     <h1 class="temp" id="temp">
-                        <i id="condition" value=@Model.weatherData.weatherSettings.condition></i>
+                        <i id="condition" [className]="iconClass"></i>
                         <span id="num">{{weather.temperature}}</span>
                             <span class="fahrenheit active" id="fahrenheit">&deg;F</span>
                     </h1>
