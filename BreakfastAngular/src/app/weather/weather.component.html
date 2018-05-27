@@ -18,18 +18,20 @@
                 </div>
                 <div class="temperature" id="temperature">
                     <h1 class="temp" id="temp">
-                        <i id="condition" value=@Model.weatherData.weatherSettings.condition></i>
+                        <i id="condition" [className]="iconClass"></i>
                         <span id="num">{{weather.temperature}}</span>
                             <span class="fahrenheit active" id="fahrenheit">&deg;F</span>
                     </h1>
                 </div>
                 <div class="forecast" id="forecast">
-                            <div class="block" *ngFor="let forecast of forecastDays">
-                                <h3 class="secondary">{{forecast.day}}</h3>
-                                <h2 class="high">{{forecast.tempMax}}</h2>
-                                <h4 class="secondary">{{forecast.tempMin}}</h4>
-                            </div>
+                    <div class="block" *ngFor="let forecast of weather.forecastDays">
+                        <h3 class="secondary">{{forecast.day}}</h3>
+                        <h2 class="high">{{forecast.tempMax}}</h2>
+                        <h4 class="secondary">{{forecast.tempMin}}</h4>
+                    </div>
                 </div>
+                <input type="text" [(ngModel)]="searchZip" />
+                <button (click)="getWeather()">Go</button>
             </div>
         </div>
     </div>
