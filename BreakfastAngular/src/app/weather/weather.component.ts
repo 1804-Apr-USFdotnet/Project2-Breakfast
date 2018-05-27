@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WeatherData } from '../models/WeatherData';
+import { ForecastDay } from '../models/ForecastDay';
 import { WeatherService } from '../weather.service';
 
 @Component({
@@ -9,20 +10,24 @@ import { WeatherService } from '../weather.service';
   styleUrls: ['./weather.component.css']
 })
 export class WeatherComponent implements OnInit {
-  weather: WeatherData
+  weather: WeatherData;
+  searchZip: string;
+  iconClass = "";
 
-  constructor(
-    private route: ActivatedRoute,
-    private weatherService: WeatherService
-  ) { }
-
-  ngOnInit() {
-    //var zipcode = this.route.snapshot.paramMap.get("zipcode");
-    var zipcode = "33617";
-    this.weatherService.getWeatherByZipcode(
-      zipcode, 
-      (response) => {this.weather = response}
-    );
+  constructor(private route: ActivatedRoute, private weatherService: WeatherService) { 
   }
 
+  ngOnInit() {
+    this.searchZip = "33617";
+    this.getWeather();
+  }
+
+  getWeather() {
+    this.weatherService.getWeatherByZipcode(
+        this.searchZip, 
+        (response) => {
+            this.weather = response
+        }
+    );
+  }
 }

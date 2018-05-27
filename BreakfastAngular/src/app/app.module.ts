@@ -8,12 +8,14 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
+import { IndexComponent } from './index/index.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WeatherComponent,
-    NavigationBarComponent
+    NavigationBarComponent,
+    IndexComponent
   ],
   imports: [
     BrowserModule,

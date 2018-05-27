@@ -1,4 +1,14 @@
-<div class="weather-wrapper" *ngIf="weather !== undefined">
+<div class="weather-app-wrapper" *ngIf="weather !== undefined">
+    <div class="weather-wrapper" *ngFor="let forecast of weather.forecastDays">
+        <div class="weather-card">
+            <div class="forecast-icon"></div>
+            <h1>{{forecast.tempMin}}º - {{forecast.tempMax}}º</h1>
+            <p>{{forecast.day}}</p>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="weather-wrapper" *ngIf="weather !== undefined">
     <div class="wrapper light-mode">
         <div class="custom-control custom-checkbox" style="float:right">
             <input type="checkbox" id="mode" class="custom-control-input">
@@ -18,19 +28,21 @@
                 </div>
                 <div class="temperature" id="temperature">
                     <h1 class="temp" id="temp">
-                        <i id="condition" value=@Model.weatherData.weatherSettings.condition></i>
+                        <i id="condition" [className]="iconClass"></i>
                         <span id="num">{{weather.temperature}}</span>
                             <span class="fahrenheit active" id="fahrenheit">&deg;F</span>
                     </h1>
                 </div>
                 <div class="forecast" id="forecast">
-                            <div class="block" *ngFor="let forecast of forecastDays">
-                                <h3 class="secondary">{{forecast.day}}</h3>
-                                <h2 class="high">{{forecast.tempMax}}</h2>
-                                <h4 class="secondary">{{forecast.tempMin}}</h4>
-                            </div>
+                    <div class="block" *ngFor="let forecast of weather.forecastDays">
+                        <h3 class="secondary">{{forecast.day}}</h3>
+                        <h2 class="high">{{forecast.tempMax}}</h2>
+                        <h4 class="secondary">{{forecast.tempMin}}</h4>
+                    </div>
                 </div>
+                <input type="text" [(ngModel)]="searchZip" />
+                <button (click)="getWeather()">Go</button>
             </div>
         </div>
     </div>
-</div>
+</div> -->

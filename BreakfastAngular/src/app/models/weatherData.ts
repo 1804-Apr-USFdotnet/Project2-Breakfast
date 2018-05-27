@@ -1,3 +1,5 @@
+import { ForecastDay } from '../models/ForecastDay';
+
 export class WeatherData
 {
   city: string;
@@ -9,36 +11,5 @@ export class WeatherData
   humidity: number;
   cloudiness: number;
   condition: string;
-  forecastDays: [
-    {
-      tempMin: number;
-      tempMax: number;
-      day: string;
-      condition: string;
-    },
-    {
-      tempMin: number;
-      tempMax: number;
-      day: string;
-      condition: string;
-    },
-    {
-      tempMin: number;
-      tempMax: number;
-      day: string;
-      condition: string;
-    },
-    {
-      tempMin: number;
-      tempMax: number;
-      day: string;
-      condition: string;
-    },
-    {
-      tempMin: number;
-      tempMax: number;
-      day: string;
-      condition: string;
-    }
-  ]
+  forecastDays: ForecastDay[];
 }
