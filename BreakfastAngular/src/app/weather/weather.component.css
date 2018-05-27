@@ -9,6 +9,7 @@
     bottom: 0;
     left: 0;
     right: 0;
+    color: white;
 }
 
 .weather-wrapper {
@@ -26,7 +27,7 @@
   overflow: hidden;
   width: 270px;
   height: 270px;
-  background-color: white;
+  background-color: #343434;
   box-shadow: 0px 0px 25px 1px rgba(50, 50, 50, 0.1);
   -webkit-animation: appear 500ms ease-out forwards;
           animation: appear 500ms ease-out forwards;
@@ -36,7 +37,7 @@
   font-family: 'Lato', sans-serif;
   font-weight: 300;
   font-size: 50px;
-  color: black;
+  color: white;
   bottom: 30px;
   left: 35px;
 }
@@ -45,7 +46,7 @@
   font-family: 'Lato', sans-serif;
   font-weight: 300;
   font-size: 28px;
-  color: black;
+  color: #ffa500;
   bottom: 0;
   left: 100px;
 }
@@ -54,6 +55,7 @@
   font-size: 7em;
   justify-content: center;
   display: flex;
+  padding-top: 30px;
 }
 
 body {
@@ -63,13 +65,17 @@ body {
 h1 {
   font-family: 'Open Sans', Helvetica, sans-serif;
   font-size: 29px;
-  color: #C95E67;
+  color: #ffa500;
 }
 
 .text{
   font-family: 'Space Mono', Helvetica, sans-serif;
   font-size: 14px;
-  color: #333;
+  color: #ffa500;
+}
+
+.forecast-temp {
+  color: #00ff92 !important;
 }
 
 .weather-container {
@@ -90,10 +96,11 @@ h1 {
   grid-column: 1/4;
   margin: 0 auto;
   text-align: center;
-  background: #efefef;
+  background-color: #343434;
   border-radius: 4px;
   padding: 15px 87px;
   font-size: 95px;
+  color: white;
 }
 
 #description {
@@ -105,7 +112,8 @@ h1 {
 }
 
 .description-container{
-  background: #efefef;
+  background-color: #343434;/**/
+  font-size: 20px;
   border-radius: 4px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -134,7 +142,7 @@ h1 {
 .temp-info {
   font-family: 'Open Sans', Helvetica, sans-serif;
   font-size: 65px;
-  color: #C95E67;
+  color: #00ff92;
   font-weight: 600;
 }
 
@@ -171,7 +179,7 @@ h1 {
 }
 
 .switch-button-case:hover {
-  color: #151515;
+  color: white;
   cursor: pointer;
 }
 
@@ -181,8 +189,8 @@ h1 {
 
 .active {
   position: absolute;
-  color: #151515;
-  background-color: #efefef;
+  color: white;
+  background-color: #343434;
   left: 0;
   top: 0;
   width: 50%;
@@ -206,7 +214,7 @@ h1 {
   font-size: 10px;
   width: 100vw;
   text-align: center;
-  color: #efefef;
+  color: white;
   text-transform: uppercase;
   text-decoration: none;
 }

@@ -30,7 +30,7 @@
     <div class="weather-wrapper" *ngFor="let forecast of weather.forecastDays">
         <div class="weather-card">
             <div class="forecast-icon" [ngClass]="forecast.condition"></div>
-            <h1>{{forecast.tempMin}}º - {{forecast.tempMax}}º</h1>
+            <h1 class="forecast-temp">{{forecast.tempMin}}º - {{forecast.tempMax}}º</h1>
             <p>{{forecast.day}}</p>
         </div>
     </div>
