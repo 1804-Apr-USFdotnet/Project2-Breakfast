@@ -10,6 +10,7 @@ export class WeatherService {
 
   getWeatherByZipcode(
     zipcode: string,
+    x: () => void,
     onSuccess,
     onFail = (reason) => console.log(reason)) {
       var url = "http://ec2-18-188-45-20.us-east-2.compute.amazonaws.com/Breakfast.Service_deploy/api/weather/get/" + zipcode;
