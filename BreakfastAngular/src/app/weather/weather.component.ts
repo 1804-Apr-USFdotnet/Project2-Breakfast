@@ -15,10 +15,10 @@ export class WeatherComponent implements OnInit {
   iconClass = "";
 
   constructor(private route: ActivatedRoute, private weatherService: WeatherService) { 
-    // this.weather.forecastDays = new Array<ForecastDay>(new ForecastDay({tempMin: 1, tempMax: 2}));
   }
 
   ngOnInit() {
+<<<<<<< Updated upstream
     //var zipcode = this.route.snapshot.paramMap.get("zipcode");
     this.searchZip = "33617";
     this.getWeather();
@@ -26,10 +26,15 @@ export class WeatherComponent implements OnInit {
     //   zipcode, 
     //   (response) => {this.weather = response, this.getIcon(this.weather.condition)}
     // );
+=======
+    var zipcode = "33617";
+    this.getWeather();
+>>>>>>> Stashed changes
   }
 
   getWeather() {
     this.weatherService.getWeatherByZipcode(
+<<<<<<< Updated upstream
         this.searchZip, 
         (response) => {
             this.weather = response, 
@@ -72,4 +77,10 @@ export class WeatherComponent implements OnInit {
           return "wi wi-fog";
     }
   }
+=======
+      this.searchZip, 
+      (response) => {this.weather = response}
+    );
+  }
+>>>>>>> Stashed changes
 }
