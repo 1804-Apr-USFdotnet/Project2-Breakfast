@@ -1,4 +1,5 @@
-﻿
+﻿@model Breakfast.ViewModels.Data
+
 <link rel="stylesheet" href="~/Content/Settings.css">
 <style>
     /* Always set the map height explicitly to define the size of the div
@@ -43,30 +44,27 @@
             font-size: 13px;
             font-weight: 300;
         }
-</style>    
+</style>
 
-<body>
-<input id="origin-input" class="controls" type="text"
-       placeholder="Enter an origin location" value="@ViewBag.Address">
+<div class="traffic-wrapper">
+    <input id="origin-input" class="controls" type="text"
+           placeholder="Enter an origin location" value="@Model.settings.Traffic.Address">
 
-<input id="destination-input" class="controls" type="text"
-       placeholder="Enter a destination location" value ="@ViewBag.WorkAddress">
+    <input id="destination-input" class="controls" type="text"
+           placeholder="Enter a destination location" value="@Model.settings.Traffic.WorkAddress">
 
-<div id="mode-selector" class="controls">
-    <input type="radio" name="type" id="changemode-walking">
-    <label for="changemode-walking">Walking</label>
+    <div id="mode-selector" class="controls">
+        <input type="radio" name="type" id="changemode-walking">
+        <label for="changemode-walking">Walking</label>
 
-    <input type="radio" name="type" id="changemode-transit">
-    <label for="changemode-transit">Transit</label>
+        <input type="radio" name="type" id="changemode-driving" checked="checked">
+        <label for="changemode-driving">Driving</label>
+    </div>
 
-    <input type="radio" name="type" id="changemode-driving" checked="checked">
-    <label for="changemode-driving">Driving</label>
-</div>
+    <div id="map"></div>
 
-<div id="map"></div>
-
-<div class=" align-content-center" style="background-color:#ff8c00">It will take you <strong style="font-size: 4rem">@ViewBag.TimeToWork</strong> minutes to get to work in current traffic</div>
-<script>
+    <div class=" align-content-center" style="background-color:#ff8c00">It will take you <strong style="font-size: 4rem">@ViewBag.TimeToWork</strong> minutes to get to work in current traffic</div>
+    <script>
     // This example requires the Places library. Include the libraries=places
     // parameter when you first load the API. For example:
     // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
@@ -257,8 +255,8 @@
     }
 
 
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=@ViewBag.APIKey&libraries=places&callback=initMap"
-        async defer></script>
-<h1></h1>
-</body>
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=@ViewBag.APIKey&libraries=places&callback=initMap"
+            async defer></script>
+    <h1></h1>
+</div>

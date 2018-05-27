@@ -1,6 +1,7 @@
 ﻿using Breakfast.Areas.Weather.Models;
 using Breakfast.Areas.News.Models;
 using System.Collections.Generic;
+using Breakfast.Areas.Traffic.Models;
 
 namespace Breakfast.ViewModels
 {
@@ -8,7 +9,7 @@ namespace Breakfast.ViewModels
     {
         public RootObject settings { get; set; }
         public OpenWeatherMap weatherData { get; set; }
-        //TODO: add news data object, traffic data object
+        public TrafficSettingsViewModel trafficData;
         public List<NewsArticle> articles { get; set; }
     }
 }

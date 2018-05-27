@@ -68,7 +68,7 @@ namespace Breakfast.Areas.Traffic.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine("Shit failed");
+                Console.WriteLine("Failed to parse API Key");
             }
         }
         [HttpPost]
