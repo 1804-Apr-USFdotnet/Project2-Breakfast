@@ -38,7 +38,7 @@
                 @Html.HiddenFor(m => m.Id, new { htmlattribues = new { id = "Id", @value = ""} })
         <div class="item">
             <div class="label">
-                Travel mode: @Html.LabelFor(m => m.Driving, "Driving", new { id="travel"})
+                Travel mode: @Html.LabelFor(m => m.Driving, (string)ViewBag.TravelMode, new { id= "travel",  onload = "changeText()" })
             </div>
             <label class="switch">
                 @Html.CheckBoxFor(m => m.Driving, new {id = "travelmode", onload = "changeText()", onchange = "changeText()" })
