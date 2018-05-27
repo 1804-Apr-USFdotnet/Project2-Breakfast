@@ -4,8 +4,8 @@
     text-decoration: none;
     color: #6edeef;
 }
-.wrapper-settings #map {
-    height: 64rem;
+#map {
+    height: 34rem;
     overflow: auto;
 }
 
