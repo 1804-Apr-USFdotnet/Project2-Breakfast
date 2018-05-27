@@ -20,17 +20,24 @@ export class WeatherComponent implements OnInit {
 
   ngOnInit() {
     //var zipcode = this.route.snapshot.paramMap.get("zipcode");
-    var zipcode = "33617";
-    this.weatherService.getWeatherByZipcode(
-      zipcode, 
-      (response) => {this.weather = response, this.getIcon(this.weather.condition)}
-    );
+    this.searchZip = "33617";
+    this.getWeather();
+    // this.weatherService.getWeatherByZipcode(
+    //   zipcode, 
+    //   (response) => {this.weather = response, this.getIcon(this.weather.condition)}
+    // );
   }
 
   getWeather() {
     this.weatherService.getWeatherByZipcode(
-      this.searchZip, 
-      (response) => {this.weather = response, this.getIcon(this.weather.condition)}
+        this.searchZip, 
+        (response) => {
+            this.weather = response, 
+            this.weather.condition = this.getIcon(this.weather.condition),
+            this.weather.forecastDays.forEach(function(part, index, forecastArray) {
+                forecastArray[index] = this.getIcon(forecastArray[index]);
+          });
+        }
     );
   }
 
@@ -42,38 +49,27 @@ export class WeatherComponent implements OnInit {
 
     switch (icon) {
       case "01d":
-          this.iconClass = "wi wi-day-sunny";
-          break;
+          return "wi wi-day-sunny";
       case "02d":
-          this.iconClass = "wi wi-day-sunny-overcast";
-          break;
+          return "wi wi-day-sunny-overcast";
       case "01n":
-          this.iconClass = "wi wi-night-clear";
-          break;
+          return "wi wi-night-clear";
       case "02n":
-          this.iconClass = "wi wi-night-partly-cloudy";
-          break;
+          return "wi wi-night-partly-cloudy";          
       case "03":
-          this.iconClass = "wi wi-cloud";
-          break;
+          return "wi wi-cloud";   
       case "04":
-          this.iconClass = "wi wi-cloudy";
-          break;
+          return "wi wi-cloudy";
       case "09":
-          this.iconClass = "wi wi-showers";
-          break;
+          return "wi wi-showers";
       case "10":
-          this.iconClass = "wi wi-rain";
-          break;
+          return "wi wi-rain";
       case "11":
-          this.iconClass = "wi wi-thunderstorm";
-          break;
+          return "wi wi-thunderstorm";
       case "13":
-          this.iconClass = "wi wi-snow";
-          break;
+          return "wi wi-snow";
       case "50":
-          this.iconClass = "wi wi-fog";
-          break;
+          return "wi wi-fog";
     }
   }
 }
