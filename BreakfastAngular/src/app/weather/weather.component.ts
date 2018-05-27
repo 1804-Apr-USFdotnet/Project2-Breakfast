@@ -27,7 +27,12 @@ export class WeatherComponent implements OnInit {
     );
     if (this.weather.condition != undefined)
     {
-      this.iconClass = this.weather.condition;
+      if (Number(this.weather.condition.substring(0,2)) > 3){
+        this.iconClass = this.weather.condition.substring(0,2);
+      }
+      else{
+        this.iconClass = this.weather.condition;
+      }
     }
   }
 
@@ -38,7 +43,12 @@ export class WeatherComponent implements OnInit {
     });
     if (this.weather.condition != undefined)
     {
-      this.iconClass = this.weather.condition;
+      if (Number(this.weather.condition.substring(0,2)) > 3){
+        this.iconClass = this.weather.condition.substring(0,2);
+      }
+      else{
+        this.iconClass = this.weather.condition;
+      }
     }
   }
 
