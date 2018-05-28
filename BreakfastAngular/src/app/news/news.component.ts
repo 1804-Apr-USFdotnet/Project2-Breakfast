@@ -9,7 +9,7 @@ import { Article } from '../models/Article';
   styleUrls: ['./news.component.css']
 })
 export class NewsComponent implements OnInit {
-  articles: Article;
+  articles: Article[];
   userId: string;
   constructor(private route: ActivatedRoute, private newsService: NewsService) { 
   }
