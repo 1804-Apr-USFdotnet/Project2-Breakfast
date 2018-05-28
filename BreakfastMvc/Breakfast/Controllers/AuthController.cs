@@ -53,7 +53,7 @@ namespace Breakfast.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("index", "home");
+                return View("LogIn");
             }
 
             var user = new AppUser
@@ -80,7 +80,7 @@ namespace Breakfast.Controllers
                 ModelState.AddModelError("", error);
             }
 
-            return RedirectToAction("index", "home");
+            return View("LogIn");
         }
 
         public AuthController()
