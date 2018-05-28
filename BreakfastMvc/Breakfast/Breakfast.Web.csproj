@@ -180,6 +180,7 @@
     <Compile Include="Areas\News\Models\NewsArticle.cs" />
     <Compile Include="Areas\News\NewsAreaRegistration.cs" />
     <Compile Include="Areas\Traffic\Controllers\TrafficController.cs" />
+    <Compile Include="Areas\Traffic\Models\TimeJsonResponse.cs" />
     <Compile Include="Areas\Traffic\Models\TrafficSettingsViewModel.cs" />
     <Compile Include="Areas\Traffic\TrafficAreaRegistration.cs" />
     <Compile Include="Areas\Weather\Controllers\OpenWeatherMapController.cs" />
@@ -213,6 +214,7 @@
     <Content Include="Content\Contact.css" />
     <Content Include="Content\Home.css" />
     <Content Include="Content\Login.css" />
+    <Content Include="Content\NewsModule.css" />
     <Content Include="Content\Settings.css" />
     <Content Include="Content\SettingsPage.css" />
     <Content Include="Content\Sidebar.css" />
@@ -276,6 +278,7 @@
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Areas\News\Views\ArticleDetails.cshtml" />
     <Content Include="Areas\News\Views\Index.cshtml" />
+    <Content Include="Areas\News\Views\SettingsDefault.cshtml" />
     <Content Include="Areas\News\Views\Settings.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />

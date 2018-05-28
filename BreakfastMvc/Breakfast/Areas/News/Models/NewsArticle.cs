@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -15,17 +17,20 @@ namespace Breakfast.Areas.News.Models
         public readonly string Source;
         public readonly string Description;
         public readonly string Url;
+        public readonly string ImgUrl;
         public readonly DateTime PubDateTime;
 
         #region Constructors
-        public NewsArticle(string title, string author, string source, string description, string url, DateTime pubDateTime)
+        [JsonConstructor]
+        public NewsArticle(string Title, string Author, string Source, string Desc, string Url, string ImgUrl, DateTime PublDate)
         {
-            Title = title;
-            Author = author;
-            Source = source;
-            Description = description;
-            Url = url;
-            PubDateTime = pubDateTime;
+            this.Title = Title;
+            this.Author = Author;
+            this.Source = Source;
+            this.Description = Desc;
+            this.Url = Url;
+            this.ImgUrl = ImgUrl;
+            this.PubDateTime = PublDate;
         }
 
         public NewsArticle(NewsArticle toCopy)
@@ -35,21 +40,25 @@ namespace Breakfast.Areas.News.Models
             Source = String.Copy(toCopy.Source);
             Description = String.Copy(toCopy.Description);
             Url = String.Copy(toCopy.Url);
+            ImgUrl = String.Copy(toCopy.ImgUrl);
             PubDateTime = toCopy.PubDateTime;
         }
         #endregion
 
-
-        public void GetArticles()
+        public static IEnumerable<NewsArticle> GetArticles(string userId)
         {
-            //todo: Parse these results into separate Articles
-            var url = "https://newsapi.org/v2/top-headlines?" +  
-                "country=us&" +
-                "apiKey=7d149bd8ce044572abb107044e4abe4a"; // hard coded API Key
+            const string uri = "http://ec2-18-188-45-20.us-east-2.compute.amazonaws.com/Breakfast.Service_deploy/";
 
-            var json = new WebClient().DownloadString(url);
+            HttpWebRequest apiRequest = WebRequest.Create(uri + "api/news/getArticles/" + userId + "/") as HttpWebRequest;
+            string apiResponse = "";
+            using (var response = apiRequest.GetResponse() as HttpWebResponse)
+            {
+                StreamReader reader = new StreamReader(response.GetResponseStream());
+                apiResponse = reader.ReadToEnd();
+            }
 
-            Console.WriteLine(json);
+            IEnumerable<NewsArticle> articles = JsonConvert.DeserializeObject<List<NewsArticle>>(apiResponse);
+            return articles;
         }
     }
 }

@@ -6,13 +6,15 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Breakfast.Business.Traffic.Models;
+using Exception = System.Exception;
 
 namespace Breakfast.Business.Traffic
 {
     public static class TrafficApi
     {
-        public static async Task<string> GetTimeToWork(string homePlaceId, string workPlaceId, string travelMode)
+        public static async Task<TravelTimeToWork> GetTimeToWork(string homePlaceId, string workPlaceId, string travelMode)
         {
+            TravelTimeToWork tttw = new TravelTimeToWork();
             string apiKey = null;
             try
             {
@@ -21,10 +23,20 @@ namespace Breakfast.Business.Traffic
             catch (Exception e)
             {
                 Console.WriteLine("It failed, do you have mapskey.txt in the same directory of the project");
+                tttw.Time = "API Key didnt parse correctly";
+                return tttw;
             }
+            
             HttpClient client = new HttpClient();
             
-            HttpResponseMessage response = await client.GetAsync(@"https://maps.googleapis.com/maps/api/distancematrix/json?origins=place_id:" + homePlaceId + "&destinations=place_id:"+ workPlaceId +"&mode=" + travelMode + "&key=" + apiKey);
+            string url = @"https://maps.googleapis.com/maps/api/distancematrix/json?origins=place_id:" + homePlaceId +
+                             @"&destinations=place_id:" + workPlaceId + @"&mode=" + travelMode + @"&key=" + apiKey;
+            string test = "test";
+            var response = await client.GetAsync(url);
+                    
+             
+           
+
             string insert = null;
             if (response.IsSuccessStatusCode)
             {
@@ -36,12 +48,12 @@ namespace Breakfast.Business.Traffic
                 Match match = Regex.Match(insert, "[0-9]+(?= mins)");
                 if (match.Success)
                 {
-                    var result = match.Captures[0].Value;
-                    return result;
+                    tttw.Time = match.Captures[0].Value;
+                    return tttw;
                 }
             }
-
-            return "Unable to get your time to work";
+            tttw.Time = "Unable to get your time to work";
+            return tttw;
         }
 
         

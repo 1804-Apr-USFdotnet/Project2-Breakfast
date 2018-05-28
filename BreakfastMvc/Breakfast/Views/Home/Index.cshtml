@@ -90,8 +90,7 @@
         else
         {
             <div class="stuff">
-                <!--//Stuff for when we *are* authenticated and logged in-->
-                @Html.Partial("~/Areas/News/Views/Index.cshtml", new List<Breakfast.Areas.News.Models.NewsArticle>())
+                @Html.Partial("~/Areas/News/Views/Index.cshtml", Model.articles)
             </div>
         }
 

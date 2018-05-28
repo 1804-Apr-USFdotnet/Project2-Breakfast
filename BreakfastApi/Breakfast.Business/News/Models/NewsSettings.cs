@@ -20,7 +20,7 @@ namespace Breakfast.Business.News.Models
         private Nullable <DateTime> _NewestDate;
         public string Language;
         public Nullable <int> PageSize;
-
+        public bool Enabled;
         //sort criteria
 
 
@@ -67,12 +67,13 @@ namespace Breakfast.Business.News.Models
             _OldestDate = null;
             _NewestDate = null;
             PageSize = null;
+            Enabled = false;
         }
 
         public NewsSettings(int id = -1, List<string> queryStrings = null, string [] sources = null,
             List<string> domains = null, Nullable<DateTime> oldestDate = null,
             Nullable<DateTime> newestDate = null, string language = null,
-            Nullable<int> pageSize = null)
+            Nullable<int> pageSize = null, bool enabled = false)
         {
             Id = -1;
             Sources = new string[MaxSrcCount];
@@ -122,38 +123,58 @@ namespace Breakfast.Business.News.Models
             }
 
             PageSize = pageSize;
+            Enabled = enabled;
         }        
 
         public NewsSettings(NewsSettings toCopy)
         {
+            if (toCopy == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             Sources = new string[MaxSrcCount];
             Queries = new List<string>();
             Domains = new List<string>();
 
-            for(int i = 0; i < Sources.Length && i < MaxSrcCount; i++)
+            if(toCopy.Sources != null && toCopy.Sources.Length != 0)
             {
-                if(toCopy.Sources[i] != "" && toCopy.Sources[i] != null)
+                for (int i = 0; i < Sources.Length && i < MaxSrcCount; i++)
                 {
-                    Sources[i] = String.Copy(toCopy.Sources[i]);
+                    if(toCopy.Sources[i] != "" && toCopy.Sources[i] != null)
+                    {
+                        Sources[i] = String.Copy(toCopy.Sources[i]);
+                    }
                 }
             }
 
-            foreach (var current in toCopy.Queries)
-            {
-                Queries.Add(String.Copy(current));
+            if(toCopy.Queries != null)
+            { 
+                foreach (var current in toCopy.Queries)
+                {
+                    Queries.Add(String.Copy(current));
+                }
             }
 
-            foreach (var current in toCopy.Domains)
-            {
-                Domains.Add(String.Copy(current));
+            if(toCopy.Domains != null) { 
+                foreach (var current in toCopy.Domains)
+                {
+                    Domains.Add(String.Copy(current));
+                }
             }
-
             _OldestDate = toCopy._OldestDate;
             _NewestDate = toCopy._NewestDate;
 
-            Language = String.Copy(toCopy.Language);
+            if(toCopy.Language != null)
+            { 
+                Language = String.Copy(toCopy.Language);
+            } else
+            {
+                Language = toCopy.Language;
+            }
 
             PageSize = toCopy.PageSize;
+            Enabled = toCopy.Enabled;
         }
         #endregion
 
@@ -165,8 +186,8 @@ namespace Breakfast.Business.News.Models
         static public explicit operator NewsSettings(Data.Models.NewsSettings nsData)
         {
             string concatQueryString = nsData?.Queries;
-            string concatDomainString = nsData?.Queries;
-            string concatSourceString = nsData?.Queries;
+            string concatDomainString = nsData?.Domains;
+            string concatSourceString = nsData?.Sources;
             char[] separatorCharacters = new char[] { '"' };
 
             string[] parsedQueries = { };
@@ -190,7 +211,8 @@ namespace Breakfast.Business.News.Models
                 _OldestDate = nsData.OldestDate,
                 _NewestDate = nsData.NewestDate,
                 Language = nsData.Language,
-                PageSize = nsData.PageSize
+                PageSize = nsData.PageSize,
+                Enabled = nsData.Enabled
             };
 
             return newsSettings;
@@ -198,22 +220,47 @@ namespace Breakfast.Business.News.Models
 
         static public explicit operator Data.Models.NewsSettings(NewsSettings newsSettings)
         {
-            string concatQueries = null;
-            foreach (var query in newsSettings?.Queries)
+            if(newsSettings == null)
             {
-                concatQueries += query + "\"";
+                throw new ArgumentNullException();
+            }
+            string concatQueries = null;
+            if(newsSettings.Queries != null) { 
+                foreach (var query in newsSettings.Queries)
+                {
+                    concatQueries += query + "\"";
+                }
+            } else
+            {
+ //               concatQueries = "";
             }
 
             string concatSources = null;
-            foreach (var source in newsSettings?.Sources)
+            if(newsSettings.Sources != null)
+            { 
+
+                foreach (var source in newsSettings.Sources)
+                {
+                    concatSources += source + "\"";
+                }
+            }
+            else
             {
-                concatSources += source + "\"";
+ //               concatSources = "";
             }
 
             string concatDomains = null;
-            foreach (var domain in newsSettings?.Domains)
+            if (newsSettings.Domains != null)
             {
-                concatDomains += domain + "\"";
+
+                foreach (var domain in newsSettings.Domains)
+                {
+                    concatDomains += domain + "\"";
+                }
+            }
+            else
+            {
+//                concatDomains = "";
             }
 
             Data.Models.NewsSettings nsData = new Data.Models.NewsSettings()
@@ -225,7 +272,8 @@ namespace Breakfast.Business.News.Models
                 OldestDate = newsSettings._OldestDate,
                 NewestDate = newsSettings._NewestDate,
                 Language = newsSettings.Language,
-                PageSize = newsSettings.PageSize
+                PageSize = newsSettings.PageSize,
+                Enabled = newsSettings.Enabled
             };
 
             return nsData;

@@ -22,6 +22,11 @@ namespace Breakfast.Business.News
 
         public NewsApiClient (NewsSettings settings)
         {
+            if(settings == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             this.Settings = settings.Copy();
         }
 

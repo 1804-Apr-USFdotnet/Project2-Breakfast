@@ -1,0 +1,36 @@
+        <div class="current-weather-container" *ngIf="weather !== undefined">
+    <div class="weather-container">
+        <div class="title">
+        <h1 id="city">{{weather.city}}, {{weather.country}}</h1>
+        <div id="graphic" class="weather-icon" [ngClass]="weather.condition"></div>
+        <div id="description" class='important-info text'>{{weather.description}}</div>
+        <div id="farenheit" class="temp-info">{{weather.temperature}}ºF</div>
+        </div>
+    </div>
+    <div class="description-container">
+        <div class="block-1">
+            <div id="humidity" class="text important-info">Humidity: {{weather.humidity}}%</div>
+        </div>
+        <div class="block-2">
+            <div id="pressure" class="text important-info">Cloudiness: {{weather.cloudiness}}%</div>
+        </div>
+        <div class="block-3">
+            <div id="windSpeed" class="text important-info">Wind: {{weather.windSpeed}} mph</div>
+        </div>
+    </div>
+    <div class="search-container">
+            <div class="search-box">
+                <input type="text" [(ngModel)]="searchZip" (keyup.enter)="getWeather()"/>
+                <span></span>
+            </div>
+        </div>
+  <div class="forecast-weather-container" *ngIf="weather !== undefined">
+    <div class="weather-wrapper" *ngFor="let forecast of weather.forecastDays">
+        <div class="weather-card">
+            <div class="forecast-icon" [ngClass]="forecast.condition"></div>
+            <h1 class="forecast-temp">{{forecast.tempMin}}º - {{forecast.tempMax}}º</h1>
+            <p>{{forecast.day}}</p>
+        </div>
+    </div>
+</div>
+</div>

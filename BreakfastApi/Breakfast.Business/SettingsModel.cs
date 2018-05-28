@@ -10,7 +10,7 @@ namespace Breakfast.Business
         public WeatherSettings Weather { get; set; }
         public TrafficSettingsBusiness Traffic { get; set; }
         public NewsSettings News { get; set; }
-        
+
 
         static public explicit operator SettingsModel(Data.Models.SettingsTable settingsTable)
         {

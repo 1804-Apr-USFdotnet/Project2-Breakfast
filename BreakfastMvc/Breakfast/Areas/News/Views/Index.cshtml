@@ -1,12 +1,23 @@
 ﻿@model IEnumerable<Breakfast.Areas.News.Models.NewsArticle>
 
-@foreach (var item in Model)
-{
-    if (item != Model.First<Breakfast.Areas.News.Models.NewsArticle>())
+<link rel="stylesheet" href="~/Content/NewsModule.css" />
+
+<div class="article-section" color="#ff0000">
+    <h3>News</h3>
+    @if (Model.Count() != 0)
+    { 
+        foreach (Breakfast.Areas.News.Models.NewsArticle item in Model)
+        {
+            if (item != Model.FirstOrDefault())
+            {
+                <hr />
+            }
+            @Html.Partial("~/Areas/News/Views/ArticleDetails.cshtml", item);
+        }
+    }
+    else
     {
         <hr />
+        <p>No Articles Available!</p>
     }
-
-    Html.RenderPartial("ArticleDetails", item);
-
-}
+</div>
