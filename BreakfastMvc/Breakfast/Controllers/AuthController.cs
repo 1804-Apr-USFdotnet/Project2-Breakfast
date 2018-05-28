@@ -21,6 +21,8 @@ namespace Breakfast.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ModelState.Clear();
+                ModelState.AddModelError("", "The user name or password provided is incorrect.");
                 return View("LogIn");
             }
 
@@ -39,6 +41,8 @@ namespace Breakfast.Controllers
             }
 
             // if login fails
+            ModelState.Clear();
+            ModelState.AddModelError("", "The user name or password provided is incorrect.");
             return View("LogIn");
         }
 
@@ -53,6 +57,9 @@ namespace Breakfast.Controllers
         {
             if (!ModelState.IsValid)
             {
+                model.register.Username = string.Empty;
+                model.register.Password = string.Empty;
+                model.register.Zipcode = string.Empty;
                 return View("LogIn");
             }
 
@@ -80,6 +87,9 @@ namespace Breakfast.Controllers
                 ModelState.AddModelError("", error);
             }
 
+            model.register.Username = string.Empty;
+            model.register.Password = string.Empty;
+            model.register.Zipcode = string.Empty;
             return View("LogIn");
         }
 
