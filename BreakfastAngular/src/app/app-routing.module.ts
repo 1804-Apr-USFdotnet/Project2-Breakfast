@@ -4,12 +4,14 @@ import { Routes, RouterModule } from "@angular/router";
 import { WeatherComponent } from './weather/weather.component';
 import { NewsComponent } from './news/news.component';
 import { IndexComponent } from './index/index.component';
+import { ContactComponent } from './contact/contact.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 
 const appRoutes: Routes = [
   { path: "index", component: IndexComponent },
   { path: "weather", component: WeatherComponent },
   { path: "news", component: NewsComponent },
+  { path: "contact", component: ContactComponent },
   { path: '',   redirectTo: '/index', pathMatch: 'full' }
 ]
 
