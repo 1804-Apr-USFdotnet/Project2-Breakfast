@@ -8,7 +8,7 @@ export class NewsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getArticles(
+  getArticlesById(
     userId: string,
     onSuccess,
     onFail = (reason) => console.log(reason)) {
