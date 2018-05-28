@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 namespace Breakfast.Areas.Traffic.Models
 {
 
-    public class TrafficSettingsViewModel
+    public  class TrafficSettingsViewModel
     {
         const string path = @"http://ec2-18-188-45-20.us-east-2.compute.amazonaws.com/Breakfast.Service_deploy/api/traffic/get/";
         
@@ -25,7 +25,16 @@ namespace Breakfast.Areas.Traffic.Models
         public double[] LatLng { get; set; }
         public string UserId { get; set; }
         public string TimeToWork { get; set; }
+        
 
+        public TrafficSettingsViewModel()
+        {
+
+        }
+        public TrafficSettingsViewModel(string userId)
+        {
+
+        }
         public static async Task<string> SetTimeToWork(TrafficSettingsViewModel tsvm)
         {
             HttpClient client = new HttpClient();
@@ -38,10 +47,26 @@ namespace Breakfast.Areas.Traffic.Models
                 result = await response.Content.ReadAsStringAsync();
             }
             TimeJsonResponse timeJson = JsonConvert.DeserializeObject<TimeJsonResponse>(result);
+
             return timeJson.Time;
 
 
 
+        }
+        public string getApiKey()
+        {
+            
+            try
+            {
+                string apiKey = System.IO.File.ReadAllText(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory.ToString(), "mapskey.txt"));
+                
+                return apiKey;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Failed to parse API Key");
+                return null;
+            }
         }
         //convert to domain object
         public static explicit operator TrafficSettingsViewModel(ViewModels.Traffic tsData)

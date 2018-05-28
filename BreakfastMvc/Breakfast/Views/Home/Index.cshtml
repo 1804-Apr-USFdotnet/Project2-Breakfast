@@ -68,19 +68,28 @@
     <section class="sectionOnePage" id="i-three">
         <div class="image" data-type="background" data-speed="6"></div>
         @if (!Request.IsAuthenticated)
-        {
-            <div class="stuff" data-type="content">
-                <nobr>
-                    Please @Html.ActionLink("register", "Register", "auth", routeValues: null, htmlAttributes: new { id = "registerLink", style = "text-decoration:underline;" }) or @Html.ActionLink("log in", "LogIn", "auth", routeValues: null, htmlAttributes: new { id = "loginLink", style = "text-decoration:underline;" }) to view traffic
-                </nobr>
-            </div>
-        }
-        else
-        {
-            <div class="stuff" data-type="content">
-                <img src="https://i.imgur.com/tSygiRs.png" alt="Server Error" />
-            </div>
-        }
+    {
+        <div class="stuff" data-type="content">
+            <nobr>
+                Please @Html.ActionLink("register", "Register", "auth", routeValues: null, htmlAttributes: new { id = "registerLink", style = "text-decoration:underline;" }) or @Html.ActionLink("log in", "LogIn", "auth", routeValues: null, htmlAttributes: new { id = "loginLink", style = "text-decoration:underline;" }) to view traffic
+            </nobr>
+        </div>
+}
+else
+{
+    <div class="stuff" data-type="content">
+        @if (Model.trafficData != null)
+    {
+        Html.RenderPartial("~/Areas/Traffic/Views/Traffic/ViewMap.cshtml", Model);
+    }
+    else
+    {
+        <nobr>
+            Server error
+        </nobr>
+}
+    </div>
+}
     </section>
 
     <section class="sectionOnePage" id="i-four">
