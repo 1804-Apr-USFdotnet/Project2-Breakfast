@@ -1,4 +1,26 @@
-<div class="article-container" *ngIf="!(articles == undefined || articles.length == 0)">
+<div *ngIf="!(articles == undefined || articles.length == 0)">
+<div class="container" *ngFor="let article of articles">
+<div class="news-item">
+        <img class="news-image" src="{{article.ImgUrl}}" alt="Not Available"/>
+    </div>
+    
+    <div class="news-infor-content">
+    <p  class="time-to-read">{{article.Author}}</p>
+    <a href="{{article.Url}}"><div class="tittle">
+        <h3>{{article.Title}}</h3>
+    </div></a>
+    <div class="paragraph">
+        <p>{{article.Desc}}</p>
+    </div>
+    <div class="bottom-content">
+        <p>{{article.PublDate}}</p>
+    </div>
+        </div>
+    </div>
+</div>
+        
+
+<!-- <div class="article-container" *ngIf="!(articles == undefined || articles.length == 0)">
     <table *ngFor="let article of articles">
         <tr>
             <td><span><strong>Title: </strong></span></td>
@@ -32,4 +54,4 @@
             </td>
         </tr>
     </table>
-</div>
+</div> -->
