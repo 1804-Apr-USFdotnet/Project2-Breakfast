@@ -20,7 +20,7 @@ import { TrafficComponent } from './traffic/traffic.component';
     NavigationBarComponent,
     IndexComponent,
     NewsComponent,
-    ContactComponent
+    ContactComponent,
     TrafficComponent
   ],
   imports: [
