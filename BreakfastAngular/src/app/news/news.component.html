@@ -1,3 +1,35 @@
-<p>
-  news works!
-</p>
+<div class="article-container" >
+    <table *ngFor="let article of articles">
+        <tr>
+            <td><span><strong>Title: </strong></span></td>
+            <td>
+                <span><strong>{{article.Title}}</strong></span>
+            </td>
+        </tr>
+
+        <tr>
+            <td><span><strong>Author: </strong></span></td>
+            <td>
+                <span>{{article.Author}}</span>
+            </td>
+        </tr>
+        <tr>
+            <td><span><strong>Source: </strong></span></td>
+            <td>
+                <span><a href="http://@Model.Url">{{article.Source}}</a></span>
+            </td>
+        </tr>
+        <tr>
+            <td><span><strong>Pub. Date: </strong></span></td>
+            <td>
+                <span>{{article.PublDate}}</span>
+            </td>
+        </tr>
+        <tr>
+            <td><span><strong>Description: </strong></span></td>
+            <td>
+                <span>{{article.Desc}}</span>
+            </td>
+        </tr>
+    </table>
+</div>
