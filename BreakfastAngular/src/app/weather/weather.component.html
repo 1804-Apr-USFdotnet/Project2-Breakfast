@@ -19,13 +19,10 @@
         </div>
     </div>
   
-  <!-- <div class="container-button">
-        <div class="switch-button">
-          <span class="active"></span>
-          <button class="text switch-button-case left active-case">Celsius</button>
-          <button class="text switch-button-case right">Farenheit</button>
-        </div>
-  </div> -->
+  <div class="container-button">
+        <input type="text" [(ngModel)]="searchZip" />
+        <button (click)="getWeather()">Go</button>
+  </div>
   <div class="forecast-weather-container" *ngIf="weather !== undefined">
     <div class="weather-wrapper" *ngFor="let forecast of weather.forecastDays">
         <div class="weather-card">
