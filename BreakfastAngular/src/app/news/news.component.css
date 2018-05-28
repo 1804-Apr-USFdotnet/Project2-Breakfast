@@ -27,6 +27,7 @@
     margin: 100px auto;
   }
   .news-container .news-item {
+    background: beige;
     width: 300px;
     height: 500px;
     margin: 15px;
@@ -121,26 +122,3 @@
     opacity: .7;
     font-size: .7rem;
   }
-
-/* div.article-container {
-    margin: 3%;
-    color: white;
-}
-
-div.article-section {
-    padding-top: .1%;
-    padding-bottom: .1%;
-    background-color: #187044;
-    color: #EEEEEE;
-    overflow:scroll;
-}
-
-    
-div.article-section a {
-    color: #2acc7b;
-    font-weight: bolder;
-}
-
-div.article-section h3 {
-    padding-left: 1.5%;
-} */
