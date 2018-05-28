@@ -22,4 +22,8 @@ describe('WeatherComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have five days', () => {
+    expect(component.weather.forecastDays.length).toEqual(5);
+  })
 });
