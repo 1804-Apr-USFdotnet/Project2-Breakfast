@@ -1,4 +1,4 @@
-<div class="article-container" >
+<div class="article-container" *ngIf="!(articles == undefined || articles.length == 0)">
     <table *ngFor="let article of articles">
         <tr>
             <td><span><strong>Title: </strong></span></td>
