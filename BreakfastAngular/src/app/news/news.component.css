@@ -1,0 +1,21 @@
+div.article-container {
+    margin: 3%;
+}
+
+div.article-section {
+    padding-top: .1%;
+    padding-bottom: .1%;
+    background-color: #187044;
+    color: #EEEEEE;
+    overflow:scroll;
+}
+
+    
+div.article-section a {
+    color: #2acc7b;
+    font-weight: bolder;
+}
+
+div.article-section h3 {
+    padding-left: 1.5%;
+}
