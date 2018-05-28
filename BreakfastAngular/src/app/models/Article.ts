@@ -1,4 +1,4 @@
-export class WeatherData
+export class Article
 {
     "Title": string;
     "Author": string;

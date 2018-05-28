@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NewsService } from '../news.service';
+import { Article } from '../models/Article';
 
 @Component({
   selector: 'app-news',
@@ -8,7 +9,7 @@ import { NewsService } from '../news.service';
   styleUrls: ['./news.component.css']
 })
 export class NewsComponent implements OnInit {
-  articles: articleData;
+  articles: Article;
   userId: string;
   constructor(private route: ActivatedRoute, private newsService: NewsService) { 
   }
