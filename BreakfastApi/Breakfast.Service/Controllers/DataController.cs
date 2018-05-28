@@ -44,7 +44,26 @@ namespace Breakfast.Service.Controllers
             {
                 NewsSettings settings = NewsCrud.ReadSettings(userId);
                 NewsApiClient client = new NewsApiClient(settings);
-                IEnumerable<NewsArticle> articles = client.GetNewsArticles();
+                IEnumerable<NewsArticle> articles = client.GetNewsArticles(1);
+                return Ok(articles);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e.Message);
+                return InternalServerError();
+            }
+        }
+
+        [HttpGet]
+        [ResponseType(typeof(IEnumerable<NewsArticle>))]
+        [Route("api/news/activeGetArticles/{queryString}")]
+        public IHttpActionResult ActiveGetArticles(string queryString)
+        {
+            try
+            {
+                NewsSettings settings = new NewsSettings ();
+                NewsApiClient client = new NewsApiClient(settings);
+                IEnumerable<NewsArticle> articles = client.GetNewsArticles(queryString);
                 return Ok(articles);
             }
             catch (Exception e)

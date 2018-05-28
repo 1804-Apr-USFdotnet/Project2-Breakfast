@@ -36,6 +36,20 @@ namespace Breakfast.Business.News
             return ParseApiRequest(json);
         }
 
+        public IEnumerable<NewsArticle> GetNewsArticles(int pageNum = 1, string domains = null, string queries = null,
+                                 string sources = null, string language = null, string oldestDate = null,
+                                 string newestDate = null, int pageSize = 20)
+        {
+            string json = CallNewsApi(pageNum, domains, queries, sources, language, oldestDate, newestDate, pageSize);
+            return ParseApiRequest(json);
+        }
+
+        public IEnumerable<NewsArticle> GetNewsArticles (string conditions)
+        {
+            string json = CallNewsApi(conditions);
+            return ParseApiRequest(json);
+        }
+
         private IEnumerable<NewsArticle> ParseApiRequest(string json)
         {
             List<NewsArticle> articleList = new List<NewsArticle>();
@@ -77,6 +91,53 @@ namespace Breakfast.Business.News
             DateTime publDate = DateTime.Parse(grabDate.Match(json).ToString());
 
             return new NewsArticle(title, author, source, url, imageUrl, desc, publDate);
+        }
+
+        public string CallNewsApi(string searchConditions)
+        {
+            searchConditions = searchConditions.Replace(' ', '&');
+            string url = "https://newsapi.org/v2/everything?" + searchConditions + "&" + GetSubstringApiKey();
+            return new WebClient().DownloadString(url);
+        }
+
+        public string CallNewsApi(int pageNum = 1, string domains = null, string queries = null,
+                                 string sources = null, string language = null, string oldestDate = null,
+                                 string newestDate = null, int pageSize = 20)
+        {
+            string url = "https://newsapi.org/v2/everything?";
+            if (domains != null)
+            {
+                url += "domains=" + domains + "&";
+            }
+
+            if (queries != null)
+            {
+                url += "q=" + queries + "&";
+            }
+
+            if (sources != null)
+            {
+                url += "sources=" + sources + "&";
+            }
+
+            if (language != null)
+            {
+                url += "language=" + language + "&";
+            }
+
+            if (oldestDate != null)
+            {
+                url += "from=" + oldestDate + "&";
+            }
+
+            if (newestDate != null)
+            {
+                url += "to=" + newestDate + "&";
+            }
+
+            url += "page=" + pageNum.ToString() + "&" + "pagesize=" + pageSize.ToString();
+
+            return new WebClient().DownloadString(url);
         }
 
         public string CallNewsApi(int pageNum = 1)
