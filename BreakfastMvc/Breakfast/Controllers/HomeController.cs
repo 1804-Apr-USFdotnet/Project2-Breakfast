@@ -30,7 +30,7 @@ namespace Breakfast.Controllers
                     // get weather data for current user
                     weatherData = new OpenWeatherMap(currentUser.zipcode),
                     // get traffic data for current user
-                    trafficData = (TrafficSettingsViewModel) new SettingsModel().GetSettings(User.Identity.Name).Traffic
+                    trafficData = (TrafficSettingsViewModel) new SettingsModel().GetSettings(User.Identity.Name).Traffic,
                     // get news data for current user
                     // TODO
                     articles = NewsArticle.GetArticles(currentUser.UserName)
