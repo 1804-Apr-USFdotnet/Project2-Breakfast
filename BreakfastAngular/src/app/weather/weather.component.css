@@ -226,7 +226,6 @@ h1 {
 .search-container {
   position: absolute;
   left: 50%;
-  top: 75%;
   transform: translate(-50%);
 }
 
