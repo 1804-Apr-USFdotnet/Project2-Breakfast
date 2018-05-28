@@ -3,7 +3,6 @@ using Breakfast.Areas.Weather.Models;
 using Breakfast.Models;
 using Breakfast.ViewModels;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;

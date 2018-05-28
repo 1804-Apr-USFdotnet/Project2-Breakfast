@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
 using Breakfast.Areas.Traffic.Models;
 using Breakfast.Models;
 using Breakfast.ViewModels;
@@ -29,7 +23,7 @@ namespace Breakfast.Areas.Traffic.Controllers
         {
 
             SettingsModel settingsModel = new SettingsModel();
-            RootObject jsonSettings = settingsModel.GetSettings(userId);
+            RootObject jsonSettings = settingsModel.GetSettings(User.Identity.Name);
             TrafficSettingsViewModel tsvm = new TrafficSettingsViewModel();
             tsvm = (TrafficSettingsViewModel)jsonSettings.Traffic;
 

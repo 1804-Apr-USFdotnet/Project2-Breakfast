@@ -22,12 +22,14 @@
                             Username<span class="req">*</span>
                         </label>
                         @Html.TextBoxFor(m => m.register.Username)
+                        @Html.ValidationMessageFor(m => m.register.Username, "", new { @class = "text-danger" })
                     </div>
                     <div class="field-wrap">
                         <label>
                             Password<span class="req">*</span>
                         </label>
                         @Html.PasswordFor(m => m.register.Password)
+                        @Html.ValidationMessageFor(m => m.register.Password, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -43,6 +45,7 @@
                         Zipcode<span class="req">*</span>
                     </label>
                     @Html.TextBoxFor(m => m.register.Zipcode)
+                    @Html.ValidationMessageFor(m => m.register.Zipcode, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="field-wrap">
