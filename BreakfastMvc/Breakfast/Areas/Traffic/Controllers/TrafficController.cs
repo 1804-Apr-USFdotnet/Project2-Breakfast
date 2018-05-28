@@ -45,6 +45,7 @@ namespace Breakfast.Areas.Traffic.Controllers
             TrafficSettingsViewModel tsvm = new TrafficSettingsViewModel();
             tsvm = (TrafficSettingsViewModel)jsonSettings.Traffic;
             tsvm.UserId = userId;
+            ViewBag.TravelMode = (tsvm.Driving) ? "Driving" : "Walking";
             ViewBag.APIKey = apiKey;
             ViewBag.Address = tsvm.Address;
             ViewBag.WorkAddress = tsvm.WorkAddress;
@@ -61,7 +62,7 @@ namespace Breakfast.Areas.Traffic.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine("Shit failed");
+                Console.WriteLine("Failed to parse API Key");
             }
         }
         [HttpPost]
