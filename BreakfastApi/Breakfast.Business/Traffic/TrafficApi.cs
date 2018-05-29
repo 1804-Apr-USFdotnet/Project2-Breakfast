@@ -15,17 +15,17 @@ namespace Breakfast.Business.Traffic
         public static async Task<TravelTimeToWork> GetTimeToWork(string homePlaceId, string workPlaceId, string travelMode)
         {
             TravelTimeToWork tttw = new TravelTimeToWork();
-            string apiKey = null;
-            try
-            {
-                apiKey = System.IO.File.ReadAllText(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory.ToString(), "mapskey.txt"));
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("It failed, do you have mapskey.txt in the same directory of the project");
-                tttw.Time = "API Key didnt parse correctly";
-                return tttw;
-            }
+            string apiKey = "AIzaSyD-Dndf6f1-0LZCgSB4zaBCqtApaSTIquo";
+//            try
+//            {
+//                apiKey = System.IO.File.ReadAllText(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory.ToString(), "mapskey.txt"));
+//            }
+//            catch (Exception e)
+//            {
+//                Console.WriteLine("It failed, do you have mapskey.txt in the same directory of the project");
+//                tttw.Time = "API Key didnt parse correctly";
+//                return tttw;
+//            }
             
             HttpClient client = new HttpClient();
             
