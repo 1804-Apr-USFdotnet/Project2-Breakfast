@@ -78,7 +78,7 @@ namespace Breakfast.Controllers
                 var identity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                 GetAuthenticationManager().SignIn(identity);
                 //initialize default settings using rest service
-                new SettingsModel().InitializeSettings(user.UserName);
+                new SettingsModel().InitializeSettings(user.UserName, user.address, user.workAddress);
                 return RedirectToAction("index", "home");
             }
 

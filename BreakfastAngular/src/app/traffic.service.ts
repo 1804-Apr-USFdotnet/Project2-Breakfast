@@ -15,7 +15,7 @@ export class TrafficService {
     onSuccess,
     onFail = (reason) => console.log(reason)) {
       var url = "http://ec2-18-188-45-20.us-east-2.compute.amazonaws.com/Breakfast.Service_deploy/api/traffic/get/"
-       + homePlaceId + "/" +workPlaceId + "/" + travelMode;
+       + homePlaceId + "/" +workPlaceId + "/" + travelMode + "/" + "1";
       var req = this.httpClient.get(url);
       var promise = req.toPromise();
 

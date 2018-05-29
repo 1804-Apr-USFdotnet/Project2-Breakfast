@@ -39,7 +39,23 @@ namespace Breakfast.Areas.Traffic.Models
         {
             HttpClient client = new HttpClient();
             string travelMode = (tsvm.Driving) ? "DRIVING" : "WALKING";
-            string url = path + tsvm.AddressPlaceId + "/" + tsvm.WorkAddressPlaceId + "/" + travelMode;
+            string url = "";
+            if (tsvm.AddressPlaceId != null && tsvm.AddressPlaceId.Length > 2 && tsvm.WorkAddressPlaceId != null &&
+                tsvm.WorkAddressPlaceId.Length > 2)
+            {
+                url = path + tsvm.AddressPlaceId + "/" + tsvm.WorkAddressPlaceId + "/" + travelMode + "/" + "1";
+            }
+            else if (tsvm.Address != null && tsvm.WorkAddress != null)
+            {
+                string home = ParseAutocomplete(tsvm.Address);
+                string work = ParseAutocomplete(tsvm.WorkAddress);
+                url = path + home + "/" + work + "/" + travelMode + "/" + "2";
+            }
+            else
+            {
+                return "Can't get a time to work without a valid home and work address";
+            }
+
             var response = await client.GetAsync(url);
             string result = null;
             if (response.IsSuccessStatusCode)
@@ -48,12 +64,25 @@ namespace Breakfast.Areas.Traffic.Models
             }
             TimeJsonResponse timeJson = new TimeJsonResponse();
             if (result != null)
+            {
                 timeJson = JsonConvert.DeserializeObject<TimeJsonResponse>(result);
+            }
+            else
+            {
+                return "Could not get time to work, is your address formatted properly?";
+            }
 
             return timeJson.Time;
 
 
 
+        }
+        private static string ParseAutocomplete(string address)
+        {
+            string result1, result2;
+            result1 = address.Replace(" ", "+");
+            result2 = result1.Replace(", ", "+");
+            return result2;
         }
         public string getApiKey()
         {
