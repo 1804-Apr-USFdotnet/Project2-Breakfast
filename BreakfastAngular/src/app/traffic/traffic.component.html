@@ -1,4 +1,20 @@
-<div id="traffic-container" style="padding: 5%; height: 100%">
+<div class ="container" style="padding: 5%; height: 100%">
+        <div style="text-align:center">
+                <h1>
+                  <span class="label label-success" style="color: orange">Traffic patterns in your area</span>
+                </h1>
+              </div>
+              <br>
+        <div class="row">
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                  <button (click)="setMapType('terrain')" class="btn btn-primary">Terrain</button>
+                  <button (click)="setMapType('satellite')" class="btn btn-danger">Satellite</button>
+                  <button (click)="setMapType('roadmap')" class="btn btn-warning">Road Map</button>
+                  <button (click)="changeTheme('dark')" class="btn btn-warning">Dark Theme</button>
+                  <button (click)="changeTheme('light')" class="btn btn-warning">Light Theme</button>
+
+                </div>
+
 <div #map style="width:100%; height: 34rem;"></div>
 <div id="ttw" style="align-content: center; background-color: orange; font-size: 2rem"> <strong style="font-size: 3rem">{{timeToWork.Time}}</strong> minutes to get to work</div>
 </div>  

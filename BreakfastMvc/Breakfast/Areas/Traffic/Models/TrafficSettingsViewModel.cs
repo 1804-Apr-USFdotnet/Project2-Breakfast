@@ -80,8 +80,8 @@ namespace Breakfast.Areas.Traffic.Models
         private static string ParseAutocomplete(string address)
         {
             string result1, result2;
-            result1 = address.Replace(" ", "+");
-            result2 = result1.Replace(", ", "+");
+            result1 = address.Replace(" ", "");
+            result2 = result1.Replace(", ", "");
             return result2;
         }
         public string getApiKey()
