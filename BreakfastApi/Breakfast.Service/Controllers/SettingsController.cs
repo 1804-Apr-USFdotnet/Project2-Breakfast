@@ -70,6 +70,23 @@ namespace Breakfast.Service.Controllers
             }
         }
 
+        [HttpGet]
+        [ResponseType(typeof(void))]
+        [Route("api/settings/initialize/{userId}/{homeAddress}/{workAddress}")]
+        public IHttpActionResult InitializeSettings(string userId, string homeAddress, string workAddress)
+        {
+            try
+            {
+                Settings.initializeSettings(userId, homeAddress, workAddress);
+                return StatusCode(HttpStatusCode.Created);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e.Message);
+                return InternalServerError();
+            }
+        }
+
         [HttpPost]
         [ResponseType(typeof(void))]
         [Route("api/settings/weather/{userId}")]

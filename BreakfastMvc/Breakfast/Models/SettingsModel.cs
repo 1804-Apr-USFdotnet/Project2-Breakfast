@@ -40,6 +40,17 @@ namespace Breakfast.Models
             }
         }
 
+        public void InitializeSettings(string userId, string homeAddress, string workAddress)
+        {
+            HttpWebRequest apiRequest = WebRequest.Create(uri + "api/settings/initialize/" + userId + "/" + homeAddress + "/" + workAddress + "/") as HttpWebRequest;
+            using (var response = apiRequest.GetResponse() as HttpWebResponse)
+            {
+                //do something with response.StatusCode
+                Debug.WriteLine(response.StatusCode);
+                Debug.WriteLine(response.StatusDescription);
+            }
+        }
+
         public async Task<HttpResponseMessage> SaveWeatherSettings(string userId, Weather weather)
         {
             AppDbContext db = new AppDbContext();

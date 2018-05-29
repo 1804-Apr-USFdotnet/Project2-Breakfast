@@ -82,10 +82,10 @@ namespace Breakfast.Business.Traffic
 
         private static string ParseAutocomplete(string address)
         {
-            string result = "";
-            result = address.Replace(" ", "+");
-            result = address.Replace(", ", "+");
-            return result;
+            string result1, result2;
+            result1 = address.Replace(" ", "+");
+            result2 = result1.Replace(", ", "+");
+            return result2;
         }
 
 
