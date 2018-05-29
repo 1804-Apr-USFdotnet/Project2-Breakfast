@@ -11,7 +11,7 @@ namespace Breakfast.Data.Models
         public int Pk_NewsId { get; set; }
         public bool Enabled { get; set; }
         public string Queries { get; set; }
-        public string Sources { get; set; }// questioning implementation here
+        public string Sources { get; set; }
         public string Domains { get; set; }
         public Nullable<DateTime> OldestDate { get; set; }
         public Nullable<DateTime> NewestDate { get; set; }

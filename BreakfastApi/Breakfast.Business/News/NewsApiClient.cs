@@ -36,6 +36,20 @@ namespace Breakfast.Business.News
             return ParseApiRequest(json);
         }
 
+        public IEnumerable<NewsArticle> GetNewsArticles(int pageNum = 1, string domains = null, string queries = null,
+                                 string sources = null, string language = null, string oldestDate = null,
+                                 string newestDate = null, int pageSize = 20)
+        {
+            string json = CallNewsApi(pageNum, domains, queries, sources, language, oldestDate, newestDate, pageSize);
+            return ParseApiRequest(json);
+        }
+
+        public IEnumerable<NewsArticle> GetNewsArticles (string conditions)
+        {
+            string json = CallNewsApi(conditions);
+            return ParseApiRequest(json);
+        }
+
         private IEnumerable<NewsArticle> ParseApiRequest(string json)
         {
             List<NewsArticle> articleList = new List<NewsArticle>();
@@ -79,6 +93,53 @@ namespace Breakfast.Business.News
             return new NewsArticle(title, author, source, url, imageUrl, desc, publDate);
         }
 
+        public string CallNewsApi(string searchConditions)
+        {
+            searchConditions = searchConditions.Replace(' ', '&');
+            string url = "https://newsapi.org/v2/everything?" + searchConditions + "&" + GetSubstringApiKey();
+            return new WebClient().DownloadString(url);
+        }
+
+        public string CallNewsApi(int pageNum = 1, string domains = null, string queries = null,
+                                 string sources = null, string language = null, string oldestDate = null,
+                                 string newestDate = null, int pageSize = 20)
+        {
+            string url = "https://newsapi.org/v2/everything?";
+            if (domains != null)
+            {
+                url += "domains=" + domains + "&";
+            }
+
+            if (queries != null)
+            {
+                url += "q=" + queries + "&";
+            }
+
+            if (sources != null)
+            {
+                url += "sources=" + sources + "&";
+            }
+
+            if (language != null)
+            {
+                url += "language=" + language + "&";
+            }
+
+            if (oldestDate != null)
+            {
+                url += "from=" + oldestDate + "&";
+            }
+
+            if (newestDate != null)
+            {
+                url += "to=" + newestDate + "&";
+            }
+
+            url += "page=" + pageNum.ToString() + "&" + "pagesize=" + pageSize.ToString();
+
+            return new WebClient().DownloadString(url);
+        }
+
         public string CallNewsApi(int pageNum = 1)
         {
             var url = "https://newsapi.org/v2/everything?" +
@@ -111,58 +172,37 @@ namespace Breakfast.Business.News
 
         private string GetSubstringQueries ()
         {
-            if (Settings.Queries.Count == 0)
+            if (Settings.Queries == null || Settings.Queries == "")
             {
                 return "";
             }
             else
             {
-                string substring = "q=";
-                foreach (var queryString in Settings.Queries)
-                {
-                    substring = substring + queryString + ",";
-                }
-
-                substring = substring.Remove(substring.Length - 1, 1) + "&";
-                return substring;
+                return "q=" + Settings.Queries + "&";
             }
         }
 
         private string GetSubstringSources ()
         {
-            if (Settings.Sources[0] == "" || Settings.Sources[0] == null)
-            {
-                return "";
-            }
-            string substring = "sources=";
-
-            for(int i = 0; i < Settings.Sources.Length; i++)
-            {
-                if(Settings.Sources[i] != "" && Settings.Sources[i] != null)
-                {
-                    substring = substring + Settings.Sources[i] + ",";
-                }
-            }
-
-            substring = substring.Remove(substring.Length - 1, 1) + "&";
-            return substring;
-        }
-
-        private string GetSubstringDomains ()
-        {
-            if (Settings.Domains.Count == 0)
+            if (Settings.Sources == "" || Settings.Sources == null)
             {
                 return "";
             }
             else
             {
-                string substring = "domains=";
-                foreach(string domain in Settings.Domains)
-                {
-                    substring = substring + domain + ",";
-                }
-                substring = substring.Remove(substring.Length - 1, 1) + "&";
-                return substring;
+                return "sources=" + Settings.Sources + "&";
+            }
+        }
+
+        private string GetSubstringDomains ()
+        {
+            if (Settings.Domains == "" || Settings.Domains == null)
+            {
+                return "";
+            }
+            else
+            {
+                return "domains=" + Settings.Domains + "&";
             }
         }
 

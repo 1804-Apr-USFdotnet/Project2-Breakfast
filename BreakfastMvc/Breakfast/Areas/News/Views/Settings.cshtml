@@ -11,55 +11,46 @@
         </div>
         <div class="settings">
             @using (Html.BeginForm("SaveNewsSettings", "Home", FormMethod.Post))
-            {
-                <div class="item">
-                    <div class="label">
-                        Enabled
-                    </div>
-                    <label class="switch">
-                        @Html.CheckBoxFor(m => m.Enabled, new { @checked = "checked" })
-                        <div class="slider"></div>
-                    </label>
-                </div>
-                <!--<div class="item">
-                    <div class="label">
-                        Search Query
-                    </div>
-                    <label class="switch">
-                        Html.CheckBoxFor(m => m.farenheit, new { checked = "checked" })
-                    </label>
-                </div>
-                <div class="item">
-                    <div class="label">
-                        Domain
-                    </div>
-                    <label class="switch">
-                        Html.CheckBoxFor(m => m.windSpeed, new { checked = "checked" })
-                    </label>
-                </div>
-                <div class="item">
-                    <div class="label">
-                        Source
-                    </div>
-                    <label class="switch">
-                        Html.EditorFor(m => m.Sources)
-                        Html.CheckBoxFor(m => m.humidity, new { checked = "checked" })
-                    </label>
-                </div>
-                <div class="item">
-                    <div class="label">
-                        Language
-                    </div>
-                    <label class="switch">
-                        Html.CheckBoxFor(m => m.cloudiness, new { checked = "checked" })
-                    </label>
-                </div>-->
-                <div class="item subscribe">
+    {
+        <div class="item">
+            <div class="label">
+                Enabled
+            </div>
+            <label class="switch">
+                @Html.CheckBoxFor(m => m.Enabled, new { @checked = "checked" })
+                <div class="slider"></div>
+            </label>
+        </div>
+        <div class="item">
+            <div class="label">
+                Topics
+            </div>
+            @Html.TextBoxFor(m => m.Queries)
+        </div>
+        <div class="item">
+            <div class="label">
+                Domains
+            </div>
+            @Html.TextBoxFor(m => m.Domains)
+        </div>
+        <div class="item">
+            <div class="label">
+                Language
+            </div>
+            @Html.TextBoxFor(m => m.Language)
+        </div>
+        <div class="item">
+            <div class="label">
+                Num. of Articles
+            </div>
+            @Html.TextBoxFor(m => m.PageSize)
+        </div>
+        <div class="item subscribe">
 
-                    <input class="title" type="submit" value="Save" style="background-color: Transparent;">
+            <input class="title" type="submit" value="Save" style="background-color: Transparent;">
 
-                </div>
-            }
+        </div>
+}
         </div>
     </div>
 </div>
