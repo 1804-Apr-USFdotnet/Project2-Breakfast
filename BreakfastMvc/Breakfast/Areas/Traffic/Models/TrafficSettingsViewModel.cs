@@ -46,7 +46,9 @@ namespace Breakfast.Areas.Traffic.Models
             {
                 result = await response.Content.ReadAsStringAsync();
             }
-            TimeJsonResponse timeJson = JsonConvert.DeserializeObject<TimeJsonResponse>(result);
+            TimeJsonResponse timeJson = new TimeJsonResponse();
+            if (result != null)
+                timeJson = JsonConvert.DeserializeObject<TimeJsonResponse>(result);
 
             return timeJson.Time;
 
