@@ -37,7 +37,8 @@ namespace Breakfast.Controllers
                 //traffic data for viewbags
                 string timeToWork =  await TrafficSettingsViewModel.SetTimeToWork(data.trafficData);
                 string travelMode = (data.trafficData.Driving) ? "DRIVING" : "WALKING";
-                string apiKey = data.trafficData.getApiKey();
+//                string apiKey = data.trafficData.getApiKey();
+                string apiKey = "AIzaSyD-Dndf6f1-0LZCgSB4zaBCqtApaSTIquo"; //pls dont steal
                 _settingsApiKey = apiKey;
                 ViewBag.TimeToWork = timeToWork;
                 ViewBag.TravelMode = travelMode;

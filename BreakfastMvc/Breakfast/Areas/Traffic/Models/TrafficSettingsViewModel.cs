@@ -57,18 +57,19 @@ namespace Breakfast.Areas.Traffic.Models
         }
         public string getApiKey()
         {
-            
-            try
-            {
-                string apiKey = System.IO.File.ReadAllText(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory.ToString(), "mapskey.txt"));
-                
-                return apiKey;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Failed to parse API Key");
-                return null;
-            }
+            return "AIzaSyD-Dndf6f1-0LZCgSB4zaBCqtApaSTIquo";
+
+//            try
+//            {
+//                string apiKey = System.IO.File.ReadAllText(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory.ToString(), "mapskey.txt"));
+//                
+//                return apiKey;
+//            }
+//            catch (Exception e)
+//            {
+//                Console.WriteLine("Failed to parse API Key");
+//                return null;
+//            }
         }
         //convert to domain object
         public static explicit operator TrafficSettingsViewModel(ViewModels.Traffic tsData)
