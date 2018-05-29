@@ -56,12 +56,17 @@ namespace Breakfast.Service.Controllers
 
         [HttpGet]
         [ResponseType(typeof(string))]
-        [Route("api/traffic/get/{homePlaceId}/{workPlaceId}/{travelMode}")]
-        public async System.Threading.Tasks.Task<IHttpActionResult> TrafficTimeToWorkAsync(string homePlaceId, string workPlaceId, string travelMode)
+        [Route("api/traffic/get/{homePlaceId}/{workPlaceId}/{travelMode}/{version}")]
+        public async System.Threading.Tasks.Task<IHttpActionResult> TrafficTimeToWorkAsync(string homePlaceId, string workPlaceId, string travelMode, string version)
         {
             try
             {
-                return Ok( await TrafficApi.GetTimeToWork(homePlaceId, workPlaceId, travelMode));
+                if (version == "1")
+                    return Ok(await TrafficApi.GetTimeToWork(homePlaceId, workPlaceId, travelMode));
+                
+                //not place id's but regular strings
+                return Ok(await TrafficApi.GetTimeToWorkString(homePlaceId, workPlaceId, travelMode));
+                
             }
             catch (Exception e)
             {

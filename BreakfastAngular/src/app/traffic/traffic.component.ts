@@ -66,6 +66,9 @@ export class TrafficComponent implements OnInit {
         }
     );
   }
+  setMapType(mapTypeId: string) {
+    this.map.setMapTypeId(mapTypeId)
+  }
 }
 
 //  initMap() {
