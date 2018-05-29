@@ -4,6 +4,7 @@ import {} from '@types/googlemaps';
 import { TrafficService } from '../traffic.service';
 import { TrafficData } from '../models/trafficData';
 import { TimeToWork } from '../models/TimeToWork';
+import { mapStyle } from '../models/mapstyle'
 
 @Component({
   selector: 'app-traffic',
@@ -45,14 +46,18 @@ export class TrafficComponent implements OnInit {
       TravelMode: 'DRIVING',
       TimeToWork: '55'
     };
+    
     this.getTimeToWork();
     var mapProp = {
-      center: new google.maps.LatLng(18.5793, 73.8143),
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      center: new google.maps.LatLng(28.064264, -82.401471),
+      zoom: 15,   
+      
+      mapTypeId: google.maps.MapTypeId.ROADMAP        
     };
+    
     var trafficLayer = new google.maps.TrafficLayer();    
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapProp);
+    
     trafficLayer.setMap(this.map);
   }
 
@@ -68,6 +73,199 @@ export class TrafficComponent implements OnInit {
   }
   setMapType(mapTypeId: string) {
     this.map.setMapTypeId(mapTypeId)
+  }
+  changeTheme(type: string){
+    if(type === 'dark'){
+      var style = [
+        {
+            "featureType": "all",
+            "elementType": "labels.text.fill",
+            "stylers": [
+                {
+                    "saturation": 36
+                },
+                {
+                    "color": "#000000"
+                },
+                {
+                    "lightness": 40
+                }
+            ]
+        },
+        {
+            "featureType": "all",
+            "elementType": "labels.text.stroke",
+            "stylers": [
+                {
+                    "visibility": "on"
+                },
+                {
+                    "color": "#000000"
+                },
+                {
+                    "lightness": 16
+                }
+            ]
+        },
+        {
+            "featureType": "all",
+            "elementType": "labels.icon",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+        {
+            "featureType": "administrative",
+            "elementType": "geometry.fill",
+            "stylers": [
+                {
+                    "color": "#000000"
+                },
+                {
+                    "lightness": 20
+                }
+            ]
+        },
+        {
+            "featureType": "administrative",
+            "elementType": "geometry.stroke",
+            "stylers": [
+                {
+                    "color": "#000000"
+                },
+                {
+                    "lightness": 17
+                },
+                {
+                    "weight": 1.2
+                }
+            ]
+        },
+        {
+            "featureType": "landscape",
+            "elementType": "geometry",
+            "stylers": [
+                {
+                    "color": "#000000"
+                },
+                {
+                    "lightness": 20
+                }
+            ]
+        },
+        {
+            "featureType": "poi",
+            "elementType": "geometry",
+            "stylers": [
+                {
+                    "color": "#000000"
+                },
+                {
+                    "lightness": 21
+                }
+            ]
+        },
+        {
+            "featureType": "road.highway",
+            "elementType": "geometry.fill",
+            "stylers": [
+                {
+                    "color": "#000000"
+                },
+                {
+                    "lightness": 17
+                }
+            ]
+        },
+        {
+            "featureType": "road.highway",
+            "elementType": "geometry.stroke",
+            "stylers": [
+                {
+                    "color": "#000000"
+                },
+                {
+                    "lightness": 29
+                },
+                {
+                    "weight": 0.2
+                }
+            ]
+        },
+        {
+            "featureType": "road.arterial",
+            "elementType": "geometry",
+            "stylers": [
+                {
+                    "color": "#000000"
+                },
+                {
+                    "lightness": 18
+                }
+            ]
+        },
+        {
+            "featureType": "road.local",
+            "elementType": "geometry",
+            "stylers": [
+                {
+                    "color": "#000000"
+                },
+                {
+                    "lightness": 16
+                }
+            ]
+        },
+        {
+            "featureType": "transit",
+            "elementType": "geometry",
+            "stylers": [
+                {
+                    "color": "#000000"
+                },
+                {
+                    "lightness": 19
+                }
+            ]
+        },
+        {
+            "featureType": "water",
+            "elementType": "geometry",
+            "stylers": [
+                {
+                    "color": "#000000"
+                },
+                {
+                    "lightness": 25
+                }
+            ]
+        }
+    ];
+      this.getTimeToWork();
+      let mapProp = {
+        center: new google.maps.LatLng(28.064264, -82.401471),
+        zoom: 15,   
+        styles: style,
+        mapTypeId: google.maps.MapTypeId.ROADMAP        
+      };
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapProp);
+    }
+    if(type === 'light'){
+      this.getTimeToWork();
+      let mapProp = {
+        center: new google.maps.LatLng(28.064264, -82.401471),
+        zoom: 15,   
+        
+        mapTypeId: google.maps.MapTypeId.ROADMAP        
+      };
+      
+      let trafficLayer = new google.maps.TrafficLayer();    
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapProp);
+      
+      trafficLayer.setMap(this.map);
+    }
   }
 }
 
