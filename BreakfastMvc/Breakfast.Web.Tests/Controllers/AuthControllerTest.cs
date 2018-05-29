@@ -1,7 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
 using Breakfast.Controllers;
-using Breakfast.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Breakfast.Web.Tests.Controllers

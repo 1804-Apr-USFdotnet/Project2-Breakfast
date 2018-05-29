@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
 using Breakfast.Areas.Traffic.Models;
 using Breakfast.Models;
 using Breakfast.ViewModels;
@@ -29,7 +23,7 @@ namespace Breakfast.Areas.Traffic.Controllers
         {
 
             SettingsModel settingsModel = new SettingsModel();
-            RootObject jsonSettings = settingsModel.GetSettings(userId);
+            RootObject jsonSettings = settingsModel.GetSettings(User.Identity.Name);
             TrafficSettingsViewModel tsvm = new TrafficSettingsViewModel();
             tsvm = (TrafficSettingsViewModel)jsonSettings.Traffic;
 
@@ -51,6 +45,7 @@ namespace Breakfast.Areas.Traffic.Controllers
             TrafficSettingsViewModel tsvm = new TrafficSettingsViewModel();
             tsvm = (TrafficSettingsViewModel)jsonSettings.Traffic;
             tsvm.UserId = userId;
+            ViewBag.TravelMode = (tsvm.Driving) ? "Driving" : "Walking";
             ViewBag.APIKey = apiKey;
             ViewBag.Address = tsvm.Address;
             ViewBag.WorkAddress = tsvm.WorkAddress;
@@ -67,7 +62,7 @@ namespace Breakfast.Areas.Traffic.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine("Shit failed");
+                Console.WriteLine("Failed to parse API Key");
             }
         }
         [HttpPost]

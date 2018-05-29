@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 namespace Breakfast.Areas.Traffic.Models
 {
 
-    public class TrafficSettingsViewModel
+    public  class TrafficSettingsViewModel
     {
         const string path = @"http://ec2-18-188-45-20.us-east-2.compute.amazonaws.com/Breakfast.Service_deploy/api/traffic/get/";
         
@@ -25,23 +25,80 @@ namespace Breakfast.Areas.Traffic.Models
         public double[] LatLng { get; set; }
         public string UserId { get; set; }
         public string TimeToWork { get; set; }
+        
 
+        public TrafficSettingsViewModel()
+        {
+
+        }
+        public TrafficSettingsViewModel(string userId)
+        {
+
+        }
         public static async Task<string> SetTimeToWork(TrafficSettingsViewModel tsvm)
         {
             HttpClient client = new HttpClient();
             string travelMode = (tsvm.Driving) ? "DRIVING" : "WALKING";
-            string url = path + tsvm.AddressPlaceId + "/" + tsvm.WorkAddressPlaceId + "/" + travelMode;
+            string url = "";
+            if (tsvm.AddressPlaceId != null && tsvm.AddressPlaceId.Length > 2 && tsvm.WorkAddressPlaceId != null &&
+                tsvm.WorkAddressPlaceId.Length > 2)
+            {
+                url = path + tsvm.AddressPlaceId + "/" + tsvm.WorkAddressPlaceId + "/" + travelMode + "/" + "1";
+            }
+            else if (tsvm.Address != null && tsvm.WorkAddress != null)
+            {
+                string home = ParseAutocomplete(tsvm.Address);
+                string work = ParseAutocomplete(tsvm.WorkAddress);
+                url = path + home + "/" + work + "/" + travelMode + "/" + "2";
+            }
+            else
+            {
+                return "Can't get a time to work without a valid home and work address";
+            }
+
             var response = await client.GetAsync(url);
             string result = null;
             if (response.IsSuccessStatusCode)
             {
                 result = await response.Content.ReadAsStringAsync();
             }
-            TimeJsonResponse timeJson = JsonConvert.DeserializeObject<TimeJsonResponse>(result);
+            TimeJsonResponse timeJson = new TimeJsonResponse();
+            if (result != null)
+            {
+                timeJson = JsonConvert.DeserializeObject<TimeJsonResponse>(result);
+            }
+            else
+            {
+                return "Could not get time to work, is your address formatted properly?";
+            }
+
             return timeJson.Time;
 
 
 
+        }
+        private static string ParseAutocomplete(string address)
+        {
+            string result1, result2;
+            result1 = address.Replace(" ", "+");
+            result2 = result1.Replace(", ", "+");
+            return result2;
+        }
+        public string getApiKey()
+        {
+            return "AIzaSyD-Dndf6f1-0LZCgSB4zaBCqtApaSTIquo";
+
+//            try
+//            {
+//                string apiKey = System.IO.File.ReadAllText(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory.ToString(), "mapskey.txt"));
+//                
+//                return apiKey;
+//            }
+//            catch (Exception e)
+//            {
+//                Console.WriteLine("Failed to parse API Key");
+//                return null;
+//            }
         }
         //convert to domain object
         public static explicit operator TrafficSettingsViewModel(ViewModels.Traffic tsData)

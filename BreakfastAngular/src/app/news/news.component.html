@@ -1,35 +1,20 @@
-<div class="article-container" *ngIf="!(articles == undefined || articles.length == 0)">
-    <table *ngFor="let article of articles">
-        <tr>
-            <td><span><strong>Title: </strong></span></td>
-            <td>
-                <span><strong>{{article.Title}}</strong></span>
-            </td>
-        </tr>
-
-        <tr>
-            <td><span><strong>Author: </strong></span></td>
-            <td>
-                <span>{{article.Author}}</span>
-            </td>
-        </tr>
-        <tr>
-            <td><span><strong>Source: </strong></span></td>
-            <td>
-                <span><a href="{{article.Url}}">{{article.Source}}</a></span>
-            </td>
-        </tr>
-        <tr>
-            <td><span><strong>Pub. Date: </strong></span></td>
-            <td>
-                <span>{{article.PublDate}}</span>
-            </td>
-        </tr>
-        <tr>
-            <td><span><strong>Description: </strong></span></td>
-            <td>
-                <span>{{article.Desc}}</span>
-            </td>
-        </tr>
-    </table>
+<div *ngIf="!(articles == undefined || articles.length == 0)">
+<div class="news-container">
+<div class="news-item" *ngFor="let article of articles">
+        <img class="news-image" src="{{article.ImgUrl}}" alt="Not Available" onerror="this.src='http://www.51allout.co.uk/wp-content/uploads/2012/02/Image-not-found.gif';"/>
+    
+    <div class="news-infor-content">
+    <p  class="time-to-read">{{article.Source}}</p>
+    <a href="{{article.Url}}"><div class="tittle">
+        <h3>{{article.Title}}</h3>
+    </div></a>
+    <div class="paragraph">
+        <p>{{article.Desc}}</p>
+    </div>
+    <div class="bottom-content">
+        <p>{{article.PublDate}}</p>
+    </div>
+        </div>
+    </div>
+</div>
 </div>

@@ -1,8 +1,5 @@
 ﻿using Breakfast.ViewModels;
-using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -10,7 +7,6 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace Breakfast.Models
 {
@@ -36,6 +32,17 @@ namespace Breakfast.Models
         public void InitializeSettings(string userId)
         {
             HttpWebRequest apiRequest = WebRequest.Create(uri + "api/settings/initialize/" + userId + "/") as HttpWebRequest;
+            using (var response = apiRequest.GetResponse() as HttpWebResponse)
+            {
+                //do something with response.StatusCode
+                Debug.WriteLine(response.StatusCode);
+                Debug.WriteLine(response.StatusDescription);
+            }
+        }
+
+        public void InitializeSettings(string userId, string homeAddress, string workAddress)
+        {
+            HttpWebRequest apiRequest = WebRequest.Create(uri + "api/settings/initialize/" + userId + "/" + homeAddress + "/" + workAddress + "/") as HttpWebRequest;
             using (var response = apiRequest.GetResponse() as HttpWebResponse)
             {
                 //do something with response.StatusCode

@@ -22,12 +22,14 @@
                             Username<span class="req">*</span>
                         </label>
                         @Html.TextBoxFor(m => m.register.Username)
+                        @Html.ValidationMessageFor(m => m.register.Username, "", new { @class = "text-danger" })
                     </div>
                     <div class="field-wrap">
                         <label>
                             Password<span class="req">*</span>
                         </label>
                         @Html.PasswordFor(m => m.register.Password)
+                        @Html.ValidationMessageFor(m => m.register.Password, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -35,7 +37,7 @@
                     <label>
                         Address<span class="req">*</span>
                     </label>
-                    @Html.TextBoxFor(m => m.register.Address)
+                    @Html.EditorFor(m => m.register.Address, new { htmlattributes = new { id = "autocomplete", onFocus = "geolocate('HomeAddress')", placeholder = "" } })
                 </div>
 
                 <div class="field-wrap">
@@ -43,36 +45,105 @@
                         Zipcode<span class="req">*</span>
                     </label>
                     @Html.TextBoxFor(m => m.register.Zipcode)
+                    @Html.ValidationMessageFor(m => m.register.Zipcode, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="field-wrap">
                     <label>
                         Work Address<span class="req">*</span>
                     </label>
-                    @Html.TextBoxFor(m => m.register.WorkAddress)
+                    @Html.EditorFor(m => m.register.WorkAddress, new { htmlattributes = new { id = "autocompleteWork", onFocus = "geolocate('WorkAddress')", placeholder = "" } })
                 </div>
-
+               
                 <button type="submit" class="button button-block" value="Submit">Sign Up</button>
             }
         </div>
         <div id="login">
             @using (Html.BeginForm("Login", "Auth", FormMethod.Post))
-            {
-                <div class="field-wrap">
-                    <label>
-                        Username<span class="req">*</span>
-                    </label>
-                    @Html.TextBoxFor(m => m.login.Username)
-                </div>
-                <div class="field-wrap">
-                    <label>
-                        Password<span class="req">*</span>
-                    </label>
-                    @Html.PasswordFor(m => m.login.Password)
-                </div>
-                <p class="forgot"><a href="#">Forgot Password?</a></p>
-                <button type="submit" value="Submit" class="button button-block">Log In</button>
-            }
+    {
+        <div class="field-wrap">
+            <label>
+                Username<span class="req">*</span>
+            </label>
+            @Html.TextBoxFor(m => m.login.Username)
+        </div>
+        <div class="field-wrap">
+            <label>
+                Password<span class="req">*</span>
+            </label>
+            @Html.PasswordFor(m => m.login.Password)
+        </div>
+        <p class="forgot"><a href="#">Forgot Password?</a></p>
+        <button type="submit" value="Submit" class="button button-block">Log In</button>
+}
         </div>
     </div>
 </div>
+
+<script>
+    // This example displays an address form, using the autocomplete feature
+    // of the Google Places API to help users fill in the information.
+
+    // This example requires the Places library. Include the libraries=places
+    // parameter when you first load the API. For example:
+    // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+    var placeSearch, autocomplete, autocompleteWork, type;
+    var componentForm = {
+        street_number: 'short_name',
+        route: 'long_name',
+        locality: 'long_name',
+        administrative_area_level_1: 'short_name',
+        country: 'long_name',
+        postal_code: 'short_name'
+    };
+    function initAutocomplete() {
+        // Create the autocomplete object, restricting the search to geographical
+        // location types.
+        autocomplete = new google.maps.places.Autocomplete(
+            (document.getElementById('autocomplete'))
+        );
+        autocompleteWork = new google.maps.places.Autocomplete(
+            (document.getElementById('autocompleteWork'))
+        );
+
+        // When the user selects an address from the dropdown, populate the address
+        // fields in the form.
+        autocomplete.addListener('place_changed', fillInAddress);
+        autocompleteWork.addListener('place_changed', fillInAddress);
+    }
+
+//    function fillInAddress() {
+//        // Get the place details from the autocomplete object.
+//        if (type === "HomeAddress") {
+//            var place = autocomplete.getPlace();
+//            $("#AddressPlaceId").val(place.place_id);
+//        }
+//        if (type === "WorkAddress") {
+//            var placeWork = autocompleteWork.getPlace();
+//            $("#WorkAddressPlaceId").val(placeWork.place_id);
+//        }
+//        
+//    }
+
+    // Bias the autocomplete object to the user's geographical location,
+    // as supplied by the browser's 'navigator.geolocation' object.
+    function geolocate(addressType) {
+        type = addressType;
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var geolocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                var circle = new google.maps.Circle({
+                    center: geolocation,
+                    radius: position.coords.accuracy
+                });
+                autocomplete.setBounds(circle.getBounds());
+            });
+        }
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-Dndf6f1-0LZCgSB4zaBCqtApaSTIquo&libraries=places&callback=initAutocomplete"
+        async defer></script>

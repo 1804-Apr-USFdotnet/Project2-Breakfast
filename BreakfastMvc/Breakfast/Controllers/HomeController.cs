@@ -6,14 +6,18 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Breakfast.Areas.Traffic.Models;
 
 namespace Breakfast.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : AsyncController
     {
-        public ActionResult Index()
+        private static string _settingsApiKey;
+
+        public async Task<ActionResult> Index()
         {
             if (User.Identity.IsAuthenticated)
             {
@@ -27,11 +31,20 @@ namespace Breakfast.Controllers
                     // get weather data for current user
                     weatherData = new OpenWeatherMap(currentUser.zipcode),
                     // get traffic data for current user
-                    // TODO
+                    trafficData = (TrafficSettingsViewModel) new SettingsModel().GetSettings(User.Identity.Name).Traffic,
                     // get news data for current user
                     // TODO
                     articles = NewsArticle.GetArticles(currentUser.UserName)
                 };
+                //traffic data for viewbags
+                string timeToWork =  await TrafficSettingsViewModel.SetTimeToWork(data.trafficData);
+                string travelMode = (data.trafficData.Driving) ? "DRIVING" : "WALKING";
+//                string apiKey = data.trafficData.getApiKey();
+                string apiKey = "AIzaSyD-Dndf6f1-0LZCgSB4zaBCqtApaSTIquo"; //pls dont steal
+                _settingsApiKey = apiKey;
+                ViewBag.TimeToWork = timeToWork;
+                ViewBag.TravelMode = travelMode;
+                ViewBag.APIKey = apiKey;
 
                 if (data.settings.Weather.farenheit == false)
                     data.weatherData.ToCelcius();
@@ -54,6 +67,10 @@ namespace Breakfast.Controllers
 
         public ActionResult Settings()
         {
+            var rootSettings = new SettingsModel().GetSettings(User.Identity.Name);
+            var trafficViewModel = (TrafficSettingsViewModel) rootSettings.Traffic;
+            ViewBag.APIKey = trafficViewModel.getApiKey();
+            
             return View(new SettingsModel().GetSettings(User.Identity.Name));
         }
 
@@ -61,6 +78,13 @@ namespace Breakfast.Controllers
         public ActionResult SaveWeatherSettings(Weather weather)
         {
             new SettingsModel().SaveWeatherSettings(User.Identity.Name, weather);
+            return RedirectToAction("index", "home");
+        }
+
+        [HttpPost]
+        public ActionResult SaveTrafficSettings(Traffic traffic)
+        {
+            new SettingsModel().SaveTrafficSettings(User.Identity.Name, traffic);
             return RedirectToAction("index", "home");
         }
 
