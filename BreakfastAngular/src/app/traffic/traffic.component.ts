@@ -47,12 +47,36 @@ export class TrafficComponent implements OnInit {
       TimeToWork: '55'
     };
     
-    var style = JSON.stringify(mapStyle);
     this.getTimeToWork();
     var mapProp = {
       center: new google.maps.LatLng(28.064264, -82.401471),
       zoom: 15,   
-      styles: [
+      
+      mapTypeId: google.maps.MapTypeId.ROADMAP        
+    };
+    
+    var trafficLayer = new google.maps.TrafficLayer();    
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapProp);
+    
+    trafficLayer.setMap(this.map);
+  }
+
+  getTimeToWork() {
+    this.trafficService.getTimeToWork(
+        this.traffic.AddressPlaceId,
+        this.traffic.WorkAddressPlaceId,
+        this.traffic.TravelMode,
+        (response) => {
+            this.timeToWork = response
+        }
+    );
+  }
+  setMapType(mapTypeId: string) {
+    this.map.setMapTypeId(mapTypeId)
+  }
+  changeTheme(type: string){
+    if(type === 'dark'){
+      var style = [
         {
             "featureType": "all",
             "elementType": "labels.text.fill",
@@ -214,36 +238,33 @@ export class TrafficComponent implements OnInit {
                     "color": "#000000"
                 },
                 {
-                    "lightness": 17
+                    "lightness": 25
                 }
             ]
         }
-    ],
-      mapTypeId: google.maps.MapTypeId.ROADMAP        
-    };
-    
-    var trafficLayer = new google.maps.TrafficLayer();    
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapProp);
-    
-    trafficLayer.setMap(this.map);
-  }
-
-  getTimeToWork() {
-    this.trafficService.getTimeToWork(
-        this.traffic.AddressPlaceId,
-        this.traffic.WorkAddressPlaceId,
-        this.traffic.TravelMode,
-        (response) => {
-            this.timeToWork = response
-        }
-    );
-  }
-  setMapType(mapTypeId: string) {
-    this.map.setMapTypeId(mapTypeId)
-  }
-  changeTheme(type: number){
-    if(type === 1){
-      this.map;
+    ];
+      this.getTimeToWork();
+      let mapProp = {
+        center: new google.maps.LatLng(28.064264, -82.401471),
+        zoom: 15,   
+        styles: style,
+        mapTypeId: google.maps.MapTypeId.ROADMAP        
+      };
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapProp);
+    }
+    if(type === 'light'){
+      this.getTimeToWork();
+      let mapProp = {
+        center: new google.maps.LatLng(28.064264, -82.401471),
+        zoom: 15,   
+        
+        mapTypeId: google.maps.MapTypeId.ROADMAP        
+      };
+      
+      let trafficLayer = new google.maps.TrafficLayer();    
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapProp);
+      
+      trafficLayer.setMap(this.map);
     }
   }
 }

@@ -10,7 +10,11 @@
                   <button (click)="setMapType('terrain')" class="btn btn-primary">Terrain</button>
                   <button (click)="setMapType('satellite')" class="btn btn-danger">Satellite</button>
                   <button (click)="setMapType('roadmap')" class="btn btn-warning">Road Map</button>
+                  <button (click)="changeTheme('dark')" class="btn btn-warning">Dark Theme</button>
+                  <button (click)="changeTheme('light')" class="btn btn-warning">Light Theme</button>
+
                 </div>
+
 <div #map style="width:100%; height: 34rem;"></div>
 <div id="ttw" style="align-content: center; background-color: orange; font-size: 2rem"> <strong style="font-size: 3rem">{{timeToWork.Time}}</strong> minutes to get to work</div>
 </div>  
