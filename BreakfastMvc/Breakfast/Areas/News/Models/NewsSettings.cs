@@ -9,9 +9,9 @@ namespace Breakfast.Areas.News.Models
     {
         public int Id { get; set; }
         public bool Enabled { get; set; }
-        public List<string> Domains { get; set; }
-        public List<string> Queries { get; set; }
-        public List<string> Sources { get; set; }
+        public string Domains { get; set; }
+        public string Queries { get; set; }
+        public string Sources { get; set; }
         public DateTime OldestDate { get; set; }
         public DateTime NewestDate { get; set; }
         public string Language { get; set; }

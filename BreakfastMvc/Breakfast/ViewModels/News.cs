@@ -9,9 +9,9 @@ namespace Breakfast.ViewModels
     {
         public int Id { get; set; }
         public bool Enabled { get; set; }
-        public List<object> Queries { get; set; }
-        public List<object> Sources { get; set; }
-        public List<object> Domains { get; set; }
+        public string Queries { get; set; }
+        public string Sources { get; set; }
+        public string Domains { get; set; }
         public object Language { get; set; }
         public object PageSize { get; set; }
         public string OldestDate { get; set; }

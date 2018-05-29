@@ -9,19 +9,15 @@ namespace Breakfast.Business.News.Models
 {
     public class NewsSettings
     {
-        //private static readonly Dictionary<string, string> LanguageCodes;
-        private static readonly int MaxSrcCount = 20;
-
         public int Id;
-        public List<string> Queries;
-        public string[] Sources; // questioning implementation here
-        public List<string> Domains;
+        public string Queries;
+        public string Sources;
+        public string Domains;
         private Nullable <DateTime> _OldestDate;
         private Nullable <DateTime> _NewestDate;
         public string Language;
         public Nullable <int> PageSize;
         public bool Enabled;
-        //sort criteria
 
 
         #region PropertyFields
@@ -60,68 +56,31 @@ namespace Breakfast.Business.News.Models
         public NewsSettings()
         {
             Id = -1;
-            //Set Language codes
-            Sources = new string[MaxSrcCount];
-            Queries = new List<string>();
-            Domains = new List<string>();
+            Sources = "";
+            Queries = "";
+            Domains = "";
             _OldestDate = null;
             _NewestDate = null;
             PageSize = null;
             Enabled = false;
         }
 
-        public NewsSettings(int id = -1, List<string> queryStrings = null, string [] sources = null,
-            List<string> domains = null, Nullable<DateTime> oldestDate = null,
+        public NewsSettings(int id = -1, string queries = "", string sources = "",
+            string domains = "", Nullable<DateTime> oldestDate = null,
             Nullable<DateTime> newestDate = null, string language = null,
             Nullable<int> pageSize = null, bool enabled = false)
         {
-            Id = -1;
-            Sources = new string[MaxSrcCount];
-            if (sources != null)
-            {
-                for (int i = 0; i < sources.Length && i < MaxSrcCount; i++)
-                {
-                    if (sources[i] != "" && sources[i] != null)
-                    {
-                        Sources[i] = String.Copy(sources[i]);
-                    }
-                    else
-                    {
-                        Sources[i] = "";
-                    }
-                }
-            }
-
-            Queries = new List<string>();
-            if(queryStrings != null)
-            { 
-                foreach (var queryString in queryStrings)
-                {
-                    Queries.Add(String.Copy(queryString));
-                }
-            }
-
-            Domains = new List<string>();
-            if(domains != null)
-            {
-                foreach (var domain in domains)
-                {
-                    Domains.Add(String.Copy(domain));
-                }
-            }
-
+            Id = id;
+            if (sources != null) { Sources = string.Copy(sources); }
+            else { Sources = null; }
+            if (queries != null) { Queries = string.Copy(queries); }
+            else { Queries = null; }
+            if (domains != null) { Domains = string.Copy(domains); }
+            else { Domains = null; }
             _OldestDate = oldestDate;
             _NewestDate = newestDate;
-
-            if(language != null)
-            {
-                Language = String.Copy(language);
-            }
-            else
-            {
-                Language = language;
-            }
-
+            if (language != null) { Language = string.Copy(language); }
+            else { Language = null; }
             PageSize = pageSize;
             Enabled = enabled;
         }        
@@ -133,45 +92,20 @@ namespace Breakfast.Business.News.Models
                 throw new ArgumentNullException();
             }
 
-            Sources = new string[MaxSrcCount];
-            Queries = new List<string>();
-            Domains = new List<string>();
+            if(toCopy.Sources != null) { Sources = string.Copy(toCopy.Sources); }
+            else { Sources = null; }
 
-            if(toCopy.Sources != null && toCopy.Sources.Length != 0)
-            {
-                for (int i = 0; i < Sources.Length && i < MaxSrcCount; i++)
-                {
-                    if(toCopy.Sources[i] != "" && toCopy.Sources[i] != null)
-                    {
-                        Sources[i] = String.Copy(toCopy.Sources[i]);
-                    }
-                }
-            }
+            if (toCopy.Queries != null) { Queries = string.Copy(toCopy.Queries); }
+            else { Queries = null; }
 
-            if(toCopy.Queries != null)
-            { 
-                foreach (var current in toCopy.Queries)
-                {
-                    Queries.Add(String.Copy(current));
-                }
-            }
+            if (toCopy.Domains != null) { Domains = string.Copy(toCopy.Domains); }
+            else { Domains = null; }
 
-            if(toCopy.Domains != null) { 
-                foreach (var current in toCopy.Domains)
-                {
-                    Domains.Add(String.Copy(current));
-                }
-            }
             _OldestDate = toCopy._OldestDate;
             _NewestDate = toCopy._NewestDate;
 
-            if(toCopy.Language != null)
-            { 
-                Language = String.Copy(toCopy.Language);
-            } else
-            {
-                Language = toCopy.Language;
-            }
+            if (toCopy.Language != null) { Language = string.Copy(toCopy.Language); }
+            else { Language = null; }
 
             PageSize = toCopy.PageSize;
             Enabled = toCopy.Enabled;
@@ -185,96 +119,55 @@ namespace Breakfast.Business.News.Models
 
         static public explicit operator NewsSettings(Data.Models.NewsSettings nsData)
         {
-            string concatQueryString = nsData?.Queries;
-            string concatDomainString = nsData?.Domains;
-            string concatSourceString = nsData?.Sources;
-            char[] separatorCharacters = new char[] { '"' };
+            NewsSettings newsSettings = new NewsSettings();
+            newsSettings.Id = nsData.Pk_NewsId;
+            if (nsData.Queries != null) { newsSettings.Queries = string.Copy(nsData.Queries); }
+            else { newsSettings.Queries = null; }
 
-            string[] parsedQueries = { };
-            if (concatQueryString != null)
-                parsedQueries = concatQueryString.Split(separatorCharacters);
+            if (nsData.Sources != null) { newsSettings.Sources = string.Copy(nsData.Sources); }
+            else { newsSettings.Sources = null; }
 
-            string[] parsedDomains = { };
-            if (concatDomainString != null)
-                parsedDomains = concatDomainString.Split(separatorCharacters);
+            if (nsData.Domains != null) { newsSettings.Domains = string.Copy(nsData.Domains); }
+            else { newsSettings.Domains = null; }
 
-            string[] parsedSources = { };
-            if (concatSourceString != null)
-                parsedSources = concatSourceString.Split(separatorCharacters);
+            newsSettings._OldestDate = nsData.OldestDate;
+            newsSettings._NewestDate = nsData.NewestDate;
 
-            NewsSettings newsSettings = new NewsSettings()
-            {
-                Id = nsData.Pk_NewsId,
-                Queries = parsedQueries.ToList(),
-                Sources = parsedSources,
-                Domains = parsedDomains.ToList(),
-                _OldestDate = nsData.OldestDate,
-                _NewestDate = nsData.NewestDate,
-                Language = nsData.Language,
-                PageSize = nsData.PageSize,
-                Enabled = nsData.Enabled
-            };
+            if (nsData.Language != null) { newsSettings.Language = string.Copy(nsData.Language); }
+            else { newsSettings.Language = null; }
+
+            newsSettings.PageSize = nsData.PageSize;
+            newsSettings.Enabled = nsData.Enabled;
 
             return newsSettings;
         }
 
         static public explicit operator Data.Models.NewsSettings(NewsSettings newsSettings)
         {
-            if(newsSettings == null)
+            if (newsSettings == null)
             {
                 throw new ArgumentNullException();
             }
-            string concatQueries = null;
-            if(newsSettings.Queries != null) { 
-                foreach (var query in newsSettings.Queries)
-                {
-                    concatQueries += query + "\"";
-                }
-            } else
-            {
- //               concatQueries = "";
-            }
 
-            string concatSources = null;
-            if(newsSettings.Sources != null)
-            { 
+            Data.Models.NewsSettings nsData = new Data.Models.NewsSettings();
 
-                foreach (var source in newsSettings.Sources)
-                {
-                    concatSources += source + "\"";
-                }
-            }
-            else
-            {
- //               concatSources = "";
-            }
+            nsData.Pk_NewsId = newsSettings.Id;
 
-            string concatDomains = null;
-            if (newsSettings.Domains != null)
-            {
+            if (newsSettings.Queries != null) { nsData.Queries = string.Copy(newsSettings.Queries); }
+            else { nsData.Queries = null; }
 
-                foreach (var domain in newsSettings.Domains)
-                {
-                    concatDomains += domain + "\"";
-                }
-            }
-            else
-            {
-//                concatDomains = "";
-            }
+            if (newsSettings.Sources != null) { nsData.Sources = string.Copy(newsSettings.Sources); }
+            else { nsData.Sources = null; }
 
-            Data.Models.NewsSettings nsData = new Data.Models.NewsSettings()
-            {
-                Pk_NewsId = newsSettings.Id,
-                Queries = concatQueries,
-                Sources = concatSources,
-                Domains = concatDomains,
-                OldestDate = newsSettings._OldestDate,
-                NewestDate = newsSettings._NewestDate,
-                Language = newsSettings.Language,
-                PageSize = newsSettings.PageSize,
-                Enabled = newsSettings.Enabled
-            };
+            if (newsSettings.Domains != null) { nsData.Domains = string.Copy(newsSettings.Domains); }
+            else { nsData.Domains = null; }
+
+            nsData.OldestDate = newsSettings._OldestDate;
+            nsData.NewestDate = newsSettings._NewestDate;
+            if (newsSettings.Language != null) { nsData.Language = string.Copy(newsSettings.Language); }
+            else { nsData.Language = null; }
+            nsData.PageSize = newsSettings.PageSize;
+            nsData.Enabled = newsSettings.Enabled;    
 
             return nsData;
         }

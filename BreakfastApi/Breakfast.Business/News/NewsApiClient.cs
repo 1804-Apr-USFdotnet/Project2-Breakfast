@@ -172,58 +172,37 @@ namespace Breakfast.Business.News
 
         private string GetSubstringQueries ()
         {
-            if (Settings.Queries.Count == 0)
+            if (Settings.Queries == null || Settings.Queries == "")
             {
                 return "";
             }
             else
             {
-                string substring = "q=";
-                foreach (var queryString in Settings.Queries)
-                {
-                    substring = substring + queryString + ",";
-                }
-
-                substring = substring.Remove(substring.Length - 1, 1) + "&";
-                return substring;
+                return "q=" + Settings.Queries + "&";
             }
         }
 
         private string GetSubstringSources ()
         {
-            if (Settings.Sources[0] == "" || Settings.Sources[0] == null)
-            {
-                return "";
-            }
-            string substring = "sources=";
-
-            for(int i = 0; i < Settings.Sources.Length; i++)
-            {
-                if(Settings.Sources[i] != "" && Settings.Sources[i] != null)
-                {
-                    substring = substring + Settings.Sources[i] + ",";
-                }
-            }
-
-            substring = substring.Remove(substring.Length - 1, 1) + "&";
-            return substring;
-        }
-
-        private string GetSubstringDomains ()
-        {
-            if (Settings.Domains.Count == 0)
+            if (Settings.Sources == "" || Settings.Sources == null)
             {
                 return "";
             }
             else
             {
-                string substring = "domains=";
-                foreach(string domain in Settings.Domains)
-                {
-                    substring = substring + domain + ",";
-                }
-                substring = substring.Remove(substring.Length - 1, 1) + "&";
-                return substring;
+                return "sources=" + Settings.Sources + "&";
+            }
+        }
+
+        private string GetSubstringDomains ()
+        {
+            if (Settings.Domains == "" || Settings.Domains == null)
+            {
+                return "";
+            }
+            else
+            {
+                return "domains=" + Settings.Domains + "&";
             }
         }
 
